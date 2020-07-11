@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { 
     Container,
+    Scroll,
     LogoView,
     LogoImg,
     LineIcon,
@@ -11,86 +12,146 @@ import {
     TableView,
     ItemView,
     ItemText,
-    DotText,
     PriceText,
+    BtnView,
+    BtnText,
+    Touch
 } from './style';
 
-import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import BtnComponent from '../../components/BtnComponent';
 
 export default () => {
+    let nameIcon = 'heart-o';
+    const [icon, setIcon] = useState(false);
+
+    function ChangeIcon() {
+        setIcon(!icon);
+        
+    }
+
+    if(icon) {
+        nameIcon = 'heart';
+    } else {
+        nameIcon = 'heart-o';
+    }
+
     return (
         <Container>
-            <LogoView>
-                <LineIcon>
-                    <Icon name="star" size={25} />
-                    <Icon name="star" size={25} />
-                    <Icon name="star" size={25} />
-                    <Icon name="star" size={25} />
-                    <Icon name="star" size={25} />
-                </LineIcon>
-                <LogoImg source={require('../../assets/logo.png')} />
-                <LineIcon>
-                    <Icon name="star" size={25} />
-                    <Icon name="star" size={25} />
-                    <Icon name="star" size={25} />
-                    <Icon name="star" size={25} />
-                    <Icon name="star" size={25} />
-                </LineIcon>
-            </LogoView>
+            <Scroll>
+                <LogoView>
+                    <LineIcon>
+                        <Icon name="star" size={25} />
+                        <Icon name="star" size={25} />
+                        <Icon name="star" size={25} />
+                        <Icon name="star" size={25} />
+                        <Icon name="star" size={25} />
+                    </LineIcon>
+                    <LogoImg source={require('../../assets/logo.png')} />
+                    <LineIcon>
+                        <Icon name="star" size={25} />
+                        <Icon name="star" size={25} />
+                        <Icon name="star" size={25} />
+                        <Icon name="star" size={25} />
+                        <Icon name="star" size={25} />
+                    </LineIcon>
+                </LogoView>
 
-            <HeaderView>
-                <HeaderLine></HeaderLine>
-                <ViewText>
-                    <HeaderText> Preços </HeaderText>
-                </ViewText>
-                <HeaderLine></HeaderLine>
-            </HeaderView>
+                <HeaderView>
+                    <HeaderLine></HeaderLine>
+                    <ViewText>
+                        <HeaderText> Preços </HeaderText>
+                    </ViewText>
+                    <HeaderLine></HeaderLine>
+                </HeaderView>
 
-            {/** Depois cadastrar esses dados em um bd e trazer pra cá */}
-            <TableView>
-                <ItemView>
-                    <Icon name="heart-o" size={23}/>
-                    <ItemText> Corte </ItemText>
-                    <PriceText> 20,00 </PriceText>
-                </ItemView>
-                <ItemView>
-                    <Icon name="heart-o" size={23} />
-                    <ItemText> Corte Infantil </ItemText>
-                    <DotText>...........</DotText>
-                    <PriceText> 15,00 </PriceText>
-                </ItemView>
-                <ItemView>
-                    <Icon name="heart-o" size={23} />
-                    <ItemText> Sobrancelha </ItemText>
-                    <DotText>..........</DotText>
-                    <PriceText> 10,00 </PriceText>
-                </ItemView>
-                <ItemView>
-                    <Icon name="heart-o" size={23} />
-                    <ItemText> Cabelo + Sobrancelha </ItemText>
-                    <DotText>.........</DotText>
-                    <PriceText> 27,00 </PriceText>
-                </ItemView>
-                <ItemView>
-                    <Icon name="heart-o" size={23} />
-                    <ItemText> Cabelo + Barba </ItemText>
-                    <DotText>................</DotText>
-                    <PriceText> 30,00 </PriceText>
-                </ItemView>
-                <ItemView>
-                    <Icon name="heart-o" size={23} />
-                    <ItemText> Barba </ItemText>
-                    <DotText>...............</DotText>
-                    <PriceText> 15,00 </PriceText>
-                </ItemView>
-                <ItemView>
-                    <Icon name="heart-o" size={23} />
-                    <ItemText> Degradê </ItemText>
-                    <DotText>..........</DotText>
-                    <PriceText> 30,00 </PriceText>
-                </ItemView>
-            </TableView>
+                {/** Depois cadastrar esses dados em um bd e trazer pra cá */}
+                <TableView>
+                    <ItemView>
+                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
+                            <Icon name={nameIcon} size={23}/>
+                        </Touch>
+                        <ItemText> Corte........................................20,00</ItemText>
+                        <BtnView>
+                            <BtnComponent>
+                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                            </BtnComponent>
+                        </BtnView>
+                    </ItemView>
+                    <ItemView>
+                        <Icon name="heart-o" size={23} />
+                        <ItemText> Corte Infantil..........................15,00 </ItemText>
+                        <BtnView>
+                            <BtnComponent>
+                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                            </BtnComponent>
+                        </BtnView>
+                    </ItemView>
+                    <ItemView>
+                        <Icon name="heart-o" size={23} />
+                        <ItemText> Sobrancelha...........................10,00 </ItemText>
+                        <BtnView>
+                            <BtnComponent>
+                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                            </BtnComponent>
+                        </BtnView>
+                    </ItemView>
+                    <ItemView>
+                        <Icon name="heart-o" size={23} />
+                        <ItemText> Corte + Sobrancelha.............27,00 </ItemText>
+                        <BtnView>
+                            <BtnComponent>
+                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                            </BtnComponent>
+                        </BtnView>
+                    </ItemView>
+                    <ItemView>
+                        <Icon name="heart-o" size={23} />
+                        <ItemText> Corte + Barba........................30,00 </ItemText>
+                        <BtnView>
+                            <BtnComponent>
+                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                            </BtnComponent>
+                        </BtnView>
+                    </ItemView>
+                    <ItemView>
+                        <Icon name="heart-o" size={23} />
+                        <ItemText> Barba......................................15,00 </ItemText>
+                        <BtnView>
+                            <BtnComponent>
+                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                            </BtnComponent>
+                        </BtnView>
+                    </ItemView>
+                    <ItemView>
+                        <Icon name="heart-o" size={23} />
+                        <ItemText> Degradê..................................30,00 </ItemText>
+                        <BtnView>
+                            <BtnComponent>
+                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                            </BtnComponent>
+                        </BtnView>
+                    </ItemView>
+                    <ItemView>
+                        <Icon name="heart-o" size={23} />
+                        <ItemText> Platinar...................................50,00 </ItemText>
+                        <BtnView>
+                            <BtnComponent>
+                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                            </BtnComponent>
+                        </BtnView>
+                    </ItemView>
+                    <ItemView>
+                        <Icon name="heart-o" size={23} />
+                        <ItemText> Luzes......................................45,00 </ItemText>
+                        <BtnView>
+                            <BtnComponent>
+                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                            </BtnComponent>
+                        </BtnView>
+                    </ItemView>
+                </TableView>
+            </Scroll>
         </Container>
     );
 }

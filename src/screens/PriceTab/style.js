@@ -5,6 +5,8 @@ export const Container = styled.SafeAreaView`
     background-color: #fff;
 `;
 
+export const Scroll = styled.ScrollView``;
+
 export const LogoView = styled.View`
     margin-top: 20px;
     flex-direction: row;
@@ -58,11 +60,12 @@ export const TableView = styled.View`
 
 export const ItemView = styled.View`
     flex-direction: row;
-    align-items: center;
-    height: 40px;
+    width: 100%;
+    height: 60px;
     margin-left: 10px;
     justify-content: flex-start;
-`
+    align-items: center;
+`;
 
 
 export const ItemText = styled.Text`
@@ -70,11 +73,20 @@ export const ItemText = styled.Text`
     font-size: 17px;
 `;
 
-export const DotText = styled.Text`
-    font-size: 20px;
-`;
-
 export const PriceText = styled.Text`
     font-size: 19px;
+    width: 15%;
 `;
 
+export const BtnView = styled.View`
+    margin-left: 10px;
+    width: 40px;
+    height: 35px;
+`;
+
+export const BtnText = styled.Text`
+    font-size: 16px;
+    color: #fff;
+`;
+
+export const Touch = styled.TouchableHighlight``;
