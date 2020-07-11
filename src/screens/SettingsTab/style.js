@@ -5,9 +5,11 @@ export const Container = styled.SafeAreaView`
     background-color: #fff;
 `;
 
+export const Scroll = styled.ScrollView``;
+
 export const UserView = styled.View`
     background-color: #777;
-    height: 150px;
+    height: 180px;
     width: 100%;
     align-items: center;
     justify-content: flex-start;
@@ -21,21 +23,26 @@ export const Texto = styled.Text`
 
 export const SettingsView = styled.TouchableHighlight`
     width: 100%;
-    height: 70px;
     borderBottomWidth: 1px;
     borderBottomColor: #000;
-    flex-direction: row;
-    
+    flex-direction: column;
 `;
 
 export const SettingsButton = styled.TouchableHighlight`
+    height: 60px;
+    borderTopWidth: 1px;
+    borderTopColor: #000;
     width: 100%;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
+    
 `;
 
 export const DefaultText = styled.Text`
-    font-size: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 17px;
     margin-left: 10px;
-    width: 90%;
+    width: 80%;
 `;

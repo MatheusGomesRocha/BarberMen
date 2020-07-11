@@ -23,7 +23,8 @@ export default () => {
             labelStyle: {   // Estilo do Label
                 fontSize: 16,
                 paddingBottom: 5
-            }
+            },
+            keyboardHidesTabBar: true
         }}
 
         screenOptions={({route}) =>({           // Passando route como objeto para pegar o nome das rotas futuramente
