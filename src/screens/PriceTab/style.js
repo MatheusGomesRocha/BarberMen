@@ -51,3 +51,30 @@ export const HeaderText = styled.Text`
     font-weight: bold;
 `;
 
+export const TableView = styled.View`
+    margin-top: 30px;
+    flex-direction: column;
+`
+
+export const ItemView = styled.View`
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    margin-left: 10px;
+    justify-content: flex-start;
+`
+
+
+export const ItemText = styled.Text`
+    margin-left: 5px;
+    font-size: 17px;
+`;
+
+export const DotText = styled.Text`
+    font-size: 20px;
+`;
+
+export const PriceText = styled.Text`
+    font-size: 19px;
+`;
+
