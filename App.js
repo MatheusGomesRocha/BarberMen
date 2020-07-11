@@ -1,14 +1,21 @@
 import React from 'react';
-import styled from 'styled-components/navite';
 
-const Container = styled.View``;
-const Texto = styled.Text``;
+import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/es/integration/react'
+import { store, persistor } from './src/store';
+import AppTab from './src/navigators/AppTab.js';
+
 
 function App() {
   return(
-    <Container>
-      <Texto> Olá Mundo</Texto>
-    </Container>
+    <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <NavigationContainer>
+                    <AppTab/>
+                </NavigationContainer>
+            </PersistGate>
+        </Provider>   
   );
 }
 export default App;
