@@ -42,7 +42,7 @@ export const SettingsButton = styled.TouchableHighlight`
 export const DefaultText = styled.Text`
     justify-content: flex-start;
     align-items: flex-start;
-    font-size: 17px;
+    font-size: 16px;
     margin-left: 10px;
     width: 80%;
 `;

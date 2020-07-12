@@ -5,7 +5,8 @@ export const Container = styled.SafeAreaView`
     background-color: #fff;
 `;
 
-export const Scroll = styled.ScrollView``;
+export const Scroll = styled.ScrollView`
+`;
 
 export const LogoView = styled.View`
     margin-top: 20px;
@@ -55,6 +56,7 @@ export const HeaderText = styled.Text`
 
 export const TableView = styled.View`
     margin-top: 30px;
+    margin-bottom: 30px;
     flex-direction: column;
 `
 

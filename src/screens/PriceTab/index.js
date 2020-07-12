@@ -25,6 +25,7 @@ export default () => {
     let nameIcon = 'heart-o';
     const [icon, setIcon] = useState(false);
 
+    // Função para adicionar aos favoritos, posteriormente fazer com dispatch para adicionar aos favoritos pelo id
     function ChangeIcon() {
         setIcon(!icon);
         
@@ -79,7 +80,9 @@ export default () => {
                         </BtnView>
                     </ItemView>
                     <ItemView>
-                        <Icon name="heart-o" size={23} />
+                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
+                            <Icon name={nameIcon} size={23}/>
+                        </Touch>
                         <ItemText> Corte Infantil..........................15,00 </ItemText>
                         <BtnView>
                             <BtnComponent>
@@ -88,7 +91,9 @@ export default () => {
                         </BtnView>
                     </ItemView>
                     <ItemView>
-                        <Icon name="heart-o" size={23} />
+                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
+                            <Icon name={nameIcon} size={23}/>
+                        </Touch>
                         <ItemText> Sobrancelha...........................10,00 </ItemText>
                         <BtnView>
                             <BtnComponent>
@@ -97,7 +102,9 @@ export default () => {
                         </BtnView>
                     </ItemView>
                     <ItemView>
-                        <Icon name="heart-o" size={23} />
+                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
+                            <Icon name={nameIcon} size={23}/>
+                        </Touch>
                         <ItemText> Corte + Sobrancelha.............27,00 </ItemText>
                         <BtnView>
                             <BtnComponent>
@@ -106,7 +113,9 @@ export default () => {
                         </BtnView>
                     </ItemView>
                     <ItemView>
-                        <Icon name="heart-o" size={23} />
+                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
+                            <Icon name={nameIcon} size={23}/>
+                        </Touch>
                         <ItemText> Corte + Barba........................30,00 </ItemText>
                         <BtnView>
                             <BtnComponent>
@@ -115,7 +124,9 @@ export default () => {
                         </BtnView>
                     </ItemView>
                     <ItemView>
-                        <Icon name="heart-o" size={23} />
+                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
+                            <Icon name={nameIcon} size={23}/>
+                        </Touch>
                         <ItemText> Barba......................................15,00 </ItemText>
                         <BtnView>
                             <BtnComponent>
@@ -124,7 +135,9 @@ export default () => {
                         </BtnView>
                     </ItemView>
                     <ItemView>
-                        <Icon name="heart-o" size={23} />
+                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
+                            <Icon name={nameIcon} size={23}/>
+                        </Touch>
                         <ItemText> Degradê..................................30,00 </ItemText>
                         <BtnView>
                             <BtnComponent>
@@ -133,7 +146,9 @@ export default () => {
                         </BtnView>
                     </ItemView>
                     <ItemView>
-                        <Icon name="heart-o" size={23} />
+                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
+                            <Icon name={nameIcon} size={23}/>
+                        </Touch>
                         <ItemText> Platinar...................................50,00 </ItemText>
                         <BtnView>
                             <BtnComponent>
@@ -142,7 +157,9 @@ export default () => {
                         </BtnView>
                     </ItemView>
                     <ItemView>
-                        <Icon name="heart-o" size={23} />
+                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
+                            <Icon name={nameIcon} size={23}/>
+                        </Touch>
                         <ItemText> Luzes......................................45,00 </ItemText>
                         <BtnView>
                             <BtnComponent>
