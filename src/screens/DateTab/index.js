@@ -20,6 +20,7 @@ export default () => {
 
     return (
         <Container>
+            <Scroll>
                 <MonthView
                 selectMonth={selectMonth}
                 setMonth={setSelectMonth}
@@ -29,6 +30,7 @@ export default () => {
                     selectDay={selectDay}
                     setSelectDay={setSelectDay}
                 />
+            </Scroll>
         </Container>
     );
 }

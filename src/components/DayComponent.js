@@ -3,22 +3,24 @@ import { useSelector } from 'react-redux';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
-const DayScroll = styled.ScrollView`
+const DayScroll = styled.View`
     width: 100%;
-    height: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
 `;
 
 const DayButton = styled.TouchableHighlight`
     width: ${props=>props.width};
     align-items: center;
     justify-content: center;
+    padding-bottom: 25px;
 `;
 
 const Item = styled.View`
-    width: 30px;
-    height: 30px;
+    background-color: ${props=>props.bgColor};
+    width: 40px;
+    height: 40px;
     border-radius: 35px;
-    background-color: #ccc;
     justify-content: center;
     align-items: center;
 `;
@@ -30,14 +32,39 @@ const Texto = styled.Text``;
 const screenSize = Math.round(Dimensions.get('window').width);  // Pegando tamanho da tela do celular
 
 // Dividindo tamanho da tela em 9 para mostrar 9 buttons centralizados 
-let dayWPx = Math.round(screenSize / 9) + "px";   // Usar para passar a prop de tamanho do DayButton pois precisa dizer a forma de medição de tamanho
-let dayW = Math.round(screenSize / 9);        // Usar para o snapToInterval
+let dayWPx = Math.round(screenSize / 7) + "px";   // Usar para passar a prop de tamanho do DayButton pois precisa dizer a forma de medição de tamanho
+let dayW = Math.round(screenSize / 7);        // Usar para o snapToInterval
 let offsetW = Math.round((screenSize - dayW) / 2);
 
 function Day ({month, day}) {      // função que pega se o dia que o usuário selecionou/dias normais é menor, maior ou igual ao dia atual
+    const [choseDay, setChoseDay] = useState(false);
+    let bgColor= '#ddd';
+
+    let today = new Date();
+    today.setHours(0);      // zera a hora
+    today.setMinutes(0);
+    today.setSeconds(0);
+    today.setMilliseconds(0);
+
+    let thisDate = new Date(today.getFullYear(), month, day)    
+
+   
+
+    function setDay(d) {
+        setChoseDay(!choseDay);
+    }
+
+    if (choseDay) {
+        bgColor = '#00ff7f';
+    }
+
+    if(thisDate.getTime() == today.getTime()) {
+        bgColor = '#b5eeff';
+    }
+
     return (
-        <DayButton width={dayWPx} underlayColor="transparent">
-            <Item>
+        <DayButton width={dayWPx} underlayColor="transparent" onPress={() => setDay(day)}>
+            <Item bgColor={bgColor}>
                 <Texto> {day} </Texto>
             </Item>
         </DayButton>
@@ -52,11 +79,6 @@ export default (props) => {
         let posX = e.nativeEvent.contentOffset.x;       // Pegando o valor X horizontal do Scroll
         let targetDay = Math.round( posX / dayW + 1);     
         setSelectDay(targetDay); 
-    }
-
-    function scrollToDay(d) {     // Função que realiza o Scroll para o dia selecionado
-        let posX = (d - 1) * dayW;
-        dayRef.current.scrollTo({x:posX, y:0, animated:true});
     }
 
     useEffect(() => {
