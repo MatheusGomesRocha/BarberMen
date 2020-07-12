@@ -8,7 +8,7 @@ const MonthScroll = styled.ScrollView`
     height: 60px;
 `;
 
-const MonthView = styled.View`
+const MonthView = styled.TouchableHighlight`
     width: ${props=>props.width};
     align-items: center;
     margin-top: 50px;
@@ -17,7 +17,7 @@ const MonthView = styled.View`
 const Item = styled.View`
     width: 80%;
     height: 60px;
-    background-color: #ff0000;
+    background-color: #ccc;
     border-radius: 15px;
     justify-content: center;
     align-items: center;
@@ -38,6 +38,14 @@ let thirdS = screenSize;        // Usar para o snapToInterval
 export default (props) => {
     const navigation = useNavigation();
     const monthRef = useRef();  // Pega referência do mês
+    const [selectMonth, setSelectMonth] = useState(props.selectMonth);
+
+
+    function handleScrollEnd(e) {   
+        let posX = e.nativeEvent.contentOffset.x;       // Pegando o valor X horizontal do Scroll
+        let targetMonth = Math.round( posX / thirdS );     
+        setSelectMonth(targetMonth);
+    }
 
     function scrollToMonth(m) {     // Função que realiza o Scroll para o mês selecionado
         let posX = m * thirdS;
@@ -45,11 +53,15 @@ export default (props) => {
     }
 
     let Month = new Date().getMonth();
+
+    useEffect(() => {
+        props.setMonth(selectMonth);
+    }, [selectMonth]);
     
     useEffect(() => {       // Da um Timeout de 10 milisegundos para realizar o scroll para o mês atual
         setTimeout(() => {
             scrollToMonth(Month);
-        }, 10);
+        }, 100);
     }, []);
 
     return  (
@@ -59,10 +71,15 @@ export default (props) => {
             decelerationRate="fast"
             horizontal={true}
             snapToInterval={thirdS}
+            onMomentumScrollEnd={handleScrollEnd}
         >
             {months.map((month, k) => (
-                <MonthView key={k} width={size}>
-                    <Item>
+                <MonthView key={k} width={size} onPress={() => setSelectMonth(k)}>
+                    <Item style={k == selectMonth ? {    // quando o mês for selecionado
+                        backgroundColor: '#ff0000',
+                        width: '80%',
+                        height: 60,
+                    } : {}}>
                         <Texto> {month} </Texto>
                     </Item>
                 </MonthView>

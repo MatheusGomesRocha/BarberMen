@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Dimensions } from 'react-native';
 
 import {
@@ -11,28 +11,23 @@ import {
 import MonthView from '../../components/MonthComponent';
 import DayView from '../../components/DayComponent';
 
-const screenSize = Math.round(Dimensions.get('window').width);  // Pegando tamanho da tela do celular
-let dayWPx = Math.round(screenSize / 7) + "px";
-
 export default () => {
-    let date = new Date();
+    let today = new Date();
 
-    let Month = date.getMonth() + 1;
-    let MonthName = null;
-
-    switch(Month) {
-        case '1':
-            MonthName = 'Janeiro';
-        break;
-        case '7':
-            MonthName = 'Julho';
-        break;
-    }
+    const [selectMonth, setSelectMonth] = useState(today.getMonth());
+    const [selectDay, setSelectDay] = useState(today.getDate());
 
 
     return (
         <Container>
                 <MonthView
+                selectMonth={selectMonth}
+                setMonth={setSelectMonth}
+                />
+                <DayView
+                    selectMonth={selectMonth}
+                    selectDay={selectDay}
+                    setSelectDay={setSelectDay}
                 />
         </Container>
     );
