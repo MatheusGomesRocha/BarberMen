@@ -14,7 +14,7 @@ function Bar() {      /** Barra de status do aparelho */
    * backgroundColor="" recebe o background da barra de status (somente para android)
    */
   return (
-    <StatusBar barStyle="dark-content" backgroundColor="#bbb"/>
+    <StatusBar barStyle="dark-content" backgroundColor="#FFc491"/>
   );
 }
 

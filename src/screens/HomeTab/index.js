@@ -2,44 +2,60 @@ import React from 'react';
 import {
     Container,
     Scroll,
+    LoginBtnView,
     BtnText,
+    SignUpView,
+    SignUpText,
+    Bold,
     BannerView,
     BannerImg,
     ViewRow,
     LineView,
     TextView,
+    BigText,
     UsView,
     UsText,
+    SmallText,
     UsImg,
     CommentsView,
     CommentsText,
-    LineText
+    LineText,
+    
 } from './style';
 
 import BtnComponent from '../../components/BtnComponent';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MyAppSvg from '../../assets/svg/undraw_barber_3uel.svg';     // SVG BARBER
 export default () => {
 
     return (
         <Container>
             <Scroll>
                 <BannerView>
-                    <BannerImg source={require('../../assets/banner.jpg')} />
+                    <MyAppSvg width={280} height={260} />
                 </BannerView>
-                <ViewRow>
-                    <LineView></LineView>
-                    <TextView>
-                        <BtnComponent>
-                            <BtnText> Login </BtnText>
-                        </BtnComponent>
-                    </TextView>
-                    <LineView></LineView>
+                <ViewRow>                    
+                    <BigText> Bem Vindo </BigText>
+                    <SmallText> 
+                        App oficial da barbearia BarberMen, aqui você pode 
+                        marcar seu horário e ainda pagar o serviço
+                    </SmallText>
                 </ViewRow>
-                <UsView>
-                    <UsText> 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget leo a arcu ultricies congue vel non leo. Donec porta sem id lacus lobortis, sit amet finibus leo interdum. Proin nisl justo, consequat eu ante in, gravida commodo dolor. Donec laoreet dui ut magna finibus fringilla. Donec eget tortor fermentum, scelerisque diam at, blandit massa. Duis ut convallis enim, sit amet consectetur augue. Fusce porttitor, mi nec pulvinar commodo, nunc elit accumsan turpis, sed euismod elit eros quis mauris. Suspendisse potenti. Duis vitae lectus sodales, egestas magna id, rhoncus dui.
-                    </UsText>
-                    <UsImg source={require('../../assets/place.jpg')} />
-                </UsView>
+                
+
+                <LoginBtnView>
+                    <BtnComponent underlayColor="rgba(0, 0, 0, 0.8)" bgColor="#000" width="80%" onPress={() => alert('Login')}>
+                        <>
+                            <BtnText> Login </BtnText> 
+                            <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                        </>
+                    </BtnComponent>
+                    <SignUpView>
+                            <SignUpText> Não tenha uma conta? </SignUpText>
+                            <Bold> Cadastre-se </Bold>
+                    </SignUpView>
+                </LoginBtnView>
+
                 <ViewRow>
                     <LineView></LineView>
                     <TextView>

@@ -74,7 +74,7 @@ export default () => {
                         </Touch>
                         <ItemText> Corte........................................20,00</ItemText>
                         <BtnView>
-                            <BtnComponent>
+                            <BtnComponent bgColor="#000" width="100%">
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </BtnComponent>
                         </BtnView>
@@ -85,7 +85,7 @@ export default () => {
                         </Touch>
                         <ItemText> Corte Infantil..........................15,00 </ItemText>
                         <BtnView>
-                            <BtnComponent>
+                            <BtnComponent bgColor="#000" width="100%">
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </BtnComponent>
                         </BtnView>
@@ -96,7 +96,7 @@ export default () => {
                         </Touch>
                         <ItemText> Sobrancelha...........................10,00 </ItemText>
                         <BtnView>
-                            <BtnComponent>
+                            <BtnComponent bgColor="#000" width="100%">
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </BtnComponent>
                         </BtnView>
@@ -107,7 +107,7 @@ export default () => {
                         </Touch>
                         <ItemText> Corte + Sobrancelha.............27,00 </ItemText>
                         <BtnView>
-                            <BtnComponent>
+                            <BtnComponent bgColor="#000" width="100%">
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </BtnComponent>
                         </BtnView>
@@ -118,7 +118,7 @@ export default () => {
                         </Touch>
                         <ItemText> Corte + Barba........................30,00 </ItemText>
                         <BtnView>
-                            <BtnComponent>
+                            <BtnComponent bgColor="#000" width="100%">
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </BtnComponent>
                         </BtnView>
@@ -129,7 +129,7 @@ export default () => {
                         </Touch>
                         <ItemText> Barba......................................15,00 </ItemText>
                         <BtnView>
-                            <BtnComponent>
+                            <BtnComponent bgColor="#000" width="100%">
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </BtnComponent>
                         </BtnView>
@@ -140,7 +140,7 @@ export default () => {
                         </Touch>
                         <ItemText> Degradê..................................30,00 </ItemText>
                         <BtnView>
-                            <BtnComponent>
+                            <BtnComponent bgColor="#000" width="100%">
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </BtnComponent>
                         </BtnView>
@@ -151,7 +151,7 @@ export default () => {
                         </Touch>
                         <ItemText> Platinar...................................50,00 </ItemText>
                         <BtnView>
-                            <BtnComponent>
+                            <BtnComponent bgColor="#000" width="100%">
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </BtnComponent>
                         </BtnView>
@@ -162,7 +162,7 @@ export default () => {
                         </Touch>
                         <ItemText> Luzes......................................45,00 </ItemText>
                         <BtnView>
-                            <BtnComponent>
+                            <BtnComponent bgColor="#000" width="100%">
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </BtnComponent>
                         </BtnView>
