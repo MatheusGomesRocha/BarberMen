@@ -1,21 +1,28 @@
 import React from 'react';
 import {
-    Container,
-    Scroll,
-    LoginBtnView,
-    BtnText,
-    SignUpView,
-    SignUpText,
-    Bold,
-    BannerView,
-    ViewRow,
-    LineView,
-    TextView,
-    BigText,
-    SmallText,
-    CommentsView,
-    CommentsText,
-    LineText,
+    Container,      // Toda a tela
+
+    Scroll,         // View pra realizar Scroll da tela
+
+    SvgView,        // View que ficou o SVG
+
+    ViewWelcome,    // View de bem-vindo
+    BigText,        // Texto grande de Bem-Vindo
+    SmallText,      // Texto pequeno de introdução
+
+    LoginBtnView,   // View com botão de login
+    BtnText,        // Texto dentro do button
+
+    SignUpView,     // View de texto para Cadastro
+    SignUpText,     // Texto de cadastro (TEMPORÁRIO. MUDAR PARA UM BUTTON QUE REDIRECIONA PARA O STACK DE CADASTRO)
+    Bold,           // Texto em negrito
+    
+    CommentsTitle,  // View onde fica todo o título da sessão de comentários
+    LineView,       // View pra mostrar uma linha de 40% da tela
+    TitleView,      // View que fica o texto do título da sessão de comentários
+    TitleText,      // Texto com o título da sessão de comentários
+    CommentsView,   // View da sessão de comentários
+    CommentsText,   // Texto da sessão de comentários
     
 } from './style';
 
@@ -27,16 +34,17 @@ export default () => {
     return (
         <Container>
             <Scroll>
-                <BannerView>
+
+                <SvgView>
                     <SvgBarber width={280} height={260} />
-                </BannerView>
-                <ViewRow>                    
+                </SvgView>
+                <ViewWelcome>                    
                     <BigText> Bem Vindo </BigText>
                     <SmallText> 
                         App oficial da barbearia BarberMen, aqui você pode 
                         marcar seu horário e ainda pagar o serviço
                     </SmallText>
-                </ViewRow>
+                </ViewWelcome>
                 
 
                 <LoginBtnView>
@@ -52,16 +60,18 @@ export default () => {
                     </SignUpView>
                 </LoginBtnView>
 
-                <ViewRow>
+
+                <CommentsTitle>
                     <LineView></LineView>
-                    <TextView>
-                        <LineText> Comentários </LineText>
-                    </TextView>
+                    <TitleView>
+                        <TitleText> Comentários </TitleText>
+                    </TitleView>
                     <LineView></LineView>
-                </ViewRow>
+                </CommentsTitle>
                 <CommentsView>
                     <CommentsText> Sessão separado para comentário de usuário </CommentsText>
                 </CommentsView>
+
             </Scroll>
         </Container>
     );
