@@ -8,18 +8,21 @@ import {
     HeaderView,
     HeaderLine,
     HeaderText,
-    ViewText,
     TableView,
     ItemView,
     ItemText,
     PriceText,
     BtnView,
     BtnText,
-    Touch
+    Touch,
+    ViewText,
+    BigText,
+    SmallText,
 } from './style';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BtnComponent from '../../components/BtnComponent';
+import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
 
 export default () => {
     let nameIcon = 'heart-o';
@@ -39,133 +42,90 @@ export default () => {
 
     return (
         <Container>
-            <Scroll>
+            <Scroll decelerationRate="fast">
                 <LogoView>
-                    <LineIcon>
-                        <Icon name="star" size={25} />
-                        <Icon name="star" size={25} />
-                        <Icon name="star" size={25} />
-                        <Icon name="star" size={25} />
-                        <Icon name="star" size={25} />
-                    </LineIcon>
-                    <LogoImg source={require('../../assets/logo.png')} />
-                    <LineIcon>
-                        <Icon name="star" size={25} />
-                        <Icon name="star" size={25} />
-                        <Icon name="star" size={25} />
-                        <Icon name="star" size={25} />
-                        <Icon name="star" size={25} />
-                    </LineIcon>
+                    <SvgMoney width={280} height={260}/>
                 </LogoView>
-
-                <HeaderView>
-                    <HeaderLine></HeaderLine>
-                    <ViewText>
-                        <HeaderText> Preços </HeaderText>
-                    </ViewText>
-                    <HeaderLine></HeaderLine>
-                </HeaderView>
-
+                <ViewText>
+                    <BigText> Preços de serviços </BigText>
+                    <SmallText> 
+                        Escolha o corte que irá fazer clicando nele, você será redirecionado para escolher
+                        o dia e horário, caso não tenha escolhido ainda.  
+                    </SmallText>
+                </ViewText>
                 {/** Depois cadastrar esses dados em um bd e trazer pra cá */}
                 <TableView>
-                    <ItemView>
-                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
-                            <Icon name={nameIcon} size={23}/>
-                        </Touch>
-                        <ItemText> Corte........................................20,00</ItemText>
-                        <BtnView>
-                            <BtnComponent bgColor="#000" width="100%">
-                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
-                            </BtnComponent>
-                        </BtnView>
+                    <ItemView>                        
+                        <BtnComponent bgColor="#333" width="90%" radius="100px">
+                            <>
+                                <ItemText> Corte </ItemText>
+                                <BtnText> R$ 20,00 </BtnText>
+                            </>
+                        </BtnComponent>
                     </ItemView>
                     <ItemView>
-                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
-                            <Icon name={nameIcon} size={23}/>
-                        </Touch>
-                        <ItemText> Corte Infantil..........................15,00 </ItemText>
-                        <BtnView>
-                            <BtnComponent bgColor="#000" width="100%">
-                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
-                            </BtnComponent>
-                        </BtnView>
+                        <BtnComponent bgColor="#333" width="90%" radius="100px">
+                            <>
+                                <ItemText> Corte infantil </ItemText>
+                                <BtnText> R$ 10,00 </BtnText>
+                            </>
+                        </BtnComponent>
+                    </ItemView>
+                    <ItemView> 
+                        <BtnComponent bgColor="#333" width="90%" radius="100px">
+                            <>
+                                <ItemText> Pintar </ItemText>
+                                <BtnText> R$ 40,00 </BtnText>
+                            </>
+                        </BtnComponent>
                     </ItemView>
                     <ItemView>
-                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
-                            <Icon name={nameIcon} size={23}/>
-                        </Touch>
-                        <ItemText> Sobrancelha...........................10,00 </ItemText>
-                        <BtnView>
-                            <BtnComponent bgColor="#000" width="100%">
-                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
-                            </BtnComponent>
-                        </BtnView>
+                        <BtnComponent bgColor="#333" width="90%" radius="100px">
+                            <>
+                                <ItemText> Luzes </ItemText>
+                                <BtnText> R$ 50,00 </BtnText>
+                            </>
+                        </BtnComponent>
                     </ItemView>
                     <ItemView>
-                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
-                            <Icon name={nameIcon} size={23}/>
-                        </Touch>
-                        <ItemText> Corte + Sobrancelha.............27,00 </ItemText>
-                        <BtnView>
-                            <BtnComponent bgColor="#000" width="100%">
-                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
-                            </BtnComponent>
-                        </BtnView>
+                        <BtnComponent bgColor="#333" width="90%" radius="100px">
+                            <>
+                                <ItemText> Platinar </ItemText>
+                                <BtnText> R$ 90,00 </BtnText>
+                            </>
+                        </BtnComponent>
                     </ItemView>
                     <ItemView>
-                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
-                            <Icon name={nameIcon} size={23}/>
-                        </Touch>
-                        <ItemText> Corte + Barba........................30,00 </ItemText>
-                        <BtnView>
-                            <BtnComponent bgColor="#000" width="100%">
-                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
+                        <BtnComponent bgColor="#333" width="90%" radius="100px">
+                            <>
+                                <ItemText> Degradê </ItemText>
+                                <BtnText> R$ 30,00 </BtnText>
+                            </>                       
                             </BtnComponent>
-                        </BtnView>
                     </ItemView>
                     <ItemView>
-                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
-                            <Icon name={nameIcon} size={23}/>
-                        </Touch>
-                        <ItemText> Barba......................................15,00 </ItemText>
-                        <BtnView>
-                            <BtnComponent bgColor="#000" width="100%">
-                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
-                            </BtnComponent>
-                        </BtnView>
+                        <BtnComponent bgColor="#333" width="90%" radius="100px">
+                            <>
+                                <ItemText> Corte + Sobrancelha </ItemText>
+                                <BtnText> R$ 27,00 </BtnText>
+                            </>
+                        </BtnComponent>
                     </ItemView>
                     <ItemView>
-                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
-                            <Icon name={nameIcon} size={23}/>
-                        </Touch>
-                        <ItemText> Degradê..................................30,00 </ItemText>
-                        <BtnView>
-                            <BtnComponent bgColor="#000" width="100%">
-                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
-                            </BtnComponent>
-                        </BtnView>
+                        <BtnComponent bgColor="#333" width="90%" radius="100px">
+                            <>
+                                <ItemText> Corte + Barba </ItemText>
+                                <BtnText> R$ 30,00 </BtnText>
+                            </>
+                        </BtnComponent>
                     </ItemView>
                     <ItemView>
-                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
-                            <Icon name={nameIcon} size={23}/>
-                        </Touch>
-                        <ItemText> Platinar...................................50,00 </ItemText>
-                        <BtnView>
-                            <BtnComponent bgColor="#000" width="100%">
-                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
-                            </BtnComponent>
-                        </BtnView>
-                    </ItemView>
-                    <ItemView>
-                        <Touch underlayColor="transparent" onPress={ChangeIcon}>
-                            <Icon name={nameIcon} size={23}/>
-                        </Touch>
-                        <ItemText> Luzes......................................45,00 </ItemText>
-                        <BtnView>
-                            <BtnComponent bgColor="#000" width="100%">
-                                <Icon name="angle-right" size={25} style={{color: '#fff'}} />
-                            </BtnComponent>
-                        </BtnView>
+                        <BtnComponent bgColor="#333" width="90%" radius="100px">
+                            <>
+                                <ItemText> Degradê + Sobrancelha </ItemText>
+                                <BtnText> R$ 35,00 </BtnText>
+                            </>
+                        </BtnComponent>
                     </ItemView>
                 </TableView>
             </Scroll>

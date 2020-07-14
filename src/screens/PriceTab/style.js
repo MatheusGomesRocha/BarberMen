@@ -2,15 +2,13 @@ import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #fff;
+    background-color: #FFc491;
 `;
 
 export const Scroll = styled.ScrollView`
 `;
 
 export const LogoView = styled.View`
-    margin-top: 20px;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
 `;
@@ -42,12 +40,6 @@ export const HeaderLine = styled.View`
     background-color: #000;
 `;
 
-export const ViewText = styled.View`
-    width: 30%;
-    justify-content: center;
-    align-items: center;
-`;
-
 export const HeaderText = styled.Text`
     text-transform: uppercase;
     font-size: 22px;
@@ -64,15 +56,17 @@ export const ItemView = styled.View`
     flex-direction: row;
     width: 100%;
     height: 60px;
-    margin-left: 10px;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    margin: 10px 0 10px 0;
 `;
 
 
 export const ItemText = styled.Text`
     margin-left: 5px;
     font-size: 17px;
+    width: 70%;
+    color: #fff;
 `;
 
 export const PriceText = styled.Text`
@@ -92,3 +86,22 @@ export const BtnText = styled.Text`
 `;
 
 export const Touch = styled.TouchableHighlight``;
+
+export const ViewText = styled.View`
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+`;
+
+export const BigText = styled.Text`
+    font-weight: bold;
+    font-size: 34px;
+    text-align: center;
+`;
+
+export const SmallText = styled.Text`
+    margin: 10px 20px 0 20px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+`;
