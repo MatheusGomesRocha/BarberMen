@@ -3,22 +3,29 @@ import styled from 'styled-components/native';
 // A margin entre views vai ser 50px Top e Bottom ou sem margin devido ao alinhamento no centro que já da um margin padrão para os 4 lados
 // A margin entre texts vai ser 20px Top e Bottom
 
-export const Container = styled.SafeAreaView`
+//View de toda a tela
+export const Container = styled.SafeAreaView`   
     flex: 1;
     background-color: #FFc491;
 `;
 
+
+//View para realizar scroll
 export const Scroll = styled.ScrollView`
 
 `;
 
 
+// View que ficou o SVG
 export const SvgView = styled.View`
     align-items: center;
     justify-content: center;
 `;
 
 
+// + View de bem-vindo  
+// + Texto grande de Bem-Vindo
+// + Texto pequeno de introdução
 export const ViewWelcome = styled.View`
     flex-direction: column;
     align-items: center; 
@@ -36,6 +43,8 @@ export const SmallText = styled.Text`
 `;
 
 
+// + View com botão de login 
+// + Texto dentro do button
 export const LoginBtnView = styled.View`
     align-items: center;
     justify-content: center;
@@ -48,6 +57,9 @@ export const BtnText = styled.Text`
 `;
 
 
+// + View de texto para Cadastro  
+// + Texto de cadastro (TEMPORÁRIO. MUDAR PARA UM BUTTON QUE REDIRECIONA PARA O STACK DE CADASTRO) 
+// + Texto em negrito
 export const SignUpView = styled.View`
     align-items: center;
     justify-content: center;
@@ -64,6 +76,12 @@ export const Bold = styled.Text`
 `;
 
 
+// + View onde fica todo o título da sessão de comentários
+// + View pra mostrar uma linha de 40% da tela
+// + View que fica o texto do título da sessão de comentários
+// + Texto com o título da sessão de comentários
+// + View da sessão de comentários
+// + Texto da sessão de comentários
 export const CommentsTitle = styled.View``
 export const LineView = styled.View`
     margin-top: 10px;
