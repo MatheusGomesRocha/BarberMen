@@ -1,23 +1,20 @@
 import React, {useState} from 'react';
 import { 
-    Container,
-    Scroll,
-    LogoView,
-    LogoImg,
-    LineIcon,
-    HeaderView,
-    HeaderLine,
-    HeaderText,
-    TableView,
-    ItemView,
-    ItemText,
-    PriceText,
-    BtnView,
-    BtnText,
-    Touch,
-    ViewText,
-    BigText,
-    SmallText,
+    Container,      // View de toda a tela
+
+    Scroll,         // View que realiza scroll
+    
+    SvgView,        // View que fica o SVG
+
+    ViewText,       // View que fica o texto
+    BigText,        // Texto grande
+    SmallText,      // Texto pequeno
+
+    TableView,      // View onde ficam todos os items 
+    ItemView,       // View onde fica 1 item (TEMPORÁRIO. PEGAR DADOS QUE VÃO VIR DO FIREBASE DEPOIS DE SEREM CADASTRADOS PELO O USUÁRIO)
+    ItemText,       // Texto que fica o nome do item 
+    PriceText,      // Texto que fica o preço do item
+    
 } from './style';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -43,9 +40,11 @@ export default () => {
     return (
         <Container>
             <Scroll decelerationRate="fast">
-                <LogoView>
+                
+                <SvgView>
                     <SvgMoney width={280} height={260}/>
-                </LogoView>
+                </SvgView>
+
                 <ViewText>
                     <BigText> Preços de serviços </BigText>
                     <SmallText> 
@@ -53,13 +52,14 @@ export default () => {
                         o dia e horário, caso não tenha escolhido ainda.  
                     </SmallText>
                 </ViewText>
+
                 {/** Depois cadastrar esses dados em um bd e trazer pra cá */}
                 <TableView>
                     <ItemView>                        
                         <BtnComponent bgColor="#333" width="90%" radius="100px">
                             <>
                                 <ItemText> Corte </ItemText>
-                                <BtnText> R$ 20,00 </BtnText>
+                                <PriceText> R$ 20,00 </PriceText>
                             </>
                         </BtnComponent>
                     </ItemView>
@@ -67,7 +67,7 @@ export default () => {
                         <BtnComponent bgColor="#333" width="90%" radius="100px">
                             <>
                                 <ItemText> Corte infantil </ItemText>
-                                <BtnText> R$ 10,00 </BtnText>
+                                <PriceText> R$ 10,00 </PriceText>
                             </>
                         </BtnComponent>
                     </ItemView>
@@ -75,7 +75,7 @@ export default () => {
                         <BtnComponent bgColor="#333" width="90%" radius="100px">
                             <>
                                 <ItemText> Pintar </ItemText>
-                                <BtnText> R$ 40,00 </BtnText>
+                                <PriceText> R$ 40,00 </PriceText>
                             </>
                         </BtnComponent>
                     </ItemView>
@@ -83,7 +83,7 @@ export default () => {
                         <BtnComponent bgColor="#333" width="90%" radius="100px">
                             <>
                                 <ItemText> Luzes </ItemText>
-                                <BtnText> R$ 50,00 </BtnText>
+                                <PriceText> R$ 50,00 </PriceText>
                             </>
                         </BtnComponent>
                     </ItemView>
@@ -91,7 +91,7 @@ export default () => {
                         <BtnComponent bgColor="#333" width="90%" radius="100px">
                             <>
                                 <ItemText> Platinar </ItemText>
-                                <BtnText> R$ 90,00 </BtnText>
+                                <PriceText> R$ 90,00 </PriceText>
                             </>
                         </BtnComponent>
                     </ItemView>
@@ -99,7 +99,7 @@ export default () => {
                         <BtnComponent bgColor="#333" width="90%" radius="100px">
                             <>
                                 <ItemText> Degradê </ItemText>
-                                <BtnText> R$ 30,00 </BtnText>
+                                <PriceText> R$ 30,00 </PriceText>
                             </>                       
                             </BtnComponent>
                     </ItemView>
@@ -107,7 +107,7 @@ export default () => {
                         <BtnComponent bgColor="#333" width="90%" radius="100px">
                             <>
                                 <ItemText> Corte + Sobrancelha </ItemText>
-                                <BtnText> R$ 27,00 </BtnText>
+                                <PriceText> R$ 27,00 </PriceText>
                             </>
                         </BtnComponent>
                     </ItemView>
@@ -115,7 +115,7 @@ export default () => {
                         <BtnComponent bgColor="#333" width="90%" radius="100px">
                             <>
                                 <ItemText> Corte + Barba </ItemText>
-                                <BtnText> R$ 30,00 </BtnText>
+                                <PriceText> R$ 30,00 </PriceText>
                             </>
                         </BtnComponent>
                     </ItemView>
@@ -123,11 +123,12 @@ export default () => {
                         <BtnComponent bgColor="#333" width="90%" radius="100px">
                             <>
                                 <ItemText> Degradê + Sobrancelha </ItemText>
-                                <BtnText> R$ 35,00 </BtnText>
+                                <PriceText> R$ 35,00 </PriceText>
                             </>
                         </BtnComponent>
                     </ItemView>
                 </TableView>
+
             </Scroll>
         </Container>
     );

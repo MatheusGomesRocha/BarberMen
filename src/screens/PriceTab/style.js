@@ -8,7 +8,7 @@ export const Container = styled.SafeAreaView`
 export const Scroll = styled.ScrollView`
 `;
 
-export const LogoView = styled.View`
+export const SvgView = styled.View`
     align-items: center;
     justify-content: center;
 `;
@@ -69,10 +69,6 @@ export const ItemText = styled.Text`
     color: #fff;
 `;
 
-export const PriceText = styled.Text`
-    font-size: 19px;
-    width: 15%;
-`;
 
 export const BtnView = styled.View`
     margin-left: 10px;
@@ -80,7 +76,7 @@ export const BtnView = styled.View`
     height: 35px;
 `;
 
-export const BtnText = styled.Text`
+export const PriceText = styled.Text`
     font-size: 16px;
     color: #fff;
 `;
