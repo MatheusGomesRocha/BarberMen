@@ -7,7 +7,9 @@ const DayScroll = styled.View`
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 `;
+
 
 const DayButton = styled.TouchableHighlight`
     width: ${props=>props.width};
@@ -15,7 +17,6 @@ const DayButton = styled.TouchableHighlight`
     justify-content: center;
     padding-bottom: 25px;
 `;
-
 const Item = styled.View`
     background-color: ${props=>props.bgColor};
     width: 40px;
@@ -24,8 +25,9 @@ const Item = styled.View`
     justify-content: center;
     align-items: center;
 `;
-
-const Texto = styled.Text``;
+const Texto = styled.Text`
+    color: ${props=>props.color};
+`;
 
 
 
@@ -38,7 +40,8 @@ let offsetW = Math.round((screenSize - dayW) / 2);
 
 function Day ({month, day}) {      // função que pega se o dia que o usuário selecionou/dias normais é menor, maior ou igual ao dia atual
     const [choseDay, setChoseDay] = useState(false);
-    let bgColor= '#ddd';
+    let bgColor = '#333';
+    let Color = '#fff';
 
     let today = new Date();
     today.setHours(0);      // zera a hora
@@ -48,24 +51,24 @@ function Day ({month, day}) {      // função que pega se o dia que o usuário 
 
     let thisDate = new Date(today.getFullYear(), month, day)    
 
-   
-
     function setDay(d) {
         setChoseDay(!choseDay);
     }
 
     if (choseDay) {
-        bgColor = '#00ff7f';
+        bgColor = '#fff';
+        Color = '#000';
     }
 
     if(thisDate.getTime() == today.getTime()) {
-        bgColor = '#b5eeff';
+        bgColor = '#00ff7f';
+        Color = '#000';
     }
 
     return (
         <DayButton width={dayWPx} underlayColor="transparent" onPress={() => setDay(day)}>
             <Item bgColor={bgColor}>
-                <Texto> {day} </Texto>
+                <Texto color={Color}> {day} </Texto>
             </Item>
         </DayButton>
     );

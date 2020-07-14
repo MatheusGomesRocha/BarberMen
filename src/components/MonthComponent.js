@@ -17,7 +17,7 @@ const MonthView = styled.TouchableHighlight`
 `;
 
 const Btn = styled.TouchableHighlight`
-    background-color: #B22222;
+    background-color: #333;
     height: 40px;
     width: 40px;
     border-radius: 25px;
@@ -30,7 +30,7 @@ const Btn = styled.TouchableHighlight`
 const Item = styled.View`
     width: 50%;
     height: 60px;
-    background-color: #ccc;
+    background-color: #333;
     border-radius: 15px;
     justify-content: center;
     align-items: center;
@@ -107,14 +107,13 @@ export default (props) => {
             onMomentumScrollEnd={handleScrollEnd}
         >
             {months.map((month, k) => (
-                <>
                 <MonthView key={k} width={size}>
                     <>
                         <Btn onPress={() => back()}>
                             <Icon name="angle-left" size={25} style={{ color: '#fff' }}/>
                         </Btn>
                         <Item style={k == selectMonth ? {    // quando o mês for selecionado
-                            backgroundColor: '#B22222',
+                            backgroundColor: '#000',
                             width: '50%',
                             height: 60,
                         } : {}}>
@@ -125,10 +124,7 @@ export default (props) => {
                         </Btn>
                     </>
                 </MonthView>
-                        
-                </>
             ))}
-            
         </MonthScroll>
     );
 
