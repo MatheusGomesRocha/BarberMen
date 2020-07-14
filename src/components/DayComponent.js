@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
+
+// View que contém os dias
 const DayScroll = styled.View`
     width: 100%;
     flex-direction: row;
@@ -11,6 +13,9 @@ const DayScroll = styled.View`
 `;
 
 
+// + Button onde ficam os dias
+// + View dos dias
+// + Texto dos dias
 const DayButton = styled.TouchableHighlight`
     width: ${props=>props.width};
     align-items: center;
@@ -51,16 +56,16 @@ function Day ({month, day}) {      // função que pega se o dia que o usuário 
 
     let thisDate = new Date(today.getFullYear(), month, day)    
 
-    function setDay(d) {
+    function setDay(d) {        // Seta o dia, pra true ou false, se for true ganha as props abaixo
         setChoseDay(!choseDay);
     }
 
-    if (choseDay) {
+    if (choseDay) {     // Se selecionar um dia, ganha essas props (TEMPORÁRIO, MUDAR PARA ESCOLHER APENAS 1 DIA)
         bgColor = '#fff';
         Color = '#000';
     }
 
-    if(thisDate.getTime() == today.getTime()) {
+    if(thisDate.getTime() == today.getTime()) {     // Pega o dia de hoje
         bgColor = '#00ff7f';
         Color = '#000';
     }

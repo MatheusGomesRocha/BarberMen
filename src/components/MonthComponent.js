@@ -4,18 +4,36 @@ import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+
+// View que contém os meses
 const MonthScroll = styled.ScrollView`
     width: 100%;
     height: 150px;
 `;
 
+
+// + Button onde ficam os meses
+// + View dos dias
+// + Texto dos dias
+// + Button de passar ou retornar um mês
 const MonthView = styled.TouchableHighlight`
     flex-direction: row;
     width: ${props=>props.width};
     justify-content: center;
     align-items: center;
 `;
-
+const Item = styled.View`
+    width: 50%;
+    height: 60px;
+    background-color: #333;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+`;
+const Texto = styled.Text`
+    color: #fff;
+    font-size: 24px;
+`;
 const Btn = styled.TouchableHighlight`
     background-color: #333;
     height: 40px;
@@ -27,19 +45,6 @@ const Btn = styled.TouchableHighlight`
     margin-right: 25px;
 `;
 
-const Item = styled.View`
-    width: 50%;
-    height: 60px;
-    background-color: #333;
-    border-radius: 15px;
-    justify-content: center;
-    align-items: center;
-`;
-
-const Texto = styled.Text`
-    color: #fff;
-    font-size: 24px;
-`;
 
 let months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 const screenSize = Math.round(Dimensions.get('window').width);  // Pegando tamanho da tela do celular
@@ -65,7 +70,7 @@ export default (props) => {
         monthRef.current.scrollTo({x: posX, y:0, animated: true})
     }
 
-    let Month = new Date().getMonth();
+    let Month = new Date().getMonth();  // Pega o mês atual
 
     useEffect(() => {
         props.setMonth(selectMonth);
@@ -77,21 +82,21 @@ export default (props) => {
         }, 100);
     }, []);
 
-    function next() {   
-        if(selectMonth == 11) {
-            setSelectMonth(1 - 1);
+    function next() {           // Função para passar 1 mês
+        if(selectMonth == 11) {     // Se o mês for igual a dezembro
+            setSelectMonth(1 - 1);  // Coloca o Month para janeiro (não deu resultado colocando 0, então coloquei 1 - 1)
             scrollToMonth(1 - 1);
-        } else {
+        } else {        // Senão, pega o mês que está e aumenta 1, assim passando o mês
             setSelectMonth(selectMonth + 1);
             scrollToMonth(selectMonth + 1);
         }
     }
 
-    function back() {   
-        if(selectMonth == 1 - 1) {
-            setSelectMonth(11);
+    function back() {           // Função para retornar 1 mês
+        if(selectMonth == 1 - 1) {      // Se o mês for igual a janeiro
+            setSelectMonth(11);     // Coloca o mês para dezembro
             scrollToMonth(11);
-        } else {
+        } else {    // Senão, pega o mês atual e diminui 1, assim retornando 1 mês
             setSelectMonth(selectMonth - 1);
             scrollToMonth(selectMonth - 1);
         }
