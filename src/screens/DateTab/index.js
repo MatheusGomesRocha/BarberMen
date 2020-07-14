@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 
 import {
-    Container,
+    Container,  // View de toda a tela
 
-    Scroll,
+    Scroll,     // View que realiza o scroll
 
-    SvgView,
+    SvgView,    // View que contém o SVG
 
-    TextView,
-    BigText,
-    SmallText
+    TextView,   // View onde fica os textos
+    BigText,    // Texto grande
+    SmallText   // Texto pequeno
     
 } from './style';
 
@@ -20,8 +20,8 @@ import Svg from '../../assets/svg/undraw_calendar_dutt.svg'
 export default () => {
     let today = new Date();
 
-    const [selectMonth, setSelectMonth] = useState(today.getMonth());
-    const [selectDay, setSelectDay] = useState(today.getDate());
+    const [selectMonth, setSelectMonth] = useState(today.getMonth());      
+    const [selectDay, setSelectDay] = useState(today.getDate());            
 
 
     return (
