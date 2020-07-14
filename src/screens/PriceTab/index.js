@@ -11,7 +11,7 @@ import {
     SmallText,      // Texto pequeno
 
     TableView,      // View onde ficam todos os items 
-    ItemView,       // View onde fica 1 item (TEMPORÁRIO. PEGAR DADOS QUE VÃO VIR DO FIREBASE DEPOIS DE SEREM CADASTRADOS PELO O USUÁRIO)
+    ItemView,       // View onde fica 1 item (TEMPORÁRIO. PEGAR DADOS QUE VÃO VIR DO FIREBASE DEPOIS DE SEREM CADASTRADOS PELO O USUÁRIO E PASSAR PARA UM BUTTON)
     ItemText,       // Texto que fica o nome do item 
     PriceText,      // Texto que fica o preço do item
     
