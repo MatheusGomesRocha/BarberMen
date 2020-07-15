@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 import {
     Container,  // View toda a tela
 
@@ -14,12 +16,13 @@ import {
 } from './style';
 
 import { Switch } from 'react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Svg from '../../assets/svg/undraw_profile_details_f8b7.svg';
 import SvgPic from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 
 export default () => {
+    const navigation = useNavigation();
+
     function test() {
         alert("Hello World");
     }
@@ -62,7 +65,7 @@ export default () => {
                         </SettingsButton>
 
                         {/* Aparecer apenas se estiver logado */}
-                        <SettingsButton underlayColor="transparent" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('profile')}>
                             <>
                                 <DefaultText> Meu perfil </DefaultText> 
                                 <Icon name="angle-right" size={30} />
