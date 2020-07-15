@@ -1,17 +1,16 @@
 import React, {useState} from 'react';
 import {
-    Container,
+    Container,  // View toda a tela
 
-    Scroll,
+    Scroll,     // View que realiza scroll
 
-    SvgView,
-
-    Texto,
-    UserView,
-    SettingsView,
-    SettingsButton,
-    DefaultText,
-    EnabledText,
+    UserView,       // View com foto do usuário
+    Texto,          // Texto abaixo da foto do usuário
+    
+    SettingsView,   // View com todos os buttons
+    SettingsButton, // Button
+    DefaultText,    // Texto padrão com os nomes
+    EnabledText,    // Texto de ON OFF no Switch
 } from './style';
 
 import { Switch } from 'react-native';
