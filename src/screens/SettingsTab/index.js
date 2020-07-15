@@ -1,106 +1,126 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Container,
+
     Scroll,
+
+    SvgView,
+
     Texto,
     UserView,
     SettingsView,
     SettingsButton,
     DefaultText,
+    EnabledText,
 } from './style';
 
+import { Switch } from 'react-native';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Svg from '../../assets/svg/undraw_profile_details_f8b7.svg';
+import SvgPic from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 
 export default () => {
     function test() {
         alert("Hello World");
     }
 
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+
     return (
         <Container>
             <Scroll>
+
                 <UserView> 
-                    <Icon name="user-circle" size={70} style={{marginTop: 35, color: '#fff'}} />
+                    <SvgPic width={70} height={70}/>
                     <Texto> Faça o login </Texto> 
                 </UserView>
+
                 <SettingsView>
                     <>
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent">
                             <>
-                                <Icon name="user" size={20} style={{marginLeft: 15, width: 20}}/>
+                                <DefaultText width="75%"> Dark Mode </DefaultText> 
+                                { isEnabled ? ( <EnabledText> On </EnabledText>) : ( <EnabledText> Off </EnabledText>)}
+                                <Switch
+                                trackColor={{ false: "#bbb", true: "#333" }}
+                                thumbColor={isEnabled ? "#fff" : "#fff"}
+                                ios_backgroundColor="#3e3e3e"
+                                onValueChange={toggleSwitch}
+                                value={isEnabled}
+                                />
+                            </>
+                        </SettingsButton>
+
+                    
+                        <SettingsButton underlayColor="transparent" onPress={test}>
+                            <>
                                 <DefaultText> Login </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
 
                         {/* Aparecer apenas se estiver logado */}
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <Icon name="user" size={20} style={{marginLeft: 15, width: 20}}/>
                                 <DefaultText> Meu perfil </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <Icon name="users" size={20} style={{marginLeft: 15, width: 20}}/>
                                 <DefaultText> Funcionários </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
                         
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <Icon name="comment" size={20} style={{marginLeft: 15, width: 20}}/>
                                 <DefaultText> Perguntas frequentes </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <Icon name="clock-o" size={20} style={{marginLeft: 15, width: 20}}/>
                                 <DefaultText> Histórico </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <Icon name="heart" size={20} style={{marginLeft: 15, width: 20}}/>
                                 <DefaultText> Cortes favoritos </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <Icon name="map-marker" size={20} style={{marginLeft: 15, width: 20}}/>
                                 <DefaultText> Localização </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <Icon name="clock-o" size={20} style={{marginLeft: 15, width: 20}}/>
                                 <DefaultText> Cupom de desconto </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <Icon name="phone" size={20} style={{marginLeft: 15, width: 20}}/>
                                 <DefaultText> Contato do desenvolvedor </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="#ddd" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <Icon name="power-off" size={20} style={{marginLeft: 15, width: 20}}/>
                                 <DefaultText> Sair </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
