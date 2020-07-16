@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 // View de toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #FFc491;
+    background-color: #fff;
 `;
 
 

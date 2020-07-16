@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 // View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #FFc491;
+    background-color: #fff;
 `;
 
 
@@ -15,7 +15,7 @@ export const Scroll = styled.ScrollView``;
 // + View com foto do usuário
 // + Texto abaixo da foto do usuário
 export const UserView = styled.View`
-    background-color: #333;
+    background-color: #fff;
     height: 180px;
     width: 100%;
     align-items: center;
@@ -23,7 +23,7 @@ export const UserView = styled.View`
 `;
 export const Texto = styled.Text`
     margin-top: 10px;
-    color: #fff;
+    color: #333;
     font-size: 24px;
 `;
 
@@ -44,8 +44,7 @@ export const SettingsButton = styled.TouchableHighlight`
     borderTopColor: rgba(0, 0, 0, 0.1);
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
-    
+    justify-content: flex-start;    
 `;
 export const DefaultText = styled.Text`
     justify-content: flex-start;
