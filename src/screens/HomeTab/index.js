@@ -13,10 +13,6 @@ import {
     LoginBtnView,   // View com botão de login
     BtnText,        // Texto dentro do button
 
-    SignUpView,     // View de texto para Cadastro
-    SignUpText,     // Texto de cadastro (TEMPORÁRIO. MUDAR PARA UM BUTTON QUE REDIRECIONA PARA O STACK DE CADASTRO)
-    Bold,           // Texto em negrito
-    
     CommentsTitle,  // View onde fica todo o título da sessão de comentários
     LineView,       // View pra mostrar uma linha de 40% da tela
     TitleView,      // View que fica o texto do título da sessão de comentários
@@ -26,17 +22,21 @@ import {
     
 } from './style';
 
+import { useNavigation } from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SvgBarber from '../../assets/svg/undraw_barber_3uel.svg';     // SVG BARBER
+import SettingsStack from '../../navigators/SettingsStack';
+
 export default () => {
+const navigation = useNavigation();
 
     return (
         <Container>
             <Scroll>
 
                 <SvgView>
-                    <SvgBarber width={280} height={260} />
+                    <SvgBarber width={280} height={220} />
                 </SvgView>
                 <ViewWelcome>                    
                     <BigText> Bem Vindo </BigText>
@@ -48,18 +48,21 @@ export default () => {
                 
 
                 <LoginBtnView>
-                    <BtnComponent underlayColor="rgba(0, 0, 0, 0.8)" bgColor="#333" width="80%" onPress={() => alert('Login')}>
+                    <BtnComponent border="1px solid #000" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="80%" 
+                        onPress={() => navigation.navigate('settings', { screen: 'login'})}>
+                        <>
+                            <BtnText style={{color: '#333'}}> Cadastrar-se </BtnText> 
+                            <Icon name="angle-right" size={25} style={{color: '#333'}} />
+                        </>
+                    </BtnComponent>
+                    <BtnComponent mTop="20px" underlayColor="rgba(0, 0, 0, 0.8)" bgColor="#333" width="80%" 
+                        onPress={() => navigation.navigate('settings', { screen: 'login'})}>
                         <>
                             <BtnText> Login </BtnText> 
                             <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                         </>
                     </BtnComponent>
-                    <SignUpView>
-                            <SignUpText> Não tenha uma conta? </SignUpText>
-                            <Bold> Cadastre-se </Bold>
-                    </SignUpView>
                 </LoginBtnView>
-
 
                 <CommentsTitle>
                     <LineView></LineView>

@@ -56,26 +56,6 @@ export const BtnText = styled.Text`
     width: 80%;
 `;
 
-
-// + View de texto para Cadastro  
-// + Texto de cadastro (TEMPORÁRIO. MUDAR PARA UM BUTTON QUE REDIRECIONA PARA O STACK DE CADASTRO) 
-// + Texto em negrito
-export const SignUpView = styled.View`
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    flex-direction: row;
-`;
-export const SignUpText = styled.Text`
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.5);
-`;
-export const Bold = styled.Text`
-    font-weight: bold;
-    font-size: 17px;
-`;
-
-
 // + View onde fica todo o título da sessão de comentários
 // + View pra mostrar uma linha de 40% da tela
 // + View que fica o texto do título da sessão de comentários

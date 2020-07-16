@@ -1,5 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from '../screens/HomeTab'
 import PriceScreen from '../screens/PriceTab'
@@ -7,6 +8,8 @@ import DateScreen from '../screens/DateTab'
 import SettingsStack from './SettingsStack';
 
 const AppTab = createBottomTabNavigator();
+
+// Cor amarelo queimado FFc491
 
 export default () => {
     return (
