@@ -49,14 +49,14 @@ const navigation = useNavigation();
 
                 <LoginBtnView>
                     <BtnComponent border="1px solid #000" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="80%" 
-                        onPress={() => navigation.navigate('settings', { screen: 'login'})}>
+                        onPress={() => navigation.navigate('signup')}>
                         <>
                             <BtnText style={{color: '#333'}}> Cadastrar-se </BtnText> 
                             <Icon name="angle-right" size={25} style={{color: '#333'}} />
                         </>
                     </BtnComponent>
                     <BtnComponent mTop="20px" underlayColor="rgba(0, 0, 0, 0.8)" bgColor="#333" width="80%" 
-                        onPress={() => navigation.navigate('settings', { screen: 'login'})}>
+                        onPress={() => navigation.navigate('login')}>
                         <>
                             <BtnText> Login </BtnText> 
                             <Icon name="angle-right" size={25} style={{color: '#fff'}} />

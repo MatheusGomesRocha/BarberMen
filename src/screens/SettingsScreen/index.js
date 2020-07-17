@@ -56,14 +56,6 @@ export default () => {
                             </>
                         </SettingsButton>
 
-                    
-                        <SettingsButton underlayColor="transparent" onPress={test}>
-                            <>
-                                <DefaultText> Login </DefaultText> 
-                                <Icon name="angle-right" size={30} />
-                            </>
-                        </SettingsButton>
-
                         {/* Aparecer apenas se estiver logado */}
                         <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('profile')}>
                             <>
