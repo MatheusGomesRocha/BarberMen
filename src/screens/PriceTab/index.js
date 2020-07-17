@@ -39,6 +39,9 @@ export default () => {
 
     return (
         <Container>
+            <BtnComponent width="80px" height="80px" radius="100px" bgColor="#3ED3A1" style={{zIndex: 9999, position: 'absolute', right: 15, bottom: 15}}>
+                <Icon name="arrow-right" size={30} color="#333"/>
+            </BtnComponent>
             <Scroll decelerationRate="fast">
                 
                 <SvgView>

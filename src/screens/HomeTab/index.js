@@ -34,7 +34,7 @@ const navigation = useNavigation();
     return (
         <Container>
             <Scroll>
-
+            
                 <SvgView>
                     <SvgBarber width={280} height={220} />
                 </SvgView>

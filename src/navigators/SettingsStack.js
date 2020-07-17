@@ -15,7 +15,6 @@ export default () => {
                 headerTintColor: '#333',
                 headerTitleAlign: 'center',
             }}>
-
             <SettingsStack.Screen name="default" component={SettingsScreen} options={{ title: null, headerTransparent: true}} />
             <SettingsStack.Screen name="profile" component={ProfileScreen} options={{title: 'Editar Perfil'}} />
             

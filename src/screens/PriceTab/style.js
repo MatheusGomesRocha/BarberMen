@@ -46,7 +46,7 @@ export const SmallText = styled.Text`
 // + Texto que fica o preço do item
 export const TableView = styled.View`
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
     flex-direction: column;
 `
 export const ItemView = styled.View`
