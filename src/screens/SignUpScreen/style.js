@@ -12,12 +12,12 @@ export const Container = styled.SafeAreaView`
 // + View com svg e texto de Cadastro
 // + Texto Cadastro grande
 export const TextView = styled.View`
-    height: 40%;
+    height: 45%;
     align-items: center;
     justify-content: center;
 `
 export const BigText = styled.Text`
-    margin-top: 15px;
+    margin-top: 10px;
     font-size: 28px;
     text-align: center;
 `;
@@ -43,7 +43,7 @@ export const Scroll = styled.ScrollView`
 export const InputView = styled.View`
     justify-content: center;
     width: 80%;
-    margin: 0 0 30px 35px;
+    margin: 0 0 20px 35px;
 `;
 export const Input = styled.TextInput`
     padding: 10px;
@@ -53,10 +53,11 @@ export const Input = styled.TextInput`
 
 
 // + View de Button de realizar login
-// + Texto do Button e Forgot
+// + Texto do Button e Arraste
 export const BtnView = styled.View`
     align-items: center;
     justify-content: center;
+    margin-bottom: 25px;
 `;
 export const BtnText = styled.Text`
     font-size: 18px;

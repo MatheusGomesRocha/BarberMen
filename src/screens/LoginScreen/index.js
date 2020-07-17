@@ -23,14 +23,13 @@ export default () => {
         <Container>
             <TextView>
                     <Svg width="150px" height="100px" />
-                    <BigText> LOGIN </BigText>
+                    <BigText> Login </BigText>
             </TextView>
             
             <ViewLogin>
                 <Scroll>
-
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Email"/>
+                        <Input keyboardType="email-address" underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Email"/>
                     </InputView>
                     <InputView>
                         <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Senha"/>
@@ -38,9 +37,9 @@ export default () => {
 
                     <BtnView>
                         <BtnComponent width="80%" radius="100px" height="55px" bgColor="#fff">
-                            <BtnText> Finalizar </BtnText>
+                            <BtnText> Login </BtnText>
                         </BtnComponent>
-                        <BtnText style={{color:"#fff", marginTop:20}}> Esqueceu a senha? </BtnText>
+                        <BtnText style={{color:"#fff", marginTop:20, marginBottom: 25}}> Esqueceu a senha? </BtnText>
 
                     </BtnView>
 

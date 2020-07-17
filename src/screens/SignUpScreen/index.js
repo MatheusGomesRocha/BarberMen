@@ -13,18 +13,13 @@ import {
     Input,      // Input
     
     BtnView,    // View de Button de realizar cadastro
-    BtnText,    // Texto do Button e Forgot
+    BtnText,    // Texto do Button e Arraste
 } from './style';
 
-import { useNavigation } from '@react-navigation/native';
-import {BackHandler} from 'react-native';
-import { StackActions } from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
 import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
+
 export default () => {
-
-    const navigation = useNavigation();
-
     return (
         <Container>
             <TextView>
@@ -33,21 +28,38 @@ export default () => {
             </TextView>
             
             <ViewSignUp>
-                <Scroll>
+                <BtnText style={{color: '#fff', textAlign: 'center', marginTop: 5}}> Arraste para cima </BtnText> 
 
+                <Scroll>
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Email"/>
+                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        placeholder="Nome"/>
                     </InputView>
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Senha"/>
+                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        placeholder="Email" keyboardType="email-address"/>
+                    </InputView>
+                    <InputView>
+                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        placeholder="CPF" keyboardType="numeric"/>
+                    </InputView>
+                    <InputView>
+                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        placeholder="Contato" keyboardType="numeric"/>
+                    </InputView>
+                    <InputView>
+                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        placeholder="Senha" />
+                    </InputView>
+                    <InputView>
+                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        placeholder="Confirme a Senha"/>
                     </InputView>
 
                     <BtnView>
                         <BtnComponent width="80%" radius="100px" height="55px" bgColor="#fff">
                             <BtnText> Finalizar </BtnText>
                         </BtnComponent>
-                        <BtnText style={{color:"#fff", marginTop:20}}> Esqueceu a senha? </BtnText>
-
                     </BtnView>
 
                 </Scroll>

@@ -12,7 +12,7 @@ export const Container = styled.SafeAreaView`
 // + View com svg e texto de Login
 // + Texto Login grande
 export const TextView = styled.View`
-    height: 40%;
+    height: 50%;
     align-items: center;
     justify-content: center;
 `
