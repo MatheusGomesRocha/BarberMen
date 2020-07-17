@@ -1,18 +1,19 @@
 import React from 'react';
 import {
-    Container,
+    Container,  // View toda a tela 
 
-    ViewLogin,
-    Scroll,
+    TextView,   // View com svg e texto de Login 
+    BigText,    // Texto Login grande
 
-    TextView,
-    BigText,
+    ViewLogin,  // View com o form de login
 
-    InputView,
-    Input,
+    Scroll,     // Só irá realizar scroll dentro dessa view acima
+
+    InputView,  // View de um input
+    Input,      // Input
     
-    BtnView,
-    BtnText,
+    BtnView,    // View de Button de realizar login
+    BtnText,    // Texto do Button e Forgot
 } from './style';
 
 import BtnComponent from '../../components/BtnComponent';
