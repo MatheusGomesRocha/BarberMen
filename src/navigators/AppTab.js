@@ -3,8 +3,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeStack from './HomeStack';
-import PriceScreen from '../screens/PriceTab'
-import DateScreen from '../screens/DateTab'
+import PriceScreen from '../screens/PriceScreen';
+import DateScreen from '../screens/DateScreen';
 import SettingsStack from './SettingsStack';
 
 const AppTab = createBottomTabNavigator();
