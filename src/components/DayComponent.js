@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, connect, useDispatch } from 'react-redux';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -43,46 +43,15 @@ let dayWPx = Math.round(screenSize / 7) + "px";   // Usar para passar a prop de 
 let dayW = Math.round(screenSize / 7);        // Usar para o snapToInterval
 let offsetW = Math.round((screenSize - dayW) / 2);
 
-function Day ({month, day}) {      // função que pega se o dia que o usuário selecionou/dias normais é menor, maior ou igual ao dia atual
-    const [choseDay, setChoseDay] = useState(false);
+function DayScreen(props) {
+    const dayRef = useRef();  // Pega referência do dia
+    const [selectDay, setSelectDay] = useState(props.selectDay);
+    const choseDay = useSelector(state=>state.user.day);
+    const dispatch = useDispatch();
     let bgColor = '#333';
     let Color = '#fff';
 
-    let today = new Date();
-    today.setHours(0);      // zera a hora
-    today.setMinutes(0);
-    today.setSeconds(0);
-    today.setMilliseconds(0);
-
-    let thisDate = new Date(today.getFullYear(), month, day)    
-
-    function setDay(d) {        // Seta o dia, pra true ou false, se for true ganha as props abaixo
-        setChoseDay(!choseDay);
-    }
-
-    if (choseDay) {     // Se selecionar um dia, ganha essas props (TEMPORÁRIO, MUDAR PARA ESCOLHER APENAS 1 DIA)
-        bgColor = '#fff';
-        Color = '#000';
-    }
-
-    if(thisDate.getTime() == today.getTime()) {     // Pega o dia de hoje
-        bgColor = 'lightblue';
-        Color = '#000';
-    }
-
-    return (
-        <DayButton width={dayWPx} underlayColor="transparent" onPress={() => setDay(day)}>
-            <Item bgColor={bgColor}>
-                <Texto color={Color}> {day} </Texto>
-            </Item>
-        </DayButton>
-    );
-}
-
-export default (props) => {
-    const dayRef = useRef();  // Pega referência do dia
-    const [selectDay, setSelectDay] = useState(props.selectDay);
-
+    
     function handleScrollEnd(e) {   
         let posX = e.nativeEvent.contentOffset.x;       // Pegando o valor X horizontal do Scroll
         let targetDay = Math.round( posX / dayW + 1);     
@@ -110,6 +79,22 @@ export default (props) => {
         days.push(i);
     }
 
+    let today = new Date();
+    today.setHours(0);      // zera a hora
+    today.setMinutes(0);
+    today.setSeconds(0);
+    today.setMilliseconds(0);
+
+    let thisDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    function setDayToDispatch(d) {
+        props.setDay(d);
+    }
+
+    useEffect(() => {
+        props.setSelectDay(choseDay);
+    }, [setDayToDispatch]);
+
     return (
         <DayScroll 
         ref={dayRef}      // Seta o Ref
@@ -118,12 +103,21 @@ export default (props) => {
         onMomentumScrollEnd={handleScrollEnd}
         >
             {days.map((d, k) => (     // Mapenado os meses "m" e uma Key para o Button "k"
-                <Day 
-                    key={k}
-                    day={d}
-                    month={props.selectMonth}
-                />
+                <DayButton key={k} width={dayWPx} underlayColor="transparent" onPress={() => setDayToDispatch(d)}>
+                <Item bgColor={choseDay == d ? '#3ED3A1': '#333'}>
+                    <Texto color={Color}> {d} </Texto>
+                </Item>
+            </DayButton>
             ))}
         </DayScroll>
     );
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setDay:(day)=>dispatch({type:'SET_DAY', payload:{day}}),
+        setMonth:(month)=>dispatch({type:'SET_MONTH', payload:{month}})
+    }
+}
+
+export default connect(null, mapDispatchToProps) (DayScreen);

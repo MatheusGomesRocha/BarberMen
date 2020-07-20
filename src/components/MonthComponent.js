@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Dimensions } from 'react-native';
+import { connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -53,7 +54,7 @@ const screenSize = Math.round(Dimensions.get('window').width);  // Pegando taman
 let size = screenSize + "px";   // Usar para passar a prop de tamanho do MonthButton pois precisa dizer a forma de medição de tamanho
 let thirdS = screenSize;        // Usar para o snapToInterval
 
-export default (props) => {
+function MonthScreen (props) {
     const navigation = useNavigation();
     const monthRef = useRef();  // Pega referência do mês
     const [selectMonth, setSelectMonth] = useState(props.selectMonth);
@@ -74,6 +75,10 @@ export default (props) => {
 
     useEffect(() => {
         props.setMonth(selectMonth);
+    }, [selectMonth]);
+
+    useEffect(() => {
+        props.setMonthDispatch(selectMonth + 1);
     }, [selectMonth]);
     
     useEffect(() => {       // Da um Timeout de 10 milisegundos para realizar o scroll para o mês atual
@@ -102,6 +107,10 @@ export default (props) => {
         }
     }
 
+    useEffect(() => {
+
+    })
+
     return  (
         <MonthScroll
             ref={monthRef}
@@ -118,7 +127,7 @@ export default (props) => {
                             <Icon name="angle-left" size={25} style={{ color: '#fff' }}/>
                         </Btn>
                         <Item style={k == selectMonth ? {    // quando o mês for selecionado
-                            backgroundColor: '#000',
+                            backgroundColor: '#3ED3A1',
                             width: '50%',
                             height: 60,
                         } : {}}>
@@ -131,7 +140,14 @@ export default (props) => {
                 </MonthView>
             ))}
         </MonthScroll>
-    );
-
-    
+    );    
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setDay:(day)=>dispatch({type:'SET_DAY', payload:{day}}),
+        setMonthDispatch:(month)=>dispatch({type:'SET_MONTH', payload:{month}})
+    }
+}
+
+export default connect(null, mapDispatchToProps) (MonthScreen);

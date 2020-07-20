@@ -4,16 +4,25 @@ const initialState = {
     name: '',
     email: '',
     cut: '',
-    date: '',
+    day: '',
+    month: '',
+    hour: ''
 }
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case 'SET_DATE':
-            return {...state, date: action.payload.date}
+        case 'SET_MONTH':
+            return {...state, month: action.payload.month};
+        break;
+        case 'SET_DAY':
+            return {...state, day: action.payload.day};
+        break;
+        case 'SET_HOUR':
+            return {...state, hour: action.payload.hour};
         break;
         case 'SET_CUT':
-            return {...state, cut: action.payload.cut}
+            return {...state, cut: action.payload.cut};
+        break;
     }
     return state;
 }
