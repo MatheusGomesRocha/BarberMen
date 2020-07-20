@@ -31,7 +31,7 @@ export const WorkerImg = styled.Image`
     border-radius: 100px;
 `;
 export const WorkerName = styled.Text`
-    font-size: 16px;
+    font-size: 20px;
     color: #333;
     text-align: center;
     padding: 10px;
