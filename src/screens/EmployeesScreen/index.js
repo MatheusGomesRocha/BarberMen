@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-    Container,
+    Container,              // View toda a tela
     
-    Scroll,
+    Scroll,                 // View de Scroll
 
-    AllView,
-    WorkerView,
-    WorkerImg,
-    WorkerName,
-    WorkerDescription,
+    AllView,                // View de todos os funcionários
+    WorkerView,             // View de um funcionário
+    WorkerImg,              // Imagem do funcionário
+    WorkerName,             // Nome 
+    WorkerDescription,      // Descrição
 } from './style';
 
 export default () => {
@@ -26,14 +26,14 @@ export default () => {
 
                     <WorkerView>
                         <WorkerImg source={require('../../assets/img/perfil2.jpg') }/>
-                        <WorkerName> Felipe </WorkerName>
-                        <WorkerDescription> Cabeleleiro a 15 anos, trabalha conosco a 5 e é especialista em cortes mais artísticos </WorkerDescription>
+                        <WorkerName> Laura </WorkerName>
+                        <WorkerDescription> Cabeleleiro a 15 anos, trabalha conosco a 5 e é especialista em cortes artísticos </WorkerDescription>
                     </WorkerView>
 
                     <WorkerView>
                         <WorkerImg source={require('../../assets/img/perfil3.jpg') }/>
                         <WorkerName> Joana </WorkerName>
-                        <WorkerDescription> Cabeleleira a 12 anos, trabalha conosco a 2 e é especialista em cortes mais robustos </WorkerDescription>
+                        <WorkerDescription> Cabeleleira a 12 anos, trabalha conosco a 2 e é especialista em cortes robustos </WorkerDescription>
                     </WorkerView>
 
                 </AllView>
