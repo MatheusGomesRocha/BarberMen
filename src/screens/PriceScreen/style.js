@@ -61,9 +61,10 @@ export const ItemText = styled.Text`
     margin-left: 5px;
     font-size: 17px;
     width: 70%;
-    color: #fff;
+    color: ${props=>props.color};
 `;
 export const PriceText = styled.Text`
     font-size: 16px;
-    color: #fff;
+    color: ${props=>props.color};
+    ;
 `;

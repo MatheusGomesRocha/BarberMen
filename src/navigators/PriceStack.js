@@ -12,7 +12,7 @@ export default () => {
         <PriceStack.Navigator>
             <PriceStack.Screen name="price" component={PriceScreen} options={{title: null, headerTransparent: true}} />
             <PriceStack.Screen name="cutinfo" component={CutInfoScreen} options={{title: null, headerTransparent: true}} />
-            <PriceStack.Screen name="date" component={DateScreen} options={{title: null, headerTransparent: true}} />
+            <PriceStack.Screen name="date" component={DateScreen} options={{title: null,  headerLeft: null, headerTransparent: true}} />
             <PriceStack.Screen name="time" component={TimeScreen} options={{title: null, headerTransparent: true}} />
         </PriceStack.Navigator>
     );

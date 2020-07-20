@@ -22,13 +22,11 @@ function Bar() {      /** Barra de status do aparelho */
 function App() {
   return(
     <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-                <NavigationContainer>
-                    <AppTab/>
-                    <Bar/>
-                </NavigationContainer>
-            </PersistGate>
-        </Provider>   
+      <NavigationContainer>
+        <AppTab/>
+        <Bar/>
+      </NavigationContainer>
+    </Provider>   
   );
 }
 export default App;

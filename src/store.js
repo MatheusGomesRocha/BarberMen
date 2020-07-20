@@ -7,8 +7,6 @@ import Reducers from './reducers';
 const pReducer = persistReducer({
     key: 'root',
     storage: AsyncStorage,
-    stateReconciler: hardSet,
 }, Reducers);
 
 export const store = createStore(pReducer);
-export const persistor = persistStore(store);

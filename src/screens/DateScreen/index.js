@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import { useSelector } from 'react-redux';
 import {
     Container,  // View de toda a tela
 
@@ -23,7 +23,7 @@ export default () => {
     const [selectMonth, setSelectMonth] = useState(today.getMonth());      
     const [selectDay, setSelectDay] = useState(today.getDate());            
 
-
+    const name = useSelector(state => state.user.cut);
     return (
         <Container>
             <Scroll>

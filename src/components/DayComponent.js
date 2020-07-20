@@ -66,7 +66,7 @@ function Day ({month, day}) {      // função que pega se o dia que o usuário 
     }
 
     if(thisDate.getTime() == today.getTime()) {     // Pega o dia de hoje
-        bgColor = '#3ED3A1';
+        bgColor = 'lightblue';
         Color = '#000';
     }
 

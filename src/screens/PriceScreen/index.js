@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector, connect } from 'react-redux';
 import { 
     Container,      // View de toda a tela
 
@@ -22,26 +23,38 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import BtnComponent from '../../components/BtnComponent';
 import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
 
-export default () => {
-    let nameIcon = 'heart-o';
-    const [icon, setIcon] = useState(false);
-    const navigation = useNavigation();
+function Price(props) {
+    const navigation = useNavigation();     
+    const name = useSelector(state => state.user.cut);      // Pegando o corte que foi mandado via redux
 
-    // Função para adicionar aos favoritos, posteriormente fazer com dispatch para adicionar aos favoritos pelo id
-    function ChangeIcon() {
-        setIcon(!icon);
-        
+    function setCut(c) {        // Função que seta um corte para o redux
+        props.setCut(c)
     }
 
-    if(icon) {
-        nameIcon = 'heart';
-    } else {
-        nameIcon = 'heart-o';
+    function goToDate() {       // Função ao apertar no botão grande
+        if(name) {
+            navigation.navigate('date');
+        } else {
+            alert('Você precisa escolher um corte');
+        }
     }
+    
+
+    // Array temporário, fazer com que o admin cadastre no firebase e traga para cá
+    let cuts = [
+        { id: '1', name: 'Normal', price: 'R$ 25,00'},
+        { id: '2', name: 'Infantil', price: 'R$ 15,00'},
+        { id: '3', name: 'Degradê', price: 'R$ 25,00'},
+        { id: '4', name: 'Pintar', price: 'R$ 25,00'},
+        { id: '5', name: 'Luzes', price: 'R$ 25,00'},
+        { id: '6', name: 'Platinar', price: 'R$ 25,00'},
+        { id: '7', name: 'Normal + Barba', price: 'R$ 25,00'},
+        { id: '8', name: 'Degradê + Barba', price: 'R$ 25,00'},
+    ];
 
     return (
         <Container>
-            <BtnComponent onPress={() => navigation.navigate('date')} width="60px" height="60px" radius="100px" bgColor="#3ED3A1" style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
+            <BtnComponent onPress={() => goToDate()} width="60px" height="60px" radius="100px" bgColor={name?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
                 <Icon name="arrow-right" size={25} color="#333"/>
             </BtnComponent>
             <Scroll decelerationRate="fast">
@@ -54,87 +67,35 @@ export default () => {
                     <BigText> Preços de serviços </BigText>
                     <SmallText> 
                         Escolha o corte que irá fazer clicando nele, você será redirecionado para escolher
-                        o dia e horário, caso não tenha escolhido ainda.  
+                        o dia e horário, caso não tenha escolhido ainda.  {name}
                     </SmallText>
                 </ViewText>
 
                 {/** Depois cadastrar esses dados em um bd e trazer pra cá */}
                 <TableView>
-                    <ItemView>                        
-                        <BtnComponent bgColor="#333" width="90%" radius="100px">
-                            <>
-                                <ItemText> Corte </ItemText>
-                                <PriceText> R$ 20,00 </PriceText>
-                            </>
-                        </BtnComponent>
-                    </ItemView>
-                    <ItemView>
-                        <BtnComponent bgColor="#333" width="90%" radius="100px">
-                            <>
-                                <ItemText> Corte infantil </ItemText>
-                                <PriceText> R$ 10,00 </PriceText>
-                            </>
-                        </BtnComponent>
-                    </ItemView>
-                    <ItemView> 
-                        <BtnComponent bgColor="#333" width="90%" radius="100px">
-                            <>
-                                <ItemText> Pintar </ItemText>
-                                <PriceText> R$ 40,00 </PriceText>
-                            </>
-                        </BtnComponent>
-                    </ItemView>
-                    <ItemView>
-                        <BtnComponent bgColor="#333" width="90%" radius="100px">
-                            <>
-                                <ItemText> Luzes </ItemText>
-                                <PriceText> R$ 50,00 </PriceText>
-                            </>
-                        </BtnComponent>
-                    </ItemView>
-                    <ItemView>
-                        <BtnComponent bgColor="#333" width="90%" radius="100px">
-                            <>
-                                <ItemText> Platinar </ItemText>
-                                <PriceText> R$ 90,00 </PriceText>
-                            </>
-                        </BtnComponent>
-                    </ItemView>
-                    <ItemView>
-                        <BtnComponent bgColor="#333" width="90%" radius="100px">
-                            <>
-                                <ItemText> Degradê </ItemText>
-                                <PriceText> R$ 30,00 </PriceText>
-                            </>                       
-                            </BtnComponent>
-                    </ItemView>
-                    <ItemView>
-                        <BtnComponent bgColor="#333" width="90%" radius="100px">
-                            <>
-                                <ItemText> Corte + Sobrancelha </ItemText>
-                                <PriceText> R$ 27,00 </PriceText>
-                            </>
-                        </BtnComponent>
-                    </ItemView>
-                    <ItemView>
-                        <BtnComponent bgColor="#333" width="90%" radius="100px">
-                            <>
-                                <ItemText> Corte + Barba </ItemText>
-                                <PriceText> R$ 30,00 </PriceText>
-                            </>
-                        </BtnComponent>
-                    </ItemView>
-                    <ItemView>
-                        <BtnComponent bgColor="#333" width="90%" radius="100px">
-                            <>
-                                <ItemText> Degradê + Sobrancelha </ItemText>
-                                <PriceText> R$ 35,00 </PriceText>
-                            </>
-                        </BtnComponent>
-                    </ItemView>
+                    {cuts.map((c, k) => (
+                            <ItemView key={k}>
+                                <BtnComponent height="100%" underlayColor="#3ED3A1" width="90%" bgColor={name == c.name?'#3ED3A1':'#333'} onPress={() => setCut(c.name)}>
+                                    <>
+                                    <ItemText color={name == c.name?'#333': '#fff'}> {c.name} </ItemText>
+                                    <PriceText color={name == c.name?'#333': '#fff'}> {c.price} </PriceText>
+                                    </>
+                                </BtnComponent>
+                            </ItemView>
+                    ))}                   
                 </TableView>
 
             </Scroll>
         </Container>
     );
 }
+
+
+const mapDispatchToProps = (dispatch) => {          /** Executa uma função que cria uma props para realizar o dispatch para o redux */
+    return {
+        setCut:(cut)=>dispatch({type:'SET_CUT', payload: {cut}})       // Fazendo a inserção no reducer
+    };
+
+}
+
+export default connect(null, mapDispatchToProps) (Price);
