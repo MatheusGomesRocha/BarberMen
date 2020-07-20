@@ -64,14 +64,14 @@ export default () => {
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="transparent" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('employee')}>
                             <>
                                 <DefaultText> Funcionários </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
                         
-                        <SettingsButton underlayColor="transparent" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('ask')}>
                             <>
                                 <DefaultText> Perguntas frequentes </DefaultText> 
                                 <Icon name="angle-right" size={30} />

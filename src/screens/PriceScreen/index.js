@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { 
     Container,      // View de toda a tela
 
@@ -24,6 +25,7 @@ import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
 export default () => {
     let nameIcon = 'heart-o';
     const [icon, setIcon] = useState(false);
+    const navigation = useNavigation();
 
     // Função para adicionar aos favoritos, posteriormente fazer com dispatch para adicionar aos favoritos pelo id
     function ChangeIcon() {
@@ -39,8 +41,8 @@ export default () => {
 
     return (
         <Container>
-            <BtnComponent width="80px" height="80px" radius="100px" bgColor="#3ED3A1" style={{zIndex: 9999, position: 'absolute', right: 15, bottom: 15}}>
-                <Icon name="arrow-right" size={30} color="#333"/>
+            <BtnComponent onPress={() => navigation.navigate('date')} width="60px" height="60px" radius="100px" bgColor="#3ED3A1" style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
+                <Icon name="arrow-right" size={25} color="#333"/>
             </BtnComponent>
             <Scroll decelerationRate="fast">
                 

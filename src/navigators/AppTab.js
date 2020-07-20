@@ -4,8 +4,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeStack from './HomeStack';
 import PriceStack from './PriceStack';
-import DateStack from './DateStack';
 import SettingsStack from './SettingsStack';
+import FavoritesScreen from '../screens/FavoritesScreen';
 
 const AppTab = createBottomTabNavigator();
 
@@ -41,8 +41,12 @@ export default () => {
                     case 'cut':
                         icon = "cut";
                     break;
-                    case 'date':
-                        icon = "calendar";
+                    case 'favorites':
+                        if(focused) {
+                            icon = "heart";
+                        } else {
+                            icon = "heart-o";
+                        }
                     break;
                     case 'settings':
                         icon = "cog";
@@ -57,7 +61,7 @@ export default () => {
         >
             <AppTab.Screen name="home" component={HomeStack} options={{ tabBarLabel: 'Início'}}/>
             <AppTab.Screen name="cut" component={PriceStack} options={{ tabBarLabel: 'Cortes'}}/>
-            <AppTab.Screen name="date" component={DateStack} options={{ tabBarLabel: 'Calendário'}}/>
+            <AppTab.Screen name="favorites" component={FavoritesScreen} options={{ tabBarLabel: 'Favoritos'}}/>
             <AppTab.Screen name="settings" component={SettingsStack} options={{ tabBarLabel: 'Ajustes'}}/>
         </AppTab.Navigator>
     );
