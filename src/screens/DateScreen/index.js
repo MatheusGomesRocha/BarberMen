@@ -30,9 +30,9 @@ export default () => {
     const month = useSelector(state => state.user.month);
     const day = useSelector(state => state.user.day);
     
-    function goToTime() {
+    function goToHour() {
         if(day) {
-            navigation.goBack();
+            navigation.navigate('hour');
         } else {
             alert('selecione um dia pls');
         }
@@ -40,7 +40,7 @@ export default () => {
 
     return (
         <Container>
-            <BtnComponent onPress={() => goToTime()} width="60px" height="60px" radius="100px" bgColor={day?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
+            <BtnComponent onPress={() => goToHour()} width="60px" height="60px" radius="100px" bgColor={day?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
                 <Icon name="arrow-right" size={25} color="#333"/>
             </BtnComponent>
 
@@ -54,7 +54,7 @@ export default () => {
                     <BigText> Escolha a data </BigText>
                     <SmallText> 
                         Veja as datas disponíveis e escolha o dia e horário que 
-                        você prefere para ser atendido
+                        você prefere para ser atendido {month} {day}
                     </SmallText>
                 </TextView>
 
