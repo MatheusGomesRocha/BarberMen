@@ -54,7 +54,7 @@ export default () => {
                     <BigText> Escolha a data </BigText>
                     <SmallText> 
                         Veja as datas disponíveis e escolha o dia e horário que 
-                        você prefere para ser atendido {month} {day}
+                        você prefere para ser atendido
                     </SmallText>
                 </TextView>
 

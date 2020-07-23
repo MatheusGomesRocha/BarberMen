@@ -91,6 +91,7 @@ function DayScreen(props) {
         props.setDay(d);
     }
 
+
     useEffect(() => {
         props.setSelectDay(choseDay);
     }, [setDayToDispatch]);
