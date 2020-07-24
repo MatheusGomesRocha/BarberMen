@@ -4,6 +4,7 @@ import PriceScreen from '../screens/PriceScreen';
 import CutInfoScreen from '../screens/CutInfoScreen';
 import DateScreen from '../screens/DateScreen';
 import HourScreen from '../screens/HourScreen';
+import InfoDateScreen from '../screens/InfoDateScreen';
 
 const PriceStack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default () => {
             <PriceStack.Screen name="cutinfo" component={CutInfoScreen} options={{title: null, headerTransparent: true}} />
             <PriceStack.Screen name="date" component={DateScreen} options={{title: null, headerLeft: null, headerTransparent: true}} />
             <PriceStack.Screen name="hour" component={HourScreen} options={{title: null, headerLeft: null, headerTransparent: true}} />
+            <PriceStack.Screen name="infodate" component={InfoDateScreen} options={{title: null, headerLeft: null, headerTransparent: true}} />
         </PriceStack.Navigator>
     );
 }

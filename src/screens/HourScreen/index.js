@@ -26,6 +26,7 @@ let size4 = Math.round(screenSize / 4) + "px";   // Usar para passar a prop de t
 
 function HourScreen(props) {
     const navigation = useNavigation();
+    const hour = useSelector(state=>state.user.hour);
 
     let hours = [
         { id: '1', hour: '9:00'},
@@ -59,13 +60,11 @@ function HourScreen(props) {
 
     function finishChoose() {
         if(hour) {
-            alert('Você precisar selecionar um horário');
+            navigation.navigate('infodate');
         } else {
-            navigation.navigate('DateChooseScreen');
+            alert('Você precisar selecionar um horário');
         }
     }
-
-    const hour = useSelector(state=>state.user.hour);
 
     return(
         <Container>

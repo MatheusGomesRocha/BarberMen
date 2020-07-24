@@ -6,7 +6,8 @@ const initialState = {
     cut: '',
     day: '',
     month: '',
-    hour: ''
+    hour: '',
+    duration: '',
 }
 
 export default (state = initialState, action) => {
@@ -22,6 +23,9 @@ export default (state = initialState, action) => {
         break;
         case 'SET_CUT':
             return {...state, cut: action.payload.cut};
+        break;
+        case 'SET_DURATION':
+            return {...state, duration: action.payload.duration};
         break;
     }
     return state;

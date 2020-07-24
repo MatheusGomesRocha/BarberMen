@@ -37,8 +37,9 @@ function Price(props) {
     const navigation = useNavigation();     
     const name = useSelector(state => state.user.cut);      // Pegando o corte que foi mandado via redux
 
-    function setCut(c) {        // Função que seta um corte para o redux
-        props.setCut(c)
+    function setCutAndDuration(cut, duration) {        // Função que seta um corte para o redux
+        props.setCut(cut);
+        props.setDuration(duration);
     }
 
     function goToDate() {       // Função ao apertar no botão grande
@@ -52,15 +53,16 @@ function Price(props) {
 
     // Array temporário, fazer com que o admin cadastre no firebase e traga para cá
     let cuts = [
-        { id: '1', name: 'Normal', price: 'R$ 25,00'},
-        { id: '2', name: 'Infantil', price: 'R$ 15,00'},
-        { id: '3', name: 'Degradê', price: 'R$ 25,00'},
-        { id: '4', name: 'Pintar', price: 'R$ 25,00'},
-        { id: '5', name: 'Luzes', price: 'R$ 25,00'},
-        { id: '6', name: 'Platinar', price: 'R$ 25,00'},
-        { id: '7', name: 'Normal + Barba', price: 'R$ 25,00'},
-        { id: '8', name: 'Degradê + Barba', price: 'R$ 25,00'},
+        { id: '1', name: 'Normal', price: 'R$ 25,00', duration: '15~30 minutos'},
+        { id: '2', name: 'Infantil', price: 'R$ 15,00', duration: '15~30 minutos'},
+        { id: '3', name: 'Degradê', price: 'R$ 25,00', duration: '20~40 minutos'},
+        { id: '4', name: 'Pintar', price: 'R$ 25,00', duration: '45~60 minutos'},
+        { id: '5', name: 'Luzes', price: 'R$ 25,00', duration: '1:00~1:30 horas'},
+        { id: '6', name: 'Platinar', price: 'R$ 25,00', duration: '2:00~2:30 minutos'},
+        { id: '7', name: 'Normal + Barba', price: 'R$ 25,00', duration: '40~50 minutos'},
+        { id: '8', name: 'Degradê + Barba', price: 'R$ 25,00', duration: '50~60 minutos'},
     ];
+
 
     return (
         <Container>
@@ -77,40 +79,38 @@ function Price(props) {
                     <BigText> Preços de serviços </BigText>
                     <SmallText> 
                         Escolha o corte que irá fazer clicando nele, você será redirecionado para escolher
-                        o dia e horário, caso não tenha escolhido ainda. 
+                        o dia e horário, caso não tenha escolhido ainda.
                     </SmallText>
                 </ViewText>
 
-                <Modal
+                <Modal 
                     animationType="slide"
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
+                        Alert.alert("Modal has been closed.");
                     }}
                 >
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
-                            <Text style={styles.modalText}>Hello World!</Text>
+                            <Text style={styles.modalText}> {name} </Text>
 
                             <TouchableHighlight
-                            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                            onPress={() => {
-                                setModalVisible(!modalVisible);
-                            }}
+                                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                                onPress={() => { setModalVisible(!modalVisible) }}
                             >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
+                                <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableHighlight>
                         </View>
                     </View>
                 </Modal>
-
-
+                                
                 {/** Depois cadastrar esses dados em um bd e trazer pra cá */}
                 <TableView>
                     {cuts.map((c, k) => (
                             <ItemView key={k}>
-                            <Pressable onPress={() => setCut(c.name)} onLongPress={() => setModalVisible(true)}
+                                
+                            <Pressable onPress={() => setCutAndDuration(c.name, c.duration)} onLongPress={() => setModalVisible(true)}
                             style={{
                                     flexDirection:'row', backgroundColor: name == c.name?'#3ED3A1':'#333', 
                                     color: '#fff', height: 60, width: '90%', borderRadius: 100, justifyContent: 'center',
@@ -132,47 +132,47 @@ function Price(props) {
 
 const styles = StyleSheet.create({
     centeredView: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: 'rgba(0, 0, 0, 0.5)'
-    },
-    modalView: {
-      height: '60%',
-      width: '60%',
-      backgroundColor: "white",
-      borderRadius: 20,
-      padding: 35,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
       },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 5
-    },
-    openButton: {
-      backgroundColor: "#F194FF",
-      borderRadius: 20,
-      padding: 10,
-      elevation: 2
-    },
-    textStyle: {
-      color: "white",
-      fontWeight: "bold",
-      textAlign: "center"
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: "center"
-    }
+      modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
+      },
+      openButton: {
+        backgroundColor: "#F194FF",
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+      },
+      textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+      },
+      modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+      }
   });
   
 const mapDispatchToProps = (dispatch) => {          /** Executa uma função que cria uma props para realizar o dispatch para o redux */
     return {
-        setCut:(cut)=>dispatch({type:'SET_CUT', payload: {cut}})       // Fazendo a inserção no reducer
+        setCut:(cut)=>dispatch({type:'SET_CUT', payload: {cut}}),       // Fazendo a inserção no reducer
+        setDuration:(duration)=>dispatch({type:'SET_DURATION', payload: {duration}}) 
     };
 
 }
