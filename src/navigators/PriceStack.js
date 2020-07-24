@@ -3,7 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import PriceScreen from '../screens/PriceScreen';
 import CutInfoScreen from '../screens/CutInfoScreen';
 import DateScreen from '../screens/DateScreen';
-import TimeScreen from '../screens/TimeScreen';
 import HourScreen from '../screens/HourScreen';
 
 const PriceStack = createStackNavigator();

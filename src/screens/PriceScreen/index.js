@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, connect } from 'react-redux';
 import { 
@@ -19,11 +19,21 @@ import {
     
 } from './style';
 
+import { 
+    Pressable,
+    Alert,
+    Modal,
+    StyleSheet,
+    Text,
+    TouchableHighlight,
+    View 
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BtnComponent from '../../components/BtnComponent';
 import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
 
 function Price(props) {
+    const [modalVisible, setModalVisible] = useState(false);
     const navigation = useNavigation();     
     const name = useSelector(state => state.user.cut);      // Pegando o corte que foi mandado via redux
 
@@ -54,7 +64,7 @@ function Price(props) {
 
     return (
         <Container>
-            <BtnComponent onPress={() => goToDate()} width="60px" height="60px" radius="100px" bgColor={name?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
+            <BtnComponent underlayColor={name?'#3AA3A1':'#bbb'} onPress={() => goToDate()} width="60px" height="60px" radius="100px" bgColor={name?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
                 <Icon name="arrow-right" size={25} color="#333"/>
             </BtnComponent>
             <Scroll decelerationRate="fast">
@@ -67,20 +77,50 @@ function Price(props) {
                     <BigText> Preços de serviços </BigText>
                     <SmallText> 
                         Escolha o corte que irá fazer clicando nele, você será redirecionado para escolher
-                        o dia e horário, caso não tenha escolhido ainda.  {name}
+                        o dia e horário, caso não tenha escolhido ainda. 
                     </SmallText>
                 </ViewText>
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                    Alert.alert("Modal has been closed.");
+                    }}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalText}>Hello World!</Text>
+
+                            <TouchableHighlight
+                            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                            onPress={() => {
+                                setModalVisible(!modalVisible);
+                            }}
+                            >
+                            <Text style={styles.textStyle}>Hide Modal</Text>
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                </Modal>
+
 
                 {/** Depois cadastrar esses dados em um bd e trazer pra cá */}
                 <TableView>
                     {cuts.map((c, k) => (
                             <ItemView key={k}>
-                                <BtnComponent height="100%" underlayColor="#3ED3A1" width="90%" bgColor={name == c.name?'#3ED3A1':'#333'} onPress={() => setCut(c.name)}>
+                            <Pressable onPress={() => setCut(c.name)} onLongPress={() => setModalVisible(true)}
+                            style={{
+                                    flexDirection:'row', backgroundColor: name == c.name?'#3ED3A1':'#333', 
+                                    color: '#fff', height: 60, width: '90%', borderRadius: 100, justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}>
                                     <>
                                     <ItemText color={name == c.name?'#333': '#fff'}> {c.name} </ItemText>
                                     <PriceText color={name == c.name?'#333': '#fff'}> {c.price} </PriceText>
                                     </>
-                                </BtnComponent>
+                            </Pressable>
                             </ItemView>
                     ))}                   
                 </TableView>
@@ -90,7 +130,46 @@ function Price(props) {
     );
 }
 
-
+const styles = StyleSheet.create({
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    },
+    modalView: {
+      height: '60%',
+      width: '60%',
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5
+    },
+    openButton: {
+      backgroundColor: "#F194FF",
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2
+    },
+    textStyle: {
+      color: "white",
+      fontWeight: "bold",
+      textAlign: "center"
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: "center"
+    }
+  });
+  
 const mapDispatchToProps = (dispatch) => {          /** Executa uma função que cria uma props para realizar o dispatch para o redux */
     return {
         setCut:(cut)=>dispatch({type:'SET_CUT', payload: {cut}})       // Fazendo a inserção no reducer

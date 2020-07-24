@@ -16,7 +16,7 @@ import {
 
 import MonthView from '../../components/MonthComponent';
 import DayView from '../../components/DayComponent';
-import Svg from '../../assets/svg/undraw_calendar_dutt.svg'
+import Svg from '../../assets/svg/undraw_date_picker_gorr.svg'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BtnComponent from '../../components/BtnComponent';
 
@@ -27,7 +27,6 @@ export default () => {
     const [selectMonth, setSelectMonth] = useState(today.getMonth());      
     const [selectDay, setSelectDay] = useState(today.getDate());            
 
-    const month = useSelector(state => state.user.month);
     const day = useSelector(state => state.user.day);
     
     function goToHour() {
@@ -40,7 +39,7 @@ export default () => {
 
     return (
         <Container>
-            <BtnComponent onPress={() => goToHour()} width="60px" height="60px" radius="100px" bgColor={day?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
+            <BtnComponent underlayColor={day?'#3AA3A1':'#bbb'} onPress={() => goToHour()} width="60px" height="60px" radius="100px" bgColor={day?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
                 <Icon name="arrow-right" size={25} color="#333"/>
             </BtnComponent>
 
@@ -51,9 +50,9 @@ export default () => {
                 </SvgView>
 
                 <TextView>
-                    <BigText> Escolha a data </BigText>
+                    <BigText> Escolha o dia </BigText>
                     <SmallText> 
-                        Veja as datas disponíveis e escolha o dia e horário que 
+                        Veja os dias disponíveis e posteriormente selecione horário que 
                         você prefere para ser atendido
                     </SmallText>
                 </TextView>
