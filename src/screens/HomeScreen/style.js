@@ -23,26 +23,6 @@ export const SvgView = styled.View`
 `;
 
 
-// + View de bem-vindo  
-// + Texto grande de Bem-Vindo
-// + Texto pequeno de introdução
-export const ViewWelcome = styled.View`
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center;
-`;
-export const BigText = styled.Text`
-    font-weight: bold;
-    font-size: 45px;
-`;
-export const SmallText = styled.Text`
-    margin: 10px 20px 0 20px;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 16px;
-`;
-
-
 // + View com botão de login 
 // + Texto dentro do button
 export const LoginBtnView = styled.View`

@@ -1,25 +1,29 @@
 import React from 'react';
-import {
-    Container,
-
-    Scroll,
-
-    SvgView,
-
-    TextView,
-    BigText,
-    SmallText,
-
-    HourView,
-    HourItem,
-    HourText,
-} from './style';
 import { useSelector, connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { Dimensions, Pressable } from 'react-native';
 import BtnComponent from '../../components/BtnComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Svg from '../../assets/svg/undraw_in_no_time_6igu.svg'
+
+import {
+    TextView,    // View de bem-vindo
+    BigText,        // Texto grande de Bem-Vindo
+    SmallText,      // Texto pequeno de introdução
+} from '../../components/TextView';
+
+import {
+    Container,  // View Toda a tela
+
+    Scroll,     // View de scroll
+
+    SvgView,    // View de Svg
+
+    HourView,   // View com todos os horários
+    HourItem,   // View com um horário que percorre o array
+    HourText,   // Texto com os horários
+    
+} from './style';
 
 const screenSize = Math.round(Dimensions.get('window').width);  // Pegando tamanho da tela do celula
 let size4 = Math.round(screenSize / 4) + "px";   // Usar para passar a prop de tamanho do DayButton pois precisa dizer a forma de medição de tamanho

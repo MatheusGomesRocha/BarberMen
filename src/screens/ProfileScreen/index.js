@@ -1,4 +1,7 @@
 import React from 'react';
+import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
+import BtnComponent from '../../components/BtnComponent';
+
 import {
     Container,      // View toda a tela
     
@@ -15,9 +18,6 @@ import {
     BtnText         // Texto do Button de salvar
 } from './style';
 
-import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
-import BtnComponent from '../../components/BtnComponent';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default () => {
     return (

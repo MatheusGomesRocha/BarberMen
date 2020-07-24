@@ -1,4 +1,6 @@
 import React from 'react';
+import BtnComponent from '../../components/BtnComponent';
+
 import {
     Container,      // View toda a tela
 
@@ -9,7 +11,6 @@ import {
     AskText,        // Texto de pergunta
 } from './style';
 
-import BtnComponent from '../../components/BtnComponent';
 export default () => {
 
     return(

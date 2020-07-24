@@ -8,6 +8,7 @@ const initialState = {
     month: '',
     hour: '',
     duration: '',
+    favorites: [],
 }
 
 export default (state = initialState, action) => {

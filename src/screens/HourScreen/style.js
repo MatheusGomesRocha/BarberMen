@@ -1,36 +1,27 @@
 import styled from 'styled-components/native';
 
+
+// View Toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
     background-color: #fff;
 `;
 
+
+// View de scroll
 export const Scroll = styled.ScrollView``;
 
 
+// View de Svg
 export const SvgView = styled.View`
     align-items: center;
     justify-content: center;
 `;
 
-export const TextView = styled.View`
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-export const BigText = styled.Text`
-    font-size: 34px;
-    font-weight: bold;
-`;
-export const SmallText = styled.Text`
-    margin: 10px 20px 0 20px;
-    text-align: center;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.5);
-`;
 
-
-
+// + View com todos os horários
+// + View com um horário que percorre o array
+// + Texto com os horários
 export const HourView = styled.View`
     flex-direction: row;
     flex-wrap: wrap;

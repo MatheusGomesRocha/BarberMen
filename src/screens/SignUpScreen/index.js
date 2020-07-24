@@ -1,4 +1,7 @@
 import React from 'react';
+import BtnComponent from '../../components/BtnComponent';
+import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
+
 import {
     Container,  // View toda a tela 
 
@@ -15,9 +18,6 @@ import {
     BtnView,    // View de Button de realizar cadastro
     BtnText,    // Texto do Button e Arraste
 } from './style';
-
-import BtnComponent from '../../components/BtnComponent';
-import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 
 export default () => {
     return (

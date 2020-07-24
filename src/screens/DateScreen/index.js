@@ -1,24 +1,26 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import { useSelector } from 'react-redux';
+import MonthView from '../../components/MonthComponent';
+import DayView from '../../components/DayComponent';
+import Svg from '../../assets/svg/undraw_date_picker_gorr.svg'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import BtnComponent from '../../components/BtnComponent';
+
+import {
+    TextView,    // View de bem-vindo
+    BigText,        // Texto grande de Bem-Vindo
+    SmallText,      // Texto pequeno de introdução
+} from '../../components/TextView';
+
 import {
     Container,  // View de toda a tela
 
     Scroll,     // View que realiza o scroll
 
     SvgView,    // View que contém o SVG
-
-    TextView,   // View onde fica os textos
-    BigText,    // Texto grande
-    SmallText   // Texto pequeno
     
 } from './style';
-
-import MonthView from '../../components/MonthComponent';
-import DayView from '../../components/DayComponent';
-import Svg from '../../assets/svg/undraw_date_picker_gorr.svg'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import BtnComponent from '../../components/BtnComponent';
 
 export default () => {
     const navigation = useNavigation();

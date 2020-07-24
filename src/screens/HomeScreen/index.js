@@ -1,14 +1,21 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import BtnComponent from '../../components/BtnComponent';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import SvgBarber from '../../assets/svg/undraw_barber_3uel.svg';     // SVG BARBER
+
+import {
+    TextView,    // View de bem-vindo
+    BigText,        // Texto grande de Bem-Vindo
+    SmallText,      // Texto pequeno de introdução
+} from '../../components/TextView';
+
 import {
     Container,      // Toda a tela
 
     Scroll,         // View pra realizar Scroll da tela
 
     SvgView,        // View que ficou o SVG
-
-    ViewWelcome,    // View de bem-vindo
-    BigText,        // Texto grande de Bem-Vindo
-    SmallText,      // Texto pequeno de introdução
 
     LoginBtnView,   // View com botão de login
     BtnText,        // Texto dentro do button
@@ -22,12 +29,7 @@ import {
     
 } from './style';
 
-import { useNavigation } from '@react-navigation/native';
-import BtnComponent from '../../components/BtnComponent';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import SvgBarber from '../../assets/svg/undraw_barber_3uel.svg';     // SVG BARBER
-import SettingsStack from '../../navigators/SettingsStack';
-import { Pressable } from 'react-native';
+
 export default () => {
 const navigation = useNavigation();
 
@@ -38,13 +40,13 @@ const navigation = useNavigation();
                 <SvgView>
                     <SvgBarber width={280} height={220} />
                 </SvgView>
-                <ViewWelcome>                    
+                <TextView>                    
                     <BigText> Bem Vindo </BigText>
                     <SmallText> 
                         App oficial da barbearia BarberMen, aqui você pode 
                         marcar seu horário e ainda pagar o serviço
                     </SmallText>
-                </ViewWelcome>
+                </TextView>
                 
 
                 <LoginBtnView>

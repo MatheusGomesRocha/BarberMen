@@ -2,16 +2,22 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import BtnComponent from '../../components/BtnComponent';
 
+import {
+    TextView,    // View de bem-vindo
+    BigText,        // Texto grande de Bem-Vindo
+    SmallText,      // Texto pequeno de introdução
+} from '../../components/TextView';
+
 import { 
-    Container,
+    Container,  // View toda a tela
 
-    TextView,
-    BigText,
-    SmallText,
+    Scroll,     // View de scroll
 
-    InfoView,
-    InfoText,
-    BtnText,
+    InfoView,   // View com a info
+    InfoText,   // Texto das info
+    
+    BtnView,    // View do BtnComponent
+    BtnText,    // Texto do BtnComponent
 } from './style';
 
 export default () => {
@@ -23,8 +29,9 @@ export default () => {
 
     return (
         <Container>
+            <Scroll>
             <TextView>
-                <BigText> Finalize e marque seu atendimento </BigText>
+                <BigText> Finalize seu atendimento </BigText>
                 <SmallText> Aqui contém tudo que você escolheu, revise para ver se está tudo correto, se estiver, finalize e aguarde para ser atendido</SmallText> 
             </TextView>
             <InfoView>
@@ -34,9 +41,12 @@ export default () => {
                 <InfoText> Duração: {duration} </InfoText>
             </InfoView>
 
-            <BtnComponent width="90%" bgColor="#333" radius="100px" style={{marginTop: 50}}>
-                <BtnText>Finalizar</BtnText> 
-            </BtnComponent>
+            <BtnView>
+                <BtnComponent width="90%" bgColor="#333" radius="100px" style={{marginTop: 50}}>
+                    <BtnText>Finalizar</BtnText> 
+                </BtnComponent>
+            </BtnView>
+            </Scroll>
             
         </Container>
     );

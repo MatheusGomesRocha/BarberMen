@@ -19,27 +19,6 @@ export const SvgView = styled.View`
 `;
 
 
-// + View que fica o texto
-// + Texto grande
-// + Texto pequeno
-export const ViewText = styled.View`
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center;
-`;
-export const BigText = styled.Text`
-    font-weight: bold;
-    font-size: 34px;
-    text-align: center;
-`;
-export const SmallText = styled.Text`
-    margin: 10px 20px 0 20px;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 16px;
-`;
-
-
 // + View onde ficam todos os items 
 // + View onde fica 1 item (TEMPORÁRIO. PEGAR DADOS QUE VÃO VIR DO FIREBASE DEPOIS DE SEREM CADASTRADOS PELO O USUÁRIO E PASSAR PARA UM BUTTON)
 // + Texto que fica o nome do item 

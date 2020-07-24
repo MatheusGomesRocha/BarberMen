@@ -1,23 +1,15 @@
 import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, connect } from 'react-redux';
-import { 
-    Container,      // View de toda a tela
+import Icon from 'react-native-vector-icons/FontAwesome';
+import BtnComponent from '../../components/BtnComponent';
+import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
 
-    Scroll,         // View que realiza scroll
-    
-    SvgView,        // View que fica o SVG
-
-    ViewText,       // View que fica o texto
-    BigText,        // Texto grande
-    SmallText,      // Texto pequeno
-
-    TableView,      // View onde ficam todos os items 
-    ItemView,       // View onde fica 1 item (TEMPORÁRIO. PEGAR DADOS QUE VÃO VIR DO FIREBASE DEPOIS DE SEREM CADASTRADOS PELO O USUÁRIO E PASSAR PARA UM BUTTON)
-    ItemText,       // Texto que fica o nome do item 
-    PriceText,      // Texto que fica o preço do item
-    
-} from './style';
+import {
+    TextView,    // View de bem-vindo
+    BigText,        // Texto grande de Bem-Vindo
+    SmallText,      // Texto pequeno de introdução
+} from '../../components/TextView';
 
 import { 
     Pressable,
@@ -28,9 +20,20 @@ import {
     TouchableHighlight,
     View 
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import BtnComponent from '../../components/BtnComponent';
-import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
+
+import { 
+    Container,      // View de toda a tela
+
+    Scroll,         // View que realiza scroll
+    
+    SvgView,        // View que fica o SVG
+
+    TableView,      // View onde ficam todos os items 
+    ItemView,       // View onde fica 1 item (TEMPORÁRIO. PEGAR DADOS QUE VÃO VIR DO FIREBASE DEPOIS DE SEREM CADASTRADOS PELO O USUÁRIO E PASSAR PARA UM BUTTON)
+    ItemText,       // Texto que fica o nome do item 
+    PriceText,      // Texto que fica o preço do item
+    
+} from './style';
 
 function Price(props) {
     const [modalVisible, setModalVisible] = useState(false);
@@ -75,13 +78,13 @@ function Price(props) {
                     <SvgMoney width={280} height={260}/>
                 </SvgView>
 
-                <ViewText>
+                <TextView>
                     <BigText> Preços de serviços </BigText>
                     <SmallText> 
                         Escolha o corte que irá fazer clicando nele, você será redirecionado para escolher
                         o dia e horário, caso não tenha escolhido ainda.
                     </SmallText>
-                </ViewText>
+                </TextView>
 
                 <Modal 
                     animationType="slide"

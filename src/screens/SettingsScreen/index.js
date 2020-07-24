@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { Switch } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import SvgPic from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 
 import {
     Container,  // View toda a tela
@@ -14,11 +17,6 @@ import {
     DefaultText,    // Texto padrão com os nomes
     EnabledText,    // Texto de ON OFF no Switch
 } from './style';
-
-import { Switch } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Svg from '../../assets/svg/undraw_profile_details_f8b7.svg';
-import SvgPic from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 
 export default () => {
     const navigation = useNavigation();

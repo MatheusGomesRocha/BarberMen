@@ -1,30 +1,19 @@
 import styled from 'styled-components/native';
 
+
+// View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
     background-color: #fff;
-    justify-content: center;
-    align-items: center;
-`;
-
-export const TextView = styled.View`
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
-export const BigText = styled.Text`
-    font-size: 34px;
-    font-weight: bold;
-    text-align: center;
-`;
-export const SmallText = styled.Text`
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.5);
-    text-align: center;
-    margin: 10px 20px 0 20px;
 `;
 
 
+// View de Scroll
+export const Scroll = styled.ScrollView``;
+
+
+// + View com a info
+// + Texto das info
 export const InfoView = styled.View`
     border: 1px solid rgba(0, 0, 0, 0.5);
     width: 100%;
@@ -33,12 +22,18 @@ export const InfoView = styled.View`
     align-items: center;
     margin-top: 50px;
 `;
-
 export const InfoText = styled.Text`
     padding: 10px;
     font-size: 18px;
 `;
 
+
+// + View do BtnComponent
+// + Texto do BtnComponent
+export const BtnView = styled.View`
+    justify-content: center;
+    align-items: center;
+`;
 export const BtnText = styled.Text`
     color: #fff;
     font-size: 16px;
