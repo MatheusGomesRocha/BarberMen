@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Switch } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SvgPic from '../../assets/svg/undraw_profile_pic_ic5t.svg';
+import auth from '@react-native-firebase/auth';
 
 import {
     Container,  // View toda a tela
@@ -20,9 +21,15 @@ import {
 
 export default () => {
     const navigation = useNavigation();
+    const user = auth().currentUser;
 
     function test() {
-        alert("Hello World");
+        alert('hello world');
+    }
+
+    function SignOut() {
+        auth().signOut();
+        navigation.navigate('home');
     }
 
     const [isEnabled, setIsEnabled] = useState(false);
@@ -111,12 +118,14 @@ export default () => {
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="transparent" onPress={test}>
-                            <>
-                                <DefaultText> Sair </DefaultText> 
-                                <Icon name="angle-right" size={30} />
-                            </>
-                        </SettingsButton>
+                        {user?
+                            <SettingsButton underlayColor="transparent" onPress={SignOut}>
+                                <>
+                                    <DefaultText> Sair </DefaultText> 
+                                    <Icon name="angle-right" size={30} />
+                                </>
+                            </SettingsButton>
+                        : null}
                     </>
                 </SettingsView>
             </Scroll>

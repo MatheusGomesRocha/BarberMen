@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import BtnComponent from '../../components/BtnComponent';
 import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
+import auth from '@react-native-firebase/auth';
 
 import {
     Container,  // View toda a tela 
@@ -20,6 +21,24 @@ import {
 } from './style';
 
 export default () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [contact, setContact] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    function SignUp  (e, p) {
+        if(!name || !email || !cpf || !contact || !password || !confirmPassword) {
+            alert('Todos os campos são obrigatiórios')
+        } else {
+            const sign = auth().createUserWithEmailAndPassword(e, p);
+            alert('Conta criada com sucesso');
+        }
+             
+     
+    }
+
     return (
         <Container>
             <TextView>
@@ -33,31 +52,31 @@ export default () => {
                 <Scroll>
                     <InputView>
                         <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
-                        placeholder="Nome"/>
+                        placeholder="Nome" onChangeText={n=>setName(n)}/>
                     </InputView>
                     <InputView>
                         <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
-                        placeholder="Email" keyboardType="email-address"/>
+                        placeholder="Email" keyboardType="email-address" onChangeText={e=>setEmail(e)}/>
                     </InputView>
                     <InputView>
                         <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
-                        placeholder="CPF" keyboardType="numeric"/>
+                        placeholder="CPF" keyboardType="numeric" onChangeText={c=>setCpf(c)}/>
                     </InputView>
                     <InputView>
                         <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
-                        placeholder="Contato" keyboardType="numeric"/>
+                        placeholder="Contato" keyboardType="numeric" onChangeText={co=>setContact(co)}/>
                     </InputView>
                     <InputView>
                         <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
-                        placeholder="Senha" />
+                        placeholder="Senha" onChangeText={p=>setPassword(p)}/>
                     </InputView>
                     <InputView>
                         <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
-                        placeholder="Confirme a Senha"/>
+                        placeholder="Confirme a Senha" onChangeText={cp=>setConfirmPassword(cp)}/>
                     </InputView>
 
                     <BtnView>
-                        <BtnComponent width="80%" radius="100px" height="55px" bgColor="#fff">
+                        <BtnComponent onPress={() => SignUp(email, password)} width="80%" radius="100px" height="55px" bgColor="#fff">
                             <BtnText> Finalizar </BtnText>
                         </BtnComponent>
                     </BtnView>

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import BtnComponent from '../../components/BtnComponent';
 import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
+import auth from '@react-native-firebase/auth';
 
 import {
     Container,  // View toda a tela 
@@ -20,6 +21,20 @@ import {
 } from './style';
 
 export default () => {
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+
+    function SignIn(e, p) {
+        auth().signInWithEmailAndPassword(e, p);
+           
+    }
+
+    const user = auth().currentUser;
+
+    if(user) {
+        alert(user.uid);
+    }
+
     return (
         <Container>
             <TextView>
@@ -30,14 +45,14 @@ export default () => {
             <ViewLogin>
                 <Scroll>
                     <InputView>
-                        <Input keyboardType="email-address" underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Email"/>
+                        <Input keyboardType="email-address" onChangeText={e=>setEmail(e)} underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Email"/>
                     </InputView>
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Senha"/>
+                        <Input underlineColorAndroid="#fff" onChangeText={p=>setPass(p)} placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Senha"/>
                     </InputView>
 
                     <BtnView>
-                        <BtnComponent width="80%" radius="100px" height="55px" bgColor="#fff">
+                        <BtnComponent onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#fff">
                             <BtnText> Login </BtnText>
                         </BtnComponent>
                         <BtnText style={{color:"#fff", marginTop:20, marginBottom: 25}}> Esqueceu a senha? </BtnText>
