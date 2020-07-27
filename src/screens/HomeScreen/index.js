@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
+import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SvgBarber from '../../assets/svg/undraw_barber_3uel.svg';     // SVG BARBER
+import auth from '@react-native-firebase/auth';
 
 import {
     TextView,    // View de bem-vindo
@@ -32,6 +34,7 @@ import {
 
 export default () => {
 const navigation = useNavigation();
+const user = useSelector(state => state.user.email);
 
     return (
         <Container>
@@ -57,6 +60,7 @@ const navigation = useNavigation();
                             <Icon name="angle-right" size={25} style={{color: '#333'}} />
                         </>
                     </BtnComponent>
+                    {!user?
                     <BtnComponent mTop="20px" underlayColor="rgba(0, 0, 0, 0.8)" bgColor="#333" width="80%" 
                         onPress={() => navigation.navigate('login')}>
                         <>
@@ -64,6 +68,7 @@ const navigation = useNavigation();
                             <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                         </>
                     </BtnComponent>
+                    :null}
                 </LoginBtnView>
 
                 <CommentsTitle>

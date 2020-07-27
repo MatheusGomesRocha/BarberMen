@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, connect, useSelector} from 'react-redux';
 import BtnComponent from '../../components/BtnComponent';
 import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 import auth from '@react-native-firebase/auth';
@@ -20,19 +22,37 @@ import {
     BtnText,    // Texto do Button e Forgot
 } from './style';
 
-export default () => {
+function LoginScreen(props) {
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const userEmail = useSelector(state => state.user.email);
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
     function SignIn(e, p) {
-        auth().signInWithEmailAndPassword(e, p);
+        if(e, p) {
+            const login = 
+                auth()
+                .signInWithEmailAndPassword(e, p)
+                .then(() => {
+                    props.setEmail(e);
+                    navigation.reset({
+                        index: 0,
+                        routes: [
+                            { name: 'home' },
+                        ]
+                    });
+                })
+                .catch(error => {
+                    if (error) {
+                        alert('Email ou senha incorreta');
+                    }
+                });
+        } else  {
+            alert('Todos campos são obrigatórios');
+        }
+        
            
-    }
-
-    const user = auth().currentUser;
-
-    if(user) {
-        alert(user.uid);
     }
 
     return (
@@ -52,7 +72,7 @@ export default () => {
                     </InputView>
 
                     <BtnView>
-                        <BtnComponent onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#fff">
+                        <BtnComponent underlayColor="#ddd" onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#fff">
                             <BtnText> Login </BtnText>
                         </BtnComponent>
                         <BtnText style={{color:"#fff", marginTop:20, marginBottom: 25}}> Esqueceu a senha? </BtnText>
@@ -64,3 +84,11 @@ export default () => {
         </Container>
     );
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setEmail:(email)=>dispatch({type:'SET_EMAIL', payload: {email}})
+    };
+}
+
+export default connect(null, mapDispatchToProps) (LoginScreen);

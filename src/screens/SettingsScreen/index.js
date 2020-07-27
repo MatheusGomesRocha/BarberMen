@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { connect, useSelector } from 'react-redux'
 import { Switch } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SvgPic from '../../assets/svg/undraw_profile_pic_ic5t.svg';
@@ -19,17 +20,24 @@ import {
     EnabledText,    // Texto de ON OFF no Switch
 } from './style';
 
-export default () => {
+function SettingsScreen(props) {
     const navigation = useNavigation();
-    const user = auth().currentUser;
-
+    const user = useSelector(state => state.user.email);
+    let userSplit = user.split('@')[0];
+    
     function test() {
         alert('hello world');
     }
 
     function SignOut() {
+        props.SignOut();
         auth().signOut();
-        navigation.navigate('home');
+        navigation.reset({
+            index: 0,
+            routes: [
+                { name: 'home' },
+            ]
+        });
     }
 
     const [isEnabled, setIsEnabled] = useState(false);
@@ -42,7 +50,9 @@ export default () => {
 
                 <UserView> 
                     <SvgPic width={70} height={70}/>
+                    {!user?
                     <Texto> Faça o login </Texto> 
+                    : <Texto> Olá {userSplit} </Texto> }
                 </UserView>
 
                 <SettingsView>
@@ -62,13 +72,14 @@ export default () => {
                         </SettingsButton>
 
                         {/* Aparecer apenas se estiver logado */}
+                        {user?
                         <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('profile')}>
                             <>
                                 <DefaultText> Editar perfil </DefaultText> 
                                 <Icon name="angle-right" size={30} />
                             </>
                         </SettingsButton>
-
+                        :null}
                         <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('employee')}>
                             <>
                                 <DefaultText> Funcionários </DefaultText> 
@@ -90,12 +101,6 @@ export default () => {
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="transparent" onPress={test}>
-                            <>
-                                <DefaultText> Cortes favoritos </DefaultText> 
-                                <Icon name="angle-right" size={30} />
-                            </>
-                        </SettingsButton>
 
                         <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
@@ -132,3 +137,11 @@ export default () => {
         </Container>
     );
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        SignOut:(SignOut)=>dispatch({type:'SIGN_OUT'})
+    };
+}
+
+export default connect(null, mapDispatchToProps) (SettingsScreen);

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "84789087617",
+    "firebase_url": "https://barbermentest.firebaseio.com",
+    "project_id": "barbermentest",
+    "storage_bucket": "barbermentest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84789087617:android:bc44eb250b33f6a9ca2c80",
+        "android_client_info": {
+          "package_name": "com.barbermen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84789087617-ihgqigo1dkmdtha6i9gl4kmn6t4urn6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjPCc4KlaJobazWTseklKQ7WR5-1OCO-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84789087617-ihgqigo1dkmdtha6i9gl4kmn6t4urn6e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

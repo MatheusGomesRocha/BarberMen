@@ -23,8 +23,10 @@ function App() {
   return(
     <Provider store={store}>
       <NavigationContainer>
-        <AppTab/>
-        <Bar/>
+        <PersistGate loading={null} persistor={persistor}>
+          <AppTab/>
+          <Bar/>
+        </PersistGate>
       </NavigationContainer>
     </Provider>   
   );

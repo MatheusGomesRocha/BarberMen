@@ -39,17 +39,24 @@ function Price(props) {
     const [modalVisible, setModalVisible] = useState(false);
     const navigation = useNavigation();     
     const name = useSelector(state => state.user.cut);      // Pegando o corte que foi mandado via redux
+    const user = useSelector(state => state.user.email);
 
     function setCutAndDuration(cut, duration) {        // Função que seta um corte para o redux
-        props.setCut(cut);
-        props.setDuration(duration);
+        if(user) {
+            props.setCut(cut);
+            props.setDuration(duration);
+        } else {
+            alert('Você precisa está logado para realizar essa ação');
+        }
     }
 
     function goToDate() {       // Função ao apertar no botão grande
-        if(name) {
-            navigation.navigate('date');
-        } else {
+        if(!user) {
+            alert('Você precisa estar logado para realizar essa ação');
+        } else if(!name) {
             alert('Você precisa escolher um corte');
+        } else {
+            navigation.navigate('date');
         }
     }
     

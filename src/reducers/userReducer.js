@@ -28,6 +28,12 @@ export default (state = initialState, action) => {
         case 'SET_DURATION':
             return {...state, duration: action.payload.duration};
         break;
+        case 'SET_EMAIL':
+            return {...state, email: action.payload.email};
+        break;
+        case 'SIGN_OUT':
+            return initialState;
+        break;
     }
     return state;
 }
