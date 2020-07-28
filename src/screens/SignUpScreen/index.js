@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
 import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 import auth from '@react-native-firebase/auth';
@@ -21,6 +22,8 @@ import {
 } from './style';
 
 export default () => {
+    const navigation = useNavigation();
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');
@@ -31,9 +34,27 @@ export default () => {
     function SignUp  (e, p) {
         if(!name || !email || !cpf || !contact || !password || !confirmPassword) {
             alert('Todos os campos são obrigatiórios')
-        } else {
-            const sign = auth().createUserWithEmailAndPassword(e, p);
-            alert('Conta criada com sucesso');
+        } else if(password != confirmPassword) {
+            alert('As senhas devem coincidir');
+        } 
+        else {
+            auth()
+            .createUserWithEmailAndPassword(e, p)
+            .then(() => {
+                alert('Conta criada com sucesso');
+                navigation.reset({
+                    index: 0,
+                    routes: [
+                        { name: 'home' },
+                    ]
+                });
+            })
+            .catch(error => {
+                if(error.code == 'auth/email-already-in-use') {
+                    alert('Este email já está cadastro, tente outro');
+                }
+            })
+            
         }
              
      
