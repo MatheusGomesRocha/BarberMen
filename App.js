@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react'
 import { store, persistor } from './src/store';
-import AppTab from './src/navigators/AppTab.js';
-
+import AppTab from './src/navigators/AppTab';
+import Preload from './src/navigators/PreloadStack';
 
 
 function Bar() {      /** Barra de status do aparelho */
@@ -24,7 +24,7 @@ function App() {
     <Provider store={store}>
       <NavigationContainer>
         <PersistGate loading={null} persistor={persistor}>
-          <AppTab/>
+          <Preload/>
           <Bar/>
         </PersistGate>
       </NavigationContainer>

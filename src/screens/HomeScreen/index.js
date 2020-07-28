@@ -36,6 +36,7 @@ export default () => {
 const navigation = useNavigation();
 const user = useSelector(state => state.user.email);
 
+   
     return (
         <Container>
             <Scroll>
