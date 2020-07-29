@@ -4,6 +4,7 @@ import {useDispatch, connect, useSelector} from 'react-redux';
 import BtnComponent from '../../components/BtnComponent';
 import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import {
     Container,  // View toda a tela 
@@ -12,8 +13,6 @@ import {
     BigText,    // Texto Login grande
 
     ViewLogin,  // View com o form de login
-
-    Scroll,     // Só irá realizar scroll dentro dessa view acima
 
     InputView,  // View de um input
     Input,      // Input
@@ -42,6 +41,7 @@ function LoginScreen(props) {
                             { name: 'home' },
                         ]
                     });
+                    alert('Logado com sucesso');
                 })
                 .catch(error => {
                     if (error) {
@@ -63,23 +63,22 @@ function LoginScreen(props) {
             </TextView>
             
             <ViewLogin>
-                <Scroll>
+                
                     <InputView>
-                        <Input keyboardType="email-address" onChangeText={e=>setEmail(e)} underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Email"/>
+                        <Input keyboardType="email-address" onChangeText={e=>setEmail(e)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Email"/>
                     </InputView>
                     <InputView>
-                        <Input underlineColorAndroid="#fff" onChangeText={p=>setPass(p)} placeholderTextColor="rgba(255, 255, 255, 0.5)" placeholder="Senha"/>
+                        <Input onChangeText={p=>setPass(p)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Senha"/>
                     </InputView>
 
                     <BtnView>
-                        <BtnComponent underlayColor="#ddd" onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#fff">
+                        <BtnComponent underlayColor="#000" onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#333">
                             <BtnText> Login </BtnText>
                         </BtnComponent>
-                        <BtnText style={{color:"#fff", marginTop:20, marginBottom: 25}}> Esqueceu a senha? </BtnText>
+                        <BtnText style={{color:"#333", marginTop:10, marginBottom: 25}}> Esqueceu a senha? </BtnText>
 
                     </BtnView>
 
-                </Scroll>
             </ViewLogin>
         </Container>
     );

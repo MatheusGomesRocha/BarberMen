@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 // View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    justify-content: flex-end;
     background-color: #fff;
 `
 
@@ -25,10 +24,7 @@ export const BigText = styled.Text`
 
 // View com o form de login
 export const ViewLogin = styled.View`
-    background-color: #333;
-    height: 60%;
-    border-top-left-radius: 70px;
-    border-top-right-radius: 70px;
+   
 `;
 
 
@@ -43,12 +39,13 @@ export const Scroll = styled.ScrollView`
 export const InputView = styled.View`
     justify-content: center;
     width: 80%;
-    margin: 0 0 30px 35px;
+    margin: 0 0 25px 35px;
 `;
 export const Input = styled.TextInput`
     padding: 10px;
     font-size: 16px;
-    color: #fff;
+    border: 1px solid #333;
+    border-radius: 50px;
 `;
 
 
@@ -60,4 +57,5 @@ export const BtnView = styled.View`
 `;
 export const BtnText = styled.Text`
     font-size: 18px;
+    color: #fff;
 `;

@@ -1,18 +1,20 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {connect} from 'react-redux';
 import BtnComponent from '../../components/BtnComponent';
 import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import {
     Container,  // View toda a tela 
 
+    Scroll,     // Só irá realizar scroll dentro dessa view acima
+    
     TextView,   // View com svg e texto de Cadastro 
     BigText,    // Texto Cadastro grande
 
     ViewSignUp,  // View com o form de cadastro
-
-    Scroll,     // Só irá realizar scroll dentro dessa view acima
 
     InputView,  // View de um input
     Input,      // Input
@@ -21,7 +23,7 @@ import {
     BtnText,    // Texto do Button e Arraste
 } from './style';
 
-export default () => {
+function SignUpScreen(props) {
     const navigation = useNavigation();
 
     const [name, setName] = useState('');
@@ -41,7 +43,17 @@ export default () => {
             auth()
             .createUserWithEmailAndPassword(e, p)
             .then(() => {
-                alert('Conta criada com sucesso');
+                auth()
+                .signInWithEmailAndPassword(e, p);
+                props.setEmail(e);
+                const user = auth().currentUser;
+                firestore()
+                .collection('users')
+                .add({
+                    id: user.uid,
+                    email: user.email,
+                })
+                alert('Conta criada e logada com sucesso');
                 navigation.reset({
                     index: 0,
                     routes: [
@@ -62,6 +74,7 @@ export default () => {
 
     return (
         <Container>
+            <Scroll>
             <TextView>
                     <Svg width="150px" height="100px" />
                     <BigText> Cadastro </BigText>
@@ -70,40 +83,48 @@ export default () => {
             <ViewSignUp>
                 <BtnText style={{color: '#fff', textAlign: 'center', marginTop: 5}}> Arraste para cima </BtnText> 
 
-                <Scroll>
+                
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Nome" onChangeText={n=>setName(n)}/>
                     </InputView>
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Email" keyboardType="email-address" onChangeText={e=>setEmail(e)}/>
                     </InputView>
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="CPF" keyboardType="numeric" onChangeText={c=>setCpf(c)}/>
                     </InputView>
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Contato" keyboardType="numeric" onChangeText={co=>setContact(co)}/>
                     </InputView>
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Senha" onChangeText={p=>setPassword(p)}/>
                     </InputView>
                     <InputView>
-                        <Input underlineColorAndroid="#fff" placeholderTextColor="rgba(255, 255, 255, 0.5)" 
+                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Confirme a Senha" onChangeText={cp=>setConfirmPassword(cp)}/>
                     </InputView>
 
                     <BtnView>
-                        <BtnComponent onPress={() => SignUp(email, password)} width="80%" radius="100px" height="55px" bgColor="#fff">
+                        <BtnComponent onPress={() => SignUp(email, password)} width="80%" radius="100px" height="55px" bgColor="#333">
                             <BtnText> Finalizar </BtnText>
                         </BtnComponent>
                     </BtnView>
 
-                </Scroll>
             </ViewSignUp>
+            </Scroll>
         </Container>
     );
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setEmail:(email)=>dispatch({type:'SET_EMAIL', payload: {email}})
+    };
+}
+
+export default connect(null, mapDispatchToProps) (SignUpScreen);

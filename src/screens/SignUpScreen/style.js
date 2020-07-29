@@ -4,17 +4,22 @@ import styled from 'styled-components/native';
 // View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    justify-content: flex-end;
     background-color: #fff;
 `
+
+
+// Só irá realizar scroll dentro dessa view acima
+export const Scroll = styled.ScrollView`
+`;
 
 
 // + View com svg e texto de Cadastro
 // + Texto Cadastro grande
 export const TextView = styled.View`
-    height: 45%;
     align-items: center;
     justify-content: center;
+    margin-top: 30px;
+
 `
 export const BigText = styled.Text`
     margin-top: 10px;
@@ -25,17 +30,8 @@ export const BigText = styled.Text`
 
 // View com o form de cadastro
 export const ViewSignUp = styled.View`
-    background-color: #333;
-    height: 60%;
-    border-top-left-radius: 70px;
-    border-top-right-radius: 70px;
 `;
 
-
-// Só irá realizar scroll dentro dessa view acima
-export const Scroll = styled.ScrollView`
-    margin-top: 50px;
-`;
 
 
 // + View de um input
@@ -48,7 +44,8 @@ export const InputView = styled.View`
 export const Input = styled.TextInput`
     padding: 10px;
     font-size: 16px;
-    color: #fff;
+    border: 1px solid #333;
+    border-radius: 50px;
 `;
 
 
@@ -61,4 +58,5 @@ export const BtnView = styled.View`
 `;
 export const BtnText = styled.Text`
     font-size: 18px;
+    color: #fff;
 `;
