@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { connect, useSelector } from 'react-redux'
 import { Switch } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SvgPic from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import {
     Container,  // View toda a tela
@@ -22,9 +23,14 @@ import {
 
 function SettingsScreen(props) {
     const navigation = useNavigation();
+
     const user = useSelector(state => state.user.email);
     let userSplit = user.split('@')[0];
+
+    const [isAdmin, setIsAdmin] = useState(false)
     
+    const userInfo = auth().currentUser;
+
     function test() {
         alert('hello world');
     }
@@ -43,6 +49,18 @@ function SettingsScreen(props) {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+        if(user) {
+            firestore()
+            .collection('users')
+            .where('id', '==', userInfo.uid)
+            .get()
+            .then(querySnapshot => {    
+                querySnapshot.forEach(documentSnapshot => {
+                    setIsAdmin(documentSnapshot.data().admin)
+                });
+            });
+        }
+    
 
     return (
         <Container>
@@ -51,7 +69,7 @@ function SettingsScreen(props) {
                 <UserView> 
                     <SvgPic width={70} height={70}/>
                     {!user?
-                    <Texto> Faça o login </Texto> 
+                    <Texto> Faça o login  </Texto> 
                     : <Texto> Olá {userSplit} </Texto> }
                 </UserView>
 
@@ -71,6 +89,15 @@ function SettingsScreen(props) {
                             </>
                         </SettingsButton>
 
+                        {isAdmin?
+                            <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('addcuts')}>
+                                <>
+                                    <DefaultText> Adiconar novos cortes </DefaultText> 
+                                    <Icon name="angle-right" size={30} />
+                                </>
+                            </SettingsButton>
+                        :null}
+                        
                         {/* Aparecer apenas se estiver logado */}
                         {user?
                         <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('profile')}>

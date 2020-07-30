@@ -5,7 +5,6 @@ import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SvgBarber from '../../assets/svg/undraw_barber_3uel.svg';     // SVG BARBER
 import auth from '@react-native-firebase/auth';
-
 import {
     TextView,    // View de bem-vindo
     BigText,        // Texto grande de Bem-Vindo
@@ -48,7 +47,7 @@ const user = useSelector(state => state.user.email);
                     <BigText> Bem Vindo </BigText>
                     <SmallText> 
                         App oficial da barbearia BarberMen, aqui você pode 
-                        marcar seu horário e ainda pagar o serviço
+                        marcar seu horário e ainda pagar o serviço 
                     </SmallText>
                 </TextView>
                 
