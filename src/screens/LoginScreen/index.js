@@ -29,7 +29,9 @@ function LoginScreen(props) {
     const [pass, setPass] = useState('');
 
     function SignIn(e, p) {
-        if(e, p) {
+        if(!e, !p) {
+            alert('Todos campos são obrigatórios');
+        } else  {
             const login = 
                 auth()
                 .signInWithEmailAndPassword(e, p)
@@ -48,8 +50,6 @@ function LoginScreen(props) {
                         alert('Email ou senha incorreta');
                     }
                 });
-        } else  {
-            alert('Todos campos são obrigatórios');
         }
         
            

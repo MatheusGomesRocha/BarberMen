@@ -9,7 +9,7 @@ const initialState = {
     hour: '',
     duration: '',
     favorites: [],
-    dark: false,
+    dark:  false,
 }
 
 export default (state = initialState, action) => {

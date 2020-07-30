@@ -23,7 +23,7 @@ export const UserView = styled.View`
 `;
 export const Texto = styled.Text`
     margin-top: 10px;
-    color: #333;
+    color: ${props=>props.color || '#333'};
     font-size: 24px;
     text-align: center;
 `;

@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { connect, useSelector } from 'react-redux'
 import { Switch } from 'react-native';
@@ -26,6 +26,7 @@ function SettingsScreen(props) {
     const darkMode = useSelector(state => state.user.dark);
     const user = useSelector(state => state.user.email);
     let userSplit = user.split('@')[0];     // Quebrando email para pegar o nome antes do @
+    const [isEnabled, setIsEnabled] = useState(false);
 
     
     const userInfo = auth().currentUser;    // Pegando usuário logado
@@ -64,14 +65,18 @@ function SettingsScreen(props) {
             });
         }
     
+            if(darkMode) {
+            }
+       
+      
 
-        const [isEnabled, setIsEnabled] = useState(false);
-        if(isEnabled) {     // Função que verifica se o usuário colocou Dark Mode ou não, se sim, manda true para o redux, senão, manda false
+        if(isEnabled) {
             props.setDark(true);
         } else {
             props.setDark(false);
         }
-    
+
+       
 
         let bg = '#fff';        // Função para mudar cor com Dark Mode
         let color = "#333";
@@ -88,13 +93,13 @@ function SettingsScreen(props) {
                 <UserView bgColor={bg}> 
                     <SvgPic width={70} height={70}/>
                     {!user?
-                    <Texto> Faça o login  </Texto> 
-                    : <Texto> Olá {userSplit} </Texto> }
+                    <Texto color={color}> Faça o login  </Texto> 
+                    : <Texto color={color}> Olá {userSplit} </Texto> }
                 </UserView>
 
                 <SettingsView>
                     <>
-                        <SettingsButton underlayColor="transparent">
+                        <SettingsButton onPress={toggleSwitch} underlayColor="transparent">
                             <>
                                 <DefaultText color={color} width="75%"> Dark Mode </DefaultText>
                                 { isEnabled ? ( <EnabledText color={color}> On </EnabledText>) : ( <EnabledText> Off </EnabledText>)}
@@ -186,8 +191,8 @@ function SettingsScreen(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        setDark:(dark)=>dispatch({type: 'SET_DARK', payload: {dark}}),
         SignOut:(SignOut)=>dispatch({type:'SIGN_OUT'}),
-        setDark:(dark)=>dispatch({type: 'SET_DARK', payload: {dark}})
     };
 }
 
