@@ -9,10 +9,14 @@ const initialState = {
     hour: '',
     duration: '',
     favorites: [],
+    dark: false,
 }
 
 export default (state = initialState, action) => {
     switch(action.type) {
+        case 'SET_DARK':
+            return {...state, dark: action.payload.dark};
+        break
         case 'SET_MONTH':
             return {...state, month: action.payload.month};
         break;

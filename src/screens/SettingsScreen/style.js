@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 // View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #fff;
+    background-color: ${props=>props.bgColor || '#fff'};
 `;
 
 
@@ -15,7 +15,7 @@ export const Scroll = styled.ScrollView``;
 // + View com foto do usuário
 // + Texto abaixo da foto do usuário
 export const UserView = styled.View`
-    background-color: #fff;
+    background-color: ${props=>props.bgColor || '#fff'};
     height: 180px;
     width: 100%;
     align-items: center;
@@ -53,8 +53,9 @@ export const DefaultText = styled.Text`
     font-size: 16px;
     margin-left: 10px;
     width: ${props=>props.width || '90%'} ;
+    color: ${props=>props.color || '#333'};
 `;
 export const EnabledText = styled.Text`
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.6);
+    color:  ${props=>props.color || '#333'};
 `;

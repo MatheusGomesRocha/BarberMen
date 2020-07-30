@@ -8,6 +8,9 @@ import {
 
     Input,
 
+    DurationView,
+    Texto,
+
     BtnText
 } from './style';
 
@@ -27,10 +30,12 @@ export default () => {
     return(
         <Container>
 
-            <Input placeholder="nome" onChangeText={n=>setName(n)} />
-            <Input placeholder="duração" onChangeText={d=>setDuration(d)} />
+            <Input placeholder="nome do corte" onChangeText={n=>setName(n)} />
+            <Input placeholder="Duração (0~30 minutos)" onChangeText={d=>setDuration(d
+                )} />
+            
 
-            <BtnComponent onPress={() => addCut()} bgColor="#333" width="80%" radius="100px">
+            <BtnComponent onPress={() => addCut()} bgColor="#333" width="90%" radius="100px">
                 <BtnText> Finalizar </BtnText>
             </BtnComponent>
         </Container>

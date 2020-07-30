@@ -21,21 +21,21 @@ import {
     EnabledText,    // Texto de ON OFF no Switch
 } from './style';
 
-function SettingsScreen(props) {
+function SettingsScreen(props) {    
     const navigation = useNavigation();
-
+    const darkMode = useSelector(state => state.user.dark);
     const user = useSelector(state => state.user.email);
-    let userSplit = user.split('@')[0];
+    let userSplit = user.split('@')[0];     // Quebrando email para pegar o nome antes do @
 
-    const [isAdmin, setIsAdmin] = useState(false)
     
-    const userInfo = auth().currentUser;
+    const userInfo = auth().currentUser;    // Pegando usuário logado
 
     function test() {
         alert('hello world');
     }
 
-    function SignOut() {
+
+    function SignOut() {    // Função de Logout
         props.SignOut();
         auth().signOut();
         navigation.reset({
@@ -46,10 +46,13 @@ function SettingsScreen(props) {
         });
     }
 
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    function toggleSwitch () {  // Função que troca de Dark Mode para Light Mode
+        setIsEnabled(!isEnabled);
+    }
 
-        if(user) {
+
+        const [isAdmin, setIsAdmin] = useState(false)
+        if(user) {      // Função que verifica se existe algum usuario, e se ele é admin
             firestore()
             .collection('users')
             .where('id', '==', userInfo.uid)
@@ -62,11 +65,27 @@ function SettingsScreen(props) {
         }
     
 
+        const [isEnabled, setIsEnabled] = useState(false);
+        if(isEnabled) {     // Função que verifica se o usuário colocou Dark Mode ou não, se sim, manda true para o redux, senão, manda false
+            props.setDark(true);
+        } else {
+            props.setDark(false);
+        }
+    
+
+        let bg = '#fff';        // Função para mudar cor com Dark Mode
+        let color = "#333";
+        if(darkMode) {
+            bg = '#333';
+            color = "#fff";
+        }
+
+
     return (
-        <Container>
+        <Container bgColor={bg}>
             <Scroll>
 
-                <UserView> 
+                <UserView bgColor={bg}> 
                     <SvgPic width={70} height={70}/>
                     {!user?
                     <Texto> Faça o login  </Texto> 
@@ -77,11 +96,11 @@ function SettingsScreen(props) {
                     <>
                         <SettingsButton underlayColor="transparent">
                             <>
-                                <DefaultText width="75%"> Dark Mode </DefaultText> 
-                                { isEnabled ? ( <EnabledText> On </EnabledText>) : ( <EnabledText> Off </EnabledText>)}
+                                <DefaultText color={color} width="75%"> Dark Mode </DefaultText>
+                                { isEnabled ? ( <EnabledText color={color}> On </EnabledText>) : ( <EnabledText> Off </EnabledText>)}
                                 <Switch
-                                trackColor={{ false: "#bbb", true: "#333" }}
-                                thumbColor={isEnabled ? "#fff" : "#fff"}
+                                trackColor={{ false: "#333", true: "#fff" }}
+                                thumbColor={isEnabled ? "#fff" : "#333"}
                                 ios_backgroundColor="#3e3e3e"
                                 onValueChange={toggleSwitch}
                                 value={isEnabled}
@@ -92,8 +111,8 @@ function SettingsScreen(props) {
                         {isAdmin?
                             <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('addcuts')}>
                                 <>
-                                    <DefaultText> Adiconar novos cortes </DefaultText> 
-                                    <Icon name="angle-right" size={30} />
+                                    <DefaultText color={color}> Adiconar novos cortes </DefaultText> 
+                                    <Icon name="angle-right" size={30} color={color}/>
                                 </>
                             </SettingsButton>
                         :null}
@@ -102,59 +121,59 @@ function SettingsScreen(props) {
                         {user?
                         <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('profile')}>
                             <>
-                                <DefaultText> Editar perfil </DefaultText> 
-                                <Icon name="angle-right" size={30} />
+                                <DefaultText color={color}> Editar perfil </DefaultText> 
+                                <Icon name="angle-right" size={30} color={color}/>
                             </>
                         </SettingsButton>
                         :null}
                         <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('employee')}>
                             <>
-                                <DefaultText> Funcionários </DefaultText> 
-                                <Icon name="angle-right" size={30} />
+                                <DefaultText color={color}> Funcionários </DefaultText> 
+                                <Icon name="angle-right" size={30} color={color}/>
                             </>
                         </SettingsButton>
                         
                         <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('ask')}>
                             <>
-                                <DefaultText> Perguntas frequentes </DefaultText> 
-                                <Icon name="angle-right" size={30} />
+                                <DefaultText color={color}> Perguntas frequentes </DefaultText> 
+                                <Icon name="angle-right" size={30} color={color}/>
                             </>
                         </SettingsButton>
 
                         <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <DefaultText> Histórico </DefaultText> 
-                                <Icon name="angle-right" size={30} />
+                                <DefaultText color={color}> Histórico </DefaultText> 
+                                <Icon name="angle-right" size={30} color={color}/>
                             </>
                         </SettingsButton>
 
 
                         <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <DefaultText> Localização </DefaultText> 
-                                <Icon name="angle-right" size={30} />
+                                <DefaultText color={color}> Localização </DefaultText> 
+                                <Icon name="angle-right" size={30} color={color}/>
                             </>
                         </SettingsButton>
 
                         <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <DefaultText> Cupom de desconto </DefaultText> 
-                                <Icon name="angle-right" size={30} />
+                                <DefaultText color={color}> Cupom de desconto </DefaultText> 
+                                <Icon name="angle-right" size={30} color={color}/>
                             </>
                         </SettingsButton>
 
                         <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <DefaultText> Contato do desenvolvedor </DefaultText> 
-                                <Icon name="angle-right" size={30} />
+                                <DefaultText color={color}> Contato do desenvolvedor </DefaultText> 
+                                <Icon name="angle-right" size={30} color={color}/>
                             </>
                         </SettingsButton>
 
                         {user?
                             <SettingsButton underlayColor="transparent" onPress={SignOut}>
                                 <>
-                                    <DefaultText> Sair </DefaultText> 
-                                    <Icon name="angle-right" size={30} />
+                                    <DefaultText color={color}> Sair </DefaultText> 
+                                    <Icon name="angle-right" size={30} color={color}/>
                                 </>
                             </SettingsButton>
                         : null}
@@ -167,7 +186,8 @@ function SettingsScreen(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        SignOut:(SignOut)=>dispatch({type:'SIGN_OUT'})
+        SignOut:(SignOut)=>dispatch({type:'SIGN_OUT'}),
+        setDark:(dark)=>dispatch({type: 'SET_DARK', payload: {dark}})
     };
 }
 
