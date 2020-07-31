@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BtnComponent from '../../components/BtnComponent';
 import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
+import firestore from '@react-native-firebase/firestore';
 
 import {
     TextView,    // View de bem-vindo
@@ -40,6 +41,7 @@ function Price(props) {
     const navigation = useNavigation();     
     const name = useSelector(state => state.user.cut);      // Pegando o corte que foi mandado via redux
     const user = useSelector(state => state.user.email);
+    const [cuts, setCuts] = useState([]);
 
     function setCutAndDuration(cut, duration) {        // Função que seta um corte para o redux
         if(user) {
@@ -59,19 +61,26 @@ function Price(props) {
             navigation.navigate('date');
         }
     }
-    
 
-    // Array temporário, fazer com que o admin cadastre no firebase e traga para cá
-    let cuts = [
-        { id: '1', name: 'Normal', price: 'R$ 25,00', duration: '15~30 minutos'},
-        { id: '2', name: 'Infantil', price: 'R$ 15,00', duration: '15~30 minutos'},
-        { id: '3', name: 'Degradê', price: 'R$ 25,00', duration: '20~40 minutos'},
-        { id: '4', name: 'Pintar', price: 'R$ 25,00', duration: '45~60 minutos'},
-        { id: '5', name: 'Luzes', price: 'R$ 25,00', duration: '1:00~1:30 horas'},
-        { id: '6', name: 'Platinar', price: 'R$ 25,00', duration: '2:00~2:30 minutos'},
-        { id: '7', name: 'Normal + Barba', price: 'R$ 25,00', duration: '40~50 minutos'},
-        { id: '8', name: 'Degradê + Barba', price: 'R$ 25,00', duration: '50~60 minutos'},
-    ];
+    useEffect(() => {
+        const subscriber = firestore()
+          .collection('cuts')
+          .onSnapshot(querySnapshot => {
+            const cuts = [];
+
+            querySnapshot.forEach(documentSnapshot => {
+                cuts.push({
+                    ...documentSnapshot.data(),
+                    key: documentSnapshot.id,
+                });
+            });
+
+            setCuts(cuts);
+          });
+    
+        // Unsubscribe from events when no longer in use
+        return () => subscriber();
+      }, []);
 
 
     return (

@@ -6,6 +6,18 @@ export const Container = styled.SafeAreaView`
     background-color: ${props=>props.bgColor || '#fff'};
 `;
 
+export const Texto = styled.Text`
+    color: ${props=>props.color || '#fff'};
+    font-size: 22px;
+    margin-bottom: 10px;
+`;
+
+
+export const DurationView = styled.View`
+    width: 100%;
+    align-items: center;
+`;
+
 
 export const Input = styled.TextInput`
     border: 1px solid;
@@ -17,13 +29,6 @@ export const Input = styled.TextInput`
     color: ${props=>props.color || '#fff'};
 `;
 
-
-export const DurationView = styled.View`
-    width: 100%;
-    align-items: center;
-`;
-
-export const Texto = styled.Text``;
 
 export const BtnText = styled.Text`
     color: ${props=>props.color || '#fff'};

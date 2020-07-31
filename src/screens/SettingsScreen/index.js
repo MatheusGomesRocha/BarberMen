@@ -51,38 +51,32 @@ function SettingsScreen(props) {
         setIsEnabled(!isEnabled);
     }
 
-
-        if(user) {      // Função que verifica se existe algum usuario, e se ele é admin
-            firestore()
-            .collection('users')
-            .where('id', '==', userInfo.uid)
-            .get()
-            .then(querySnapshot => {    
-                querySnapshot.forEach(documentSnapshot => {
-                    setIsAdmin(documentSnapshot.data().admin)
-                });
+    if(user) {      // Função que verifica se existe algum usuario, e se ele é admin
+        firestore()
+        .collection('users')
+        .where('id', '==', userInfo.uid)
+        .get()
+        .then(querySnapshot => {    
+            querySnapshot.forEach(documentSnapshot => {
+                setIsAdmin(documentSnapshot.data().admin)
             });
-        }
-    
-            if(darkMode) {
-            }
-       
-      
+        });
+    }
 
-        if(isEnabled) {
-            props.setDark(true);
-        } else {
-            props.setDark(false);
-        }
+    if(isEnabled) {
+        props.setDark(true);
+    } else {
+        props.setDark(false);
+    }
 
        
 
-        let bg = '#fff';        // Função para mudar cor com Dark Mode
-        let color = "#333";
-        if(darkMode) {
-            bg = '#333';
-            color = "#fff";
-        }
+    let bg = '#fff';        // Função para mudar cor com Dark Mode
+    let color = "#333";
+    if(darkMode) {
+        bg = '#333';
+        color = "#fff";
+    }
 
 
     return (

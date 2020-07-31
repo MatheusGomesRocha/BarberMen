@@ -7,12 +7,17 @@ import firestore from '@react-native-firebase/firestore';
 import uuid from 'uuid/v4';
 
 import {
+    TextView,    // View de bem-vindo
+    SmallText,        // Texto grande de Bem-Vindo
+} from '../../components/TextView';
+
+import {
     Container,
 
-    Input,
+    Texto,
 
     DurationView,
-    Texto,
+    Input,
 
     BtnText
 } from './style';
@@ -36,6 +41,7 @@ export default () => {
                 id: uuid(),
                 name: name,
                 duration: duration,
+                price: price,
             }).then(() => {
                 alert('Corte adicionado com sucesso');
                 setName('');
@@ -59,16 +65,20 @@ export default () => {
 
     return(
         <Container bgColor={bg}>
-
-        <DurationView>
-            <Input color={color} bdColor={color} placeholderTextColor={placeColor} placeholder="nome do corte" onChangeText={n=>setName(n)} />
-            <Input color={color} bdColor={color} placeholderTextColor={placeColor} placeholder="Duração (0~30 minutos)" onChangeText={d=>setDuration(d)} />
-            <Input color={color} bdColor={color} placeholderTextColor={placeColor} placeholder="Preço" onChangeText={p=>setPrice(p)} /> 
             
+            <TextView>
+                <Texto color={color}> Adicione novos cortes </Texto>
+            </TextView>
 
-            <BtnComponent mTop="20px" onPress={() => addCut()} bgColor={color} width="90%" radius="100px">
-                <BtnText color={bg}> Finalizar </BtnText>
-            </BtnComponent>
+            <DurationView>
+                <Input color={color} bdColor={color} placeholderTextColor={placeColor} placeholder="nome do corte" onChangeText={n=>setName(n)} />
+                <Input color={color} bdColor={color} placeholderTextColor={placeColor} placeholder="Duração (0~30 minutos)" onChangeText={d=>setDuration(d)} />
+                <Input color={color} bdColor={color} placeholderTextColor={placeColor} placeholder="Preço" onChangeText={p=>setPrice(p)} /> 
+                
+
+                <BtnComponent mTop="20px" onPress={() => addCut()} bgColor={color} width="90%" radius="100px">
+                    <BtnText color={bg}> Finalizar </BtnText>
+                </BtnComponent>
             </DurationView>    
         </Container>
     );

@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 // View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #fff;
+    background-color: ${props=>props.bgColor || '#fff'};
 `;
 
 
@@ -20,7 +20,7 @@ export const PicView = styled.View`
     height: 200px;
 `;
 export const Texto = styled.Text`
-    color: #fff;
+    color: ${props=>props.color || '#333'};
 `;
 
 
@@ -29,15 +29,15 @@ export const Texto = styled.Text`
 // + O input
 export const InputView = styled.View`
     width: 80%;
-    margin: 0 0 15px 35px;
-`;
-export const InputText = styled.Text`
-    font-size: 16px;
-    color: #333;
-    margin-top: 10px;
+    margin: 0 0 25px 35px;
 `;
 export const Input = styled.TextInput`
-    color: #333;
+    color: ${props=>props.color || '#333'};
+    border: 1px solid;
+    border-color: ${props=>props.bdColor || '#333'};
+    border-radius: 50px;
+    padding: 10px;
+    font-size: 16px;
 `;
 
 
@@ -49,6 +49,5 @@ export const BtnView = styled.View`
     justify-content: center;
 `;
 export const BtnText = styled.Text`
-    color: #fff;
-    
+    color: ${props=>props.color || '#fff'}; 
 `;
