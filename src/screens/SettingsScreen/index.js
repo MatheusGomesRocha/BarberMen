@@ -26,9 +26,9 @@ function SettingsScreen(props) {
     const darkMode = useSelector(state => state.user.dark);
     const user = useSelector(state => state.user.email);
     let userSplit = user.split('@')[0];     // Quebrando email para pegar o nome antes do @
-    const [isEnabled, setIsEnabled] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false)
+    const [isEnabled, setIsEnabled] = useState(darkMode);
 
-    
     const userInfo = auth().currentUser;    // Pegando usuário logado
 
     function test() {
@@ -52,7 +52,6 @@ function SettingsScreen(props) {
     }
 
 
-        const [isAdmin, setIsAdmin] = useState(false)
         if(user) {      // Função que verifica se existe algum usuario, e se ele é admin
             firestore()
             .collection('users')
