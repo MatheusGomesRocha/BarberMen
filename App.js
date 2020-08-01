@@ -25,7 +25,7 @@ function App() {
     <Provider store={store}>
       <NavigationContainer>
         <PersistGate loading={null} persistor={persistor}>
-          <Preload/>
+          <AppTab/>
           <Bar/>
         </PersistGate>
       </NavigationContainer>

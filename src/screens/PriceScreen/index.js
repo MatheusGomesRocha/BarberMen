@@ -41,6 +41,7 @@ function Price(props) {
     const navigation = useNavigation();     
     const name = useSelector(state => state.user.cut);      // Pegando o corte que foi mandado via redux
     const user = useSelector(state => state.user.email);
+    const dark = useSelector(state => state.user.dark);
     const [cuts, setCuts] = useState([]);
 
     function setCutAndDuration(cut, duration) {        // Função que seta um corte para o redux
@@ -82,9 +83,15 @@ function Price(props) {
         return () => subscriber();
       }, []);
 
+      let bg = "#fff";
+      let color = "#333";
+      if(dark) {
+        bg = "#333";                                // Cor para backgrounds e texto de buttons
+        color = "#fff";                             // Cor para textos e bordas do input
+      }
 
     return (
-        <Container>
+        <Container bgColor={bg}>
             <BtnComponent underlayColor={name?'#3AA3A1':'#bbb'} onPress={() => goToDate()} width="60px" height="60px" radius="100px" bgColor={name?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
                 <Icon name="arrow-right" size={25} color="#333"/>
             </BtnComponent>
@@ -95,8 +102,8 @@ function Price(props) {
                 </SvgView>
 
                 <TextView>
-                    <BigText> Preços de serviços </BigText>
-                    <SmallText> 
+                    <BigText color={color}> Preços de serviços </BigText>
+                    <SmallText color={color}> 
                         Escolha o corte que irá fazer clicando nele, você será redirecionado para escolher
                         o dia e horário, caso não tenha escolhido ainda.
                     </SmallText>
@@ -131,13 +138,13 @@ function Price(props) {
                                 
                             <Pressable onPress={() => setCutAndDuration(c.name, c.duration)} onLongPress={() => setModalVisible(true)}
                             style={{
-                                    flexDirection:'row', backgroundColor: name == c.name?'#3ED3A1':'#333', 
+                                    flexDirection:'row', backgroundColor: name == c.name?'#3ED3A1':color, 
                                     color: '#fff', height: 60, width: '90%', borderRadius: 100, justifyContent: 'center',
                                     alignItems: 'center'
                                 }}>
                                     <>
-                                    <ItemText color={name == c.name?'#333': '#fff'}> {c.name} </ItemText>
-                                    <PriceText color={name == c.name?'#333': '#fff'}> {c.price} </PriceText>
+                                    <ItemText color={name == c.name?'#333': bg}> {c.name} </ItemText>
+                                    <PriceText color={name == c.name?'#333': bg}> {c.price} </PriceText>
                                     </>
                             </Pressable>
                             </ItemView>

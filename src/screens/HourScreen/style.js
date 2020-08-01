@@ -11,6 +11,10 @@ export const Container = styled.SafeAreaView`
 // View de scroll
 export const Scroll = styled.ScrollView``;
 
+export const Flat = styled.FlatList`
+    flex-direction: row;
+    width: ${props=>props.width};
+`;
 
 // View de Svg
 export const SvgView = styled.View`

@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
         break;
         case 'SET_HOUR':
             return {...state, hour: action.payload.hour};
-        break;
+        break;           
         case 'SET_CUT':
             return {...state, cut: action.payload.cut};
         break;

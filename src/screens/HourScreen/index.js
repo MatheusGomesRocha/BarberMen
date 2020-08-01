@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useSelector, connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { Dimensions, Pressable } from 'react-native';
+import { Dimensions, Pressable, FlatList } from 'react-native';
 import BtnComponent from '../../components/BtnComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Svg from '../../assets/svg/undraw_in_no_time_6igu.svg'
+import firestore from '@react-native-firebase/firestore';
 
 import {
     TextView,    // View de bem-vindo
@@ -31,6 +32,7 @@ let size4 = Math.round(screenSize / 4) + "px";   // Usar para passar a prop de t
 function HourScreen(props) {
     const navigation = useNavigation();
     const hour = useSelector(state=>state.user.hour);
+    const [hourDB, setHourDB] = useState([]);
 
     let hours = [
         { id: '1', hour: '9:00'},
@@ -57,7 +59,6 @@ function HourScreen(props) {
         { id: '22', hour: '20:30'},
     ];
 
-
     function setTime(hour) {
         props.setHour(hour);
     }
@@ -69,6 +70,10 @@ function HourScreen(props) {
             alert('Você precisar selecionar um horário');
         }
     }
+
+    
+   
+    
 
     return(
         <Container>
@@ -83,16 +88,17 @@ function HourScreen(props) {
 
             <TextView>
                 <BigText> Escolha o horário </BigText>
-                <SmallText> Finalize o atendimento escolhendo o melhor horário para você (os horários em vermelho, estão ocupados) </SmallText>
+                <SmallText> Finalize {hourDB} o atendimento escolhendo o melhor horário para você (os horários em vermelho, estão ocupados) </SmallText>
             </TextView>
 
             <HourView>
                 {hours.map((h, k) => (
-                        <HourItem key={k} width={size4}>
-                            <BtnComponent underlayColor="#3ED3A1" bgColor={hour==h.hour?'#3ED3A1': '#333'} width="95%"  radius="100px" onPress={() => setTime(h.hour)}>
-                                <HourText color={hour==h.hour?'#333': '#fff'}> {h.hour} </HourText>
-                            </BtnComponent>
-                        </HourItem>
+                    <HourItem key={k} width={size4}>
+                        <BtnComponent underlayColor="#3ED3A1" bgColor={hour == h.hour?'#3ED3A1': '#333'} width="95%"  radius="100px" onPress={() => setTime(h.hour)}>
+                            <HourText color={hour==h.hour?'#333': '#fff'}> {h.hour} </HourText>
+                        </BtnComponent>
+                    </HourItem>   
+                                         
                 ))}
             </HourView>
 
