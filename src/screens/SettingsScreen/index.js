@@ -86,7 +86,7 @@ function SettingsScreen(props) {
                 <UserView bgColor={bg}> 
                     <SvgPic width={70} height={70}/>
                     {!user?
-                    <Texto color={color}> Faça o login  </Texto> 
+                    <Texto color={color}> Faça o login </Texto> 
                     : <Texto color={color}> Olá {userSplit} </Texto> }
                 </UserView>
 

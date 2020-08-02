@@ -49,9 +49,13 @@ function SignUpScreen(props) {
                 const user = auth().currentUser;
                 firestore()
                 .collection('users')
-                .add({
+                .doc(user.uid)
+                .set({
                     id: user.uid,
+                    name: name,
                     email: user.email,
+                    phone: contact,
+                    password: password,
                 })
                 alert('Conta criada e logada com sucesso');
                 navigation.reset({

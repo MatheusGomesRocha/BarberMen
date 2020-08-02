@@ -14,6 +14,11 @@ export const Scroll = styled.ScrollView``;
 
 // + View de profile picture
 // + Texto do Button para trocar a foto
+export const Img = styled.Image`
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+`;
 export const PicView = styled.View`
     align-items: center;
     justify-content: center;
