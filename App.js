@@ -9,7 +9,6 @@ import Preload from './src/navigators/PreloadStack';
 
 
 function Bar() {      /** Barra de status do aparelho */
-
   /**
    * barStyle="" recebe a cor do conteúdo
    * backgroundColor="" recebe o background da barra de status (somente para android)

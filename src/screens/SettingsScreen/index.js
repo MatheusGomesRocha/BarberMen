@@ -7,6 +7,7 @@ import SvgPic from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
+import { StatusBar } from 'react-native';
 import {
     Container,  // View toda a tela
 
@@ -178,7 +179,9 @@ function SettingsScreen(props) {
                     </>
                 </SettingsView>
             </Scroll>
+
         </Container>
+
     );
 }
 
