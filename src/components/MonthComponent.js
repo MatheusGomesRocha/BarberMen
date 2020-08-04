@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Dimensions } from 'react-native';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -26,17 +26,17 @@ const MonthView = styled.TouchableHighlight`
 const Item = styled.View`
     width: 50%;
     height: 60px;
-    background-color: #333;
+    background-color: ${props=>props.bgColor || '#333'};
     border-radius: 15px;
     justify-content: center;
     align-items: center;
 `;
 const Texto = styled.Text`
-    color: #fff;
+    color: ${props=>props.color || '#fff'};
     font-size: 24px;
 `;
 const Btn = styled.TouchableHighlight`
-    background-color: #333;
+    background-color: ${props=>props.bgColor || '#333'};
     height: 40px;
     width: 40px;
     border-radius: 25px;
@@ -107,9 +107,15 @@ function MonthScreen (props) {
         }
     }
 
-    useEffect(() => {
+    const dark = useSelector(state=>state.user.dark);
 
-    })
+    let bg = '#fff';
+    let color = '#333';
+    if(dark) {
+        bg = '#333';
+        color = '#fff';
+    }
+
 
     return  (
         <MonthScroll
@@ -123,18 +129,18 @@ function MonthScreen (props) {
             {months.map((month, k) => (
                 <MonthView key={k} width={size}>
                     <>
-                        <Btn onPress={() => back()}>
-                            <Icon name="angle-left" size={25} style={{ color: '#fff' }}/>
+                        <Btn bgColor={color} onPress={() => back()}>
+                            <Icon name="angle-left" size={25} style={{ color: bg }}/>
                         </Btn>
-                        <Item style={k == selectMonth ? {    // quando o mês for selecionado
+                        <Item bgColor={color} style={k == selectMonth ? {    // quando o mês for selecionado
                             backgroundColor: '#3ED3A1',
                             width: '50%',
                             height: 60,
                         } : {}}>
-                            <Texto> {month} </Texto>
+                            <Texto color={bg}> {month} </Texto>
                         </Item>
-                        <Btn onPress={() => next()}>
-                            <Icon name="angle-right" size={25} style={{ color: '#fff' }}/>
+                        <Btn bgColor={color} onPress={() => next()}>
+                            <Icon name="angle-right" size={25} style={{ color: bg }}/>
                         </Btn>
                     </>
                 </MonthView>

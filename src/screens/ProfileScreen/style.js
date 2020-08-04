@@ -42,7 +42,7 @@ export const Input = styled.TextInput`
     border-color: ${props=>props.bdColor || '#333'};
     border-radius: 50px;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
 `;
 
 

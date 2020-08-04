@@ -7,6 +7,7 @@ export default styled.TouchableHighlight`
     border-radius: ${props=>props.radius || '10px'};
     margin-top: ${props=>props.mTop || '0'};
     border: ${props=>props.border || 'none'};
+    border-color: ${props=>props.bdColor || '#333'};
     justify-content: center;
     align-items: center;
     flex-direction: row;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
 import {useSelector} from 'react-redux';
@@ -26,6 +26,7 @@ import {
 
     CommentsTitle,  // View onde fica todo o título da sessão de comentários
     TitleText,      // Texto com o título da sessão de comentários
+
     CommentsView,   // View com todos os comentários em um array
     Comments,       // View dentro do array que retorna para cada comentário
     CommentsHeader, // View com avatar e nome do usuário
@@ -42,21 +43,28 @@ import {
 
 export default () => {
 const navigation = useNavigation();
+const dark = useSelector(state => state.user.dark);
 const user = useSelector(state => state.user.email);
 const userInfo = auth().currentUser;
 const [userName, setUserName] = useState(''); 
 const [comments, setComments] = useState([]);
 const [newComment, setNewComment] = useState('');
 
+let day = new Date().getDate();
+let month = new Date().getMonth();
+let year = new Date().getFullYear()
+let today = day+'/'+month+'/'+year;
 useEffect(() => {
-    firestore()
-    .collection('users')
-    .where('id', '==', userInfo.uid)
-    .get().then(querySnapshot => {
-        querySnapshot.forEach(documentSnapshot => {
-            setUserName(documentSnapshot.data().name);
+    if(user) {
+        firestore()
+        .collection('users')
+        .where('id', '==', userInfo.uid)
+        .get().then(querySnapshot => {
+            querySnapshot.forEach(documentSnapshot => {
+                setUserName(documentSnapshot.data().name);
+            })
         })
-    })
+    }
 }, [])
 
 useEffect(() => {
@@ -88,7 +96,7 @@ function AddComment() {
                 userId: userInfo.uid,
                 userName: userName,
                 userComment: newComment,
-                added: new Date(),
+                added: today,
             }).then(() => {
                 alert('Comentário adicionado com sucesso. Obrigado pelo seu feedback');
                 navigation.reset({
@@ -102,21 +110,31 @@ function AddComment() {
             })
         } else {
             alert('Você não digitou nada');
-        }
+        } 
+    } else {
+        alert('Você precisa está logado para realizar essa ação');
     }
 }
 
+let bg = '#fff';
+let color = '#333';
+let small = 'rgba(0, 0, 0, 0.5)';
+if(dark) {
+    bg = '#333';
+    color = '#fff';
+    small = 'rgba(255, 255, 255, 0.5)';
+}
 
     return (
-        <Container>
+        <Container bgColor={bg}>
             <Scroll>
             
                 <SvgView>
                     <SvgBarber width={280} height={220} />
                 </SvgView>
                 <TextView>                    
-                    <BigText> Bem Vindo </BigText>
-                    <SmallText> 
+                    <BigText color={color}> Bem Vindo </BigText>
+                    <SmallText color={small}> 
                         App oficial da barbearia BarberMen, aqui você pode 
                         marcar seu horário e ainda pagar o serviço 
                     </SmallText>
@@ -124,18 +142,18 @@ function AddComment() {
                 
                 {!user?
                     <LoginBtnView>
-                        <BtnComponent border="1px solid #000" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="80%" 
+                        <BtnComponent bdColor={color} border="1px solid" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="80%" 
                             onPress={() => navigation.navigate('signup')}>
                             <>
-                                <BtnText style={{color: '#333'}}> Cadastrar-se </BtnText> 
+                                <BtnText style={{color: color}}> Cadastrar-se </BtnText> 
                                 <Icon name="angle-right" size={25} style={{color: '#333'}} />
                             </>
                         </BtnComponent>
                         
-                        <BtnComponent mTop="20px" underlayColor="rgba(0, 0, 0, 0.8)" bgColor="#333" width="80%" 
+                        <BtnComponent mTop="20px" underlayColor="rgba(0, 0, 0, 0.8)" bgColor={color} width="80%" 
                             onPress={() => navigation.navigate('login')}>
                             <>
-                                <BtnText> Login </BtnText> 
+                                <BtnText style={{color: bg}}> Login </BtnText> 
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </>
                         </BtnComponent>
@@ -144,34 +162,35 @@ function AddComment() {
                 :null}
 
                 <CommentsTitle>
-                    <TitleText> Reviews </TitleText>
-                    <Icon name="arrow-right" size={22} style={{marginTop: 7}} />
+                    <TitleText color={color}> Reviews </TitleText>
+                    <Icon name="arrow-right" color={small} size={22} style={{marginTop: 7}} />
                 </CommentsTitle>
+
                 <CommentsView>
                     {comments.map((c, k) => (
                         <Comments key={k}>
                             <CommentsHeader>
                                 <CommentsAvatar source={require('../../assets/img/perfil1.jpg')} />
-                                <CommentsName> {c.userName} </CommentsName>
+                                <CommentsName color={color}> {c.userName} </CommentsName>
                             </CommentsHeader>
                             <CommentsRate>
-                                <Icon name="star-o" size={18} style={{marginRight: 3}} />
-                                <Icon name="star-o" size={18} style={{marginRight: 3}} />
-                                <Icon name="star-o" size={18} style={{marginRight: 3}} />
-                                <Icon name="star-o" size={18} style={{marginRight: 3}} />
-                                <Icon name="star-o" size={18} style={{marginRight: 3}} />
-                                <CommentsDate> 02/08/2020 </CommentsDate>
+                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
+                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
+                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
+                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
+                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
+                                <CommentsDate color={small}> {today} </CommentsDate>
                             </CommentsRate>
-                            <CommentsText> {c.userComment} </CommentsText>
+                            <CommentsText color={small}> {c.userComment} </CommentsText>
                         </Comments>
                     ))}
                     
                 </CommentsView>
                
                 <AddComments>
-                    <Input onChangeText={c=>setNewComment(c)} placeholder="Escreva um comentário..." />
-                    <BtnComponent onPress={AddComment} width="100%" bgColor="#333" radius="100px">
-                        <BtnText style={{textAlign: 'center'}}> Enviar </BtnText>
+                    <Input placeholderTextColor={small} bdColor={small} color={color} onChangeText={c=>setNewComment(c)} placeholder="Escreva um comentário..." />
+                    <BtnComponent onPress={AddComment} width="100%" bgColor={color} radius="100px">
+                        <BtnText style={{textAlign: 'center', color: bg}}> Enviar </BtnText>
                     </BtnComponent>
                 </AddComments>
             </Scroll>

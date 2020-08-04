@@ -32,7 +32,7 @@ let size4 = Math.round(screenSize / 4) + "px";   // Usar para passar a prop de t
 function HourScreen(props) {
     const navigation = useNavigation();
     const hour = useSelector(state=>state.user.hour);
-    const [hourDB, setHourDB] = useState([]);
+    const [hourFirebase, setHourFirebase] = useState([]);
 
     let hours = [
         { id: '1', hour: '9:00'},
@@ -71,12 +71,50 @@ function HourScreen(props) {
         }
     }
 
+    let hourFire = [];
+
+    {hours.map((h) => {
+        hourFirebase.map((hDB) => {
+            if(h.hour.includes(hDB.hour)) {
+                hourFire = h.hour;
+            }
+        })
+    })}
     
-   
     
+    useEffect(() => {
+        const subscriber = firestore()
+          .collection('appointments')
+          .onSnapshot(querySnapshot => {
+            const hourArray = [];
+
+            querySnapshot.forEach(documentSnapshot => {
+                hourArray.push({
+                    ...documentSnapshot.data(),
+                    key: documentSnapshot.id,
+                });
+            });
+
+            setHourFirebase(hourArray);
+          });
+    
+        // Unsubscribe from events when no longer in use
+        return () => subscriber();
+      }, []);
+  
+    const dark = useSelector(state=>state.user.dark);
+    let bg = '#fff';
+    let color = '#333';
+    let small = 'rgba(0, 0, 0, 0.5)';
+    if(dark) {
+        bg = '#333';
+        color = '#fff';
+        small = 'rgba(255, 255, 255, 0.5)';
+    }
+
 
     return(
-        <Container>
+        <Container bgColor={bg}>
             <BtnComponent underlayColor={hour?'#3AA3A1':'#bbb'} onPress={() => finishChoose()} width="60px" height="60px" radius="100px" bgColor={hour?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
                 <Icon name="arrow-right" size={25} color="#333"/>
             </BtnComponent>
@@ -87,15 +125,15 @@ function HourScreen(props) {
             </SvgView>
 
             <TextView>
-                <BigText> Escolha o horário </BigText>
-                <SmallText> Finalize {hourDB} o atendimento escolhendo o melhor horário para você (os horários em vermelho, estão ocupados) </SmallText>
+                <BigText color={color}> Escolha o horário </BigText>
+                <SmallText color={small}> {hourFire} Finalize o  atendimento escolhendo o melhor horário para você (os horários em vermelho, estão ocupados) </SmallText>
             </TextView>
 
             <HourView>
                 {hours.map((h, k) => (
                     <HourItem key={k} width={size4}>
-                        <BtnComponent underlayColor="#3ED3A1" bgColor={hour == h.hour?'#3ED3A1': '#333'} width="95%"  radius="100px" onPress={() => setTime(h.hour)}>
-                            <HourText color={hour==h.hour?'#333': '#fff'}> {h.hour} </HourText>
+                        <BtnComponent onPress={() => setTime(h.hour)} underlayColor="#3ED3A1" bgColor={hour == h.hour?'#3ED3A1': '#333' && color} width="95%"  radius="100px">
+                            <HourText color={hour==h.hour?'#333': '#fff' && bg}> {h.hour} </HourText>
                         </BtnComponent>
                     </HourItem>   
                                          

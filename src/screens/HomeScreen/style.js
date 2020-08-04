@@ -6,13 +6,12 @@ import styled from 'styled-components/native';
 //View de toda a tela
 export const Container = styled.SafeAreaView`   
     flex: 1;
-    background-color: #fff;
+    background-color: ${props=>props.bgColor};
 `;
 
 
 //View para realizar scroll
 export const Scroll = styled.ScrollView`
-
 `;
 
 
@@ -39,6 +38,17 @@ export const BtnText = styled.Text`
 
 // + View onde fica todo o título da sessão de comentários
 // + Texto com o título da sessão de comentários
+export const CommentsTitle = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 50px 20px 0 20px;
+`
+export const TitleText = styled.Text`
+    font-size: 24px;
+    color: ${props=>props.color || '#333'};
+`;
+
+
 // + View com todos os comentários em um array
 // + View dentro do array que retorna para cada comentário
 // + View com avatar e nome do usuário
@@ -47,18 +57,10 @@ export const BtnText = styled.Text`
 // + View com estrelas mostrando o rating e a data do comentário
 // + Text com a data do comentário
 // + Texto da sessão de comentários
-export const CommentsTitle = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 50px 20px 0 20px;
-`
-export const TitleText = styled.Text`
-    font-size: 24px;
-`;
 export const CommentsView = styled.View`
 `;
 export const Comments = styled.View`
-    margin: 20px 20px 20px 20px;
+    margin: 35px 20px 25px 20px;
     align-items: flex-start;
     justify-content: flex-start;
     padding: 10px;
@@ -74,7 +76,7 @@ export const CommentsAvatar = styled.Image`
 `;
 export const CommentsName = styled.Text`
     font-size: 16px;
-    color: rgba(0, 0, 0, 0.5);
+    color: ${props=>props.color || '#fff'};
     margin-left: 10px;
 `;
 export const CommentsRate = styled.View`
@@ -85,15 +87,15 @@ export const CommentsRate = styled.View`
 `;
 export const CommentsDate = styled.Text`
     margin-left: 10px;
-    color: rgba(0, 0, 0, 0.5);
+    color: ${props=>props.color || 'rgba(0, 0, 0, 0.5)'}
     font-size: 16px;
 `;
 export const CommentsText = styled.Text`
     font-size: 17px;
-    margin-top: 15px;
-    width: 100%;
+    margin-top: 5px;
     align-items: center;
     justify-content: center;
+    color: ${props=>props.color || 'rgba(0, 0, 0, 0.5)'}
 `;
 
 
@@ -104,8 +106,11 @@ export const AddComments = styled.View`
     padding: 10px;
 `;
 export const Input = styled.TextInput`
-    border: 1px solid #333;
+    border: 1px solid;
+    border-color: ${props=>props.bdColor || '#333'};
     border-radius: 100px;
     padding: 10px;
     margin-bottom: 20px;
+    color: ${props=>props.color || '#333'};
+    font-size: 16px;
 `;

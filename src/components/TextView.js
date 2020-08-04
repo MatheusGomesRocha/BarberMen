@@ -11,7 +11,7 @@ export const TextView = styled.View`
 `;
 export const BigText = styled.Text`
     font-weight: bold;
-    font-size: 45px;
+    font-size: 40px;
     text-align: center;
     color: ${props=>props.color || '#333'};
 

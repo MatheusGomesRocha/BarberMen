@@ -46,10 +46,15 @@ let offsetW = Math.round((screenSize - dayW) / 2);
 function DayScreen(props) {
     const dayRef = useRef();  // Pega referência do dia
     const [selectDay, setSelectDay] = useState(props.selectDay);
-    const choseDay = useSelector(state=>state.user.day);
-    const dispatch = useDispatch();
-    let bgColor = '#333';
-    let Color = '#fff';
+    const choseDay = useSelector(state=>state.user.day);    
+    const dark = useSelector(state=>state.user.dark);
+
+    let bg = '#fff';
+    let color = '#333';
+    if(dark) {
+        bg = '#333';
+        color = '#fff';
+    }
 
     
     function handleScrollEnd(e) {   
@@ -105,8 +110,8 @@ function DayScreen(props) {
         >
             {days.map((d, k) => (     // Mapenado os meses "m" e uma Key para o Button "k"
                 <DayButton key={k} width={dayWPx} underlayColor="transparent" onPress={() => setDayToDispatch(d)}>
-                <Item bgColor={choseDay == d ? '#3ED3A1': '#333'}>
-                    <Texto color={Color}> {d} </Texto>
+                <Item bgColor={choseDay == d ? '#3ED3A1': '#333' && color}>
+                    <Texto color={bg}> {d} </Texto>
                 </Item>
             </DayButton>
             ))}

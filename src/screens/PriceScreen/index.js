@@ -114,7 +114,7 @@ function Price(props) {
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
+                        alert("Modal has been closed.");
                     }}
                 >
                     <View style={styles.centeredView}>
@@ -144,7 +144,7 @@ function Price(props) {
                                 }}>
                                     <>
                                     <ItemText color={name == c.name?'#333': bg}> {c.name} </ItemText>
-                                    <PriceText color={name == c.name?'#333': bg}> {c.price} </PriceText>
+                                    <PriceText color={name == c.name?'#333': bg}> R$ {c.price} </PriceText>
                                     </>
                             </Pressable>
                             </ItemView>
