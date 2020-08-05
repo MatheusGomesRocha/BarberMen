@@ -101,7 +101,7 @@ function SettingsScreen(props) {
                                 trackColor={{ false: "#333", true: "#fff" }}
                                 thumbColor={isEnabled ? "#fff" : "#333"}
                                 ios_backgroundColor="#3e3e3e"
-                                onValueChange={toggleSwitch}
+                                onValueChange={() => {}}
                                 value={isEnabled}
                                 />
                             </>
@@ -161,7 +161,7 @@ function SettingsScreen(props) {
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="transparent" onPress={test}>
+                        <SettingsButton underlayColor="transparent" onPress={() => alert('(85) 994264687\n\nMatheus Gomes')}>
                             <>
                                 <DefaultText color={color}> Contato do desenvolvedor </DefaultText> 
                                 <Icon name="angle-right" size={30} color={color}/>

@@ -6,10 +6,14 @@ export const Container = styled.SafeAreaView`
     background-color: ${props=>props.bgColor || '#fff'};
 `;
 
+export const Scroll = styled.ScrollView`
+`;
+
 export const Texto = styled.Text`
     color: ${props=>props.color || '#fff'};
     font-size: 22px;
-    margin-bottom: 10px;
+    margin: 20px 25px 20px 25px;
+    text-align: center;
 `;
 
 
@@ -27,6 +31,7 @@ export const Input = styled.TextInput`
     padding: 10px;
     margin-top: 20px;
     color: ${props=>props.color || '#fff'};
+    flex-wrap: nowrap;
 `;
 
 
@@ -35,3 +40,14 @@ export const BtnText = styled.Text`
     font-size: 18px;
 `;
 
+
+export const CutsView = styled.View`
+    margin: 100px 0 50px 0;
+
+`;
+
+export const ItemView = styled.View`
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+`;
