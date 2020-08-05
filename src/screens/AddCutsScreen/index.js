@@ -60,6 +60,7 @@ export default () => {
                         { name: 'addcuts' },
                     ]
                 })
+                alert('Corte/Serviço adicionado com sucesso');
             }).catch(error => {
                 alert('Algum erro aconteceu, tente novamente mais tarde');
             })

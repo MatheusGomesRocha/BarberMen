@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 import BtnComponent from '../../components/BtnComponent';
@@ -35,6 +36,8 @@ export default () => {
     const [newPass, setNewPass] = useState('');
     const [newEmail, setNewEmail] = useState('');
     const dark = useSelector(state=>state.user.dark);
+
+    const navigation = useNavigation();
 
     function ImageAvatar(data) {
         if(data.didCancel) {
@@ -81,18 +84,50 @@ export default () => {
 
     
     function UpdateData() {
+        if(avatar || newName || newEmail || newPass) {
+            let nameFire = '';
+            let emailFire = '';
+            let passFire = '';
+
+            if(newName) {
+                nameFire = newName;
+            } else {
+                nameFire = name;
+            }
+
+            if(newEmail) {
+                emailFire = newEmail;
+            } else {
+                emailFire = email;
+            }
+
+            if(newPass) {
+                passFire = newPass;
+            } else {
+                passFire = pass;
+            }
+
             firestore()
             .collection('users')
             .doc(userInfo.uid)
             .update({
                 avatar: avatar,
-                name: newName,
-                email: newEmail,
-                password: newPass,
+                name: nameFire,
+                email: emailFire,
+                pass: passFire,                    
             })
             .then(() => {
-                alert('User updated!');
+                navigation.reset({
+                    routes: [
+                        { name: 'profile' },
+                    ]
+                })
+                alert('Usuário editado');
             });
+        } else {
+            alert('Você não digitiou nada');
+        }
+        
     }
         
     let bg = "#fff";
