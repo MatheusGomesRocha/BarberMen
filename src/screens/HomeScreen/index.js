@@ -116,25 +116,16 @@ function AddComment() {
     }
 }
 
-let bg = '#fff';
-let color = '#333';
-let small = 'rgba(0, 0, 0, 0.5)';
-if(dark) {
-    bg = '#333';
-    color = '#fff';
-    small = 'rgba(255, 255, 255, 0.5)';
-}
-
     return (
-        <Container bgColor={bg}>
+        <Container>
             <Scroll>
             
                 <SvgView>
                     <SvgBarber width={280} height={220} />
                 </SvgView>
                 <TextView>                    
-                    <BigText color={color}> Bem Vindo </BigText>
-                    <SmallText color={small}> 
+                    <BigText> Bem Vindo </BigText>
+                    <SmallText> 
                         App oficial da barbearia BarberMen, aqui você pode 
                         marcar seu horário e ainda pagar o serviço 
                     </SmallText>
@@ -142,18 +133,18 @@ if(dark) {
                 
                 {!user?
                     <LoginBtnView>
-                        <BtnComponent bdColor={color} border="1px solid" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="80%" 
+                        <BtnComponent bdColor='#333' border="1px solid" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="80%" 
                             onPress={() => navigation.navigate('signup')}>
                             <>
-                                <BtnText style={{color: color}}> Cadastrar-se </BtnText> 
+                                <BtnText style={{color: '#333'}}> Cadastrar-se </BtnText> 
                                 <Icon name="angle-right" size={25} style={{color: '#333'}} />
                             </>
                         </BtnComponent>
                         
-                        <BtnComponent mTop="20px" underlayColor="rgba(0, 0, 0, 0.8)" bgColor={color} width="80%" 
+                        <BtnComponent mTop="20px" underlayColor="rgba(0, 0, 0, 0.8)" bgColor='#333' width="80%" 
                             onPress={() => navigation.navigate('login')}>
                             <>
-                                <BtnText style={{color: bg}}> Login </BtnText> 
+                                <BtnText style={{color: '#fff'}}> Login </BtnText> 
                                 <Icon name="angle-right" size={25} style={{color: '#fff'}} />
                             </>
                         </BtnComponent>
@@ -163,7 +154,7 @@ if(dark) {
 
                 <CommentsTitle>
                     <TitleText color={color}> Reviews </TitleText>
-                    <Icon name="arrow-right" color={small} size={22} style={{marginTop: 7}} />
+                    <Icon name="arrow-right" color='rgba(0, 0, 0, 0.5)' size={22} style={{marginTop: 7}} />
                 </CommentsTitle>
 
                 <CommentsView>
@@ -171,26 +162,26 @@ if(dark) {
                         <Comments key={k}>
                             <CommentsHeader>
                                 <CommentsAvatar source={require('../../assets/img/perfil1.jpg')} />
-                                <CommentsName color={color}> {c.userName} </CommentsName>
+                                <CommentsName> {c.userName} </CommentsName>
                             </CommentsHeader>
                             <CommentsRate>
-                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
-                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
-                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
-                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
-                                <Icon name="star-o" color={color} size={16} style={{marginRight: 3}} />
-                                <CommentsDate color={small}> {today} </CommentsDate>
+                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                <CommentsDate> {today} </CommentsDate>
                             </CommentsRate>
-                            <CommentsText color={small}> {c.userComment} </CommentsText>
+                            <CommentsText> {c.userComment} </CommentsText>
                         </Comments>
                     ))}
                     
                 </CommentsView>
                
                 <AddComments>
-                    <Input placeholderTextColor={small} bdColor={small} color={color} onChangeText={c=>setNewComment(c)} placeholder="Escreva um comentário..." />
+                    <Input placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={c=>setNewComment(c)} placeholder="Escreva um comentário..." />
                     <BtnComponent onPress={AddComment} width="100%" bgColor={color} radius="100px">
-                        <BtnText style={{textAlign: 'center', color: bg}}> Enviar </BtnText>
+                        <BtnText style={{textAlign: 'center', color: '#fff'}}> Enviar </BtnText>
                     </BtnComponent>
                 </AddComments>
             </Scroll>

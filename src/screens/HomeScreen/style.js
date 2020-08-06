@@ -6,7 +6,7 @@ import styled from 'styled-components/native';
 //View de toda a tela
 export const Container = styled.SafeAreaView`   
     flex: 1;
-    background-color: ${props=>props.bgColor};
+    background-color: #fff;
 `;
 
 
@@ -45,7 +45,7 @@ export const CommentsTitle = styled.View`
 `
 export const TitleText = styled.Text`
     font-size: 24px;
-    color: ${props=>props.color || '#333'};
+    color: #333;
 `;
 
 
@@ -76,7 +76,7 @@ export const CommentsAvatar = styled.Image`
 `;
 export const CommentsName = styled.Text`
     font-size: 16px;
-    color: ${props=>props.color || '#fff'};
+    color: #fff;
     margin-left: 10px;
 `;
 export const CommentsRate = styled.View`
@@ -87,7 +87,7 @@ export const CommentsRate = styled.View`
 `;
 export const CommentsDate = styled.Text`
     margin-left: 10px;
-    color: ${props=>props.color || 'rgba(0, 0, 0, 0.5)'}
+    color: rgba(0, 0, 0, 0.5);
     font-size: 16px;
 `;
 export const CommentsText = styled.Text`
@@ -95,7 +95,7 @@ export const CommentsText = styled.Text`
     margin-top: 5px;
     align-items: center;
     justify-content: center;
-    color: ${props=>props.color || 'rgba(0, 0, 0, 0.5)'}
+    color: rgba(0, 0, 0, 0.5);
 `;
 
 
@@ -106,11 +106,10 @@ export const AddComments = styled.View`
     padding: 10px;
 `;
 export const Input = styled.TextInput`
-    border: 1px solid;
-    border-color: ${props=>props.bdColor || '#333'};
+    border: 1px solid #333;
     border-radius: 100px;
     padding: 10px;
     margin-bottom: 20px;
-    color: ${props=>props.color || '#333'};
+    color: #333;
     font-size: 16px;
 `;
