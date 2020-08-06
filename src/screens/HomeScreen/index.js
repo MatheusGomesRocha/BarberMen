@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import SvgBarber from '../../assets/svg/undraw_barber_3uel.svg';     // SVG BARBER
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 
-import {View} from 'react-native';
 import {
     TextView,    // View de bem-vindo
     BigText,        // Texto grande de Bem-Vindo
@@ -49,9 +49,10 @@ const userInfo = auth().currentUser;
 const [userName, setUserName] = useState(''); 
 const [comments, setComments] = useState([]);
 const [newComment, setNewComment] = useState('');
+const [isVisible, setIsVisible] = useState(false);
 
 let day = new Date().getDate();
-let month = new Date().getMonth();
+let month = new Date().getMonth()+1;
 let year = new Date().getFullYear()
 let today = day+'/'+month+'/'+year;
 useEffect(() => {
@@ -85,6 +86,12 @@ useEffect(() => {
 
   // Unsubscribe from events when no longer in use
   return () => subscriber();
+}, [])
+
+useEffect(() => {
+    setTimeout(() => {
+        setIsVisible(true);
+    }, 3000)
 }, [])
    
 function AddComment() {
@@ -153,34 +160,64 @@ function AddComment() {
                 :null}
 
                 <CommentsTitle>
-                    <TitleText color={color}> Reviews </TitleText>
+                    <TitleText> Reviews </TitleText>
                     <Icon name="arrow-right" color='rgba(0, 0, 0, 0.5)' size={22} style={{marginTop: 7}} />
                 </CommentsTitle>
 
+            
                 <CommentsView>
                     {comments.map((c, k) => (
                         <Comments key={k}>
                             <CommentsHeader>
+
+                            <ShimmerPlaceholder
+                                style={{height: 50, width: 50, borderRadius: 100}}
+                                autoRun={true}
+                                visible={isVisible}
+                            >
                                 <CommentsAvatar source={require('../../assets/img/perfil1.jpg')} />
+                            </ShimmerPlaceholder>
+
+                            <ShimmerPlaceholder
+                                style={{height: 30, width: '50%', borderRadius: 100, marginLeft: 10}}
+                                autoRun={true}
+                                visible={isVisible}
+                            >
                                 <CommentsName> {c.userName} </CommentsName>
+                            </ShimmerPlaceholder>
+
                             </CommentsHeader>
-                            <CommentsRate>
-                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
-                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
-                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
-                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
-                                <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
-                                <CommentsDate> {today} </CommentsDate>
-                            </CommentsRate>
-                            <CommentsText> {c.userComment} </CommentsText>
+
+                            <ShimmerPlaceholder
+                                style={{height: 30, width: '70%', borderRadius: 100, marginTop: 10, marginBottom: 10}}
+                                autoRun={true}
+                                visible={isVisible}
+                            >
+                                <CommentsRate>
+                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                    <CommentsDate> {c.added} </CommentsDate>
+                                </CommentsRate>
+                            </ShimmerPlaceholder>
+
+                            <ShimmerPlaceholder
+                                style={{height: 120, width: '100%', borderRadius: 50, marginTop: 5}}
+                                autoRun={true}
+                                visible={isVisible}
+                            >
+                                <CommentsText> {c.userComment} </CommentsText>
+                            </ShimmerPlaceholder>
+
                         </Comments>
                     ))}
-                    
                 </CommentsView>
-               
+
                 <AddComments>
                     <Input placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={c=>setNewComment(c)} placeholder="Escreva um comentário..." />
-                    <BtnComponent onPress={AddComment} width="100%" bgColor={color} radius="100px">
+                    <BtnComponent onPress={AddComment} width="100%" bgColor='#333' radius="100px">
                         <BtnText style={{textAlign: 'center', color: '#fff'}}> Enviar </BtnText>
                     </BtnComponent>
                 </AddComments>

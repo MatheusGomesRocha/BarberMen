@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import BtnComponent from '../../components/BtnComponent';
 import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
 import firestore from '@react-native-firebase/firestore';
+import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 
 import {
     TextView,    // View de bem-vindo
@@ -36,6 +37,7 @@ function Price(props) {
     const user = useSelector(state => state.user.email);
     const dark = useSelector(state => state.user.dark);
     const [cuts, setCuts] = useState([]);
+    const [isVisible, setIsVisible] = useState(false);
 
     function setCutAndDuration(cut, duration) {        // Função que seta um corte para o redux
         if(user) {
@@ -83,6 +85,12 @@ function Price(props) {
         color = "#fff";                             // Cor para textos e bordas do input
       }
 
+      useEffect(() => {
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 3000)
+    }, [])
+
     return (
         <Container bgColor={bg}>
             <BtnComponent underlayColor={name?'#3AA3A1':'#bbb'} onPress={() => goToDate()} width="60px" height="60px" radius="100px" bgColor={name?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
@@ -106,7 +114,13 @@ function Price(props) {
                 {/** Depois cadastrar esses dados em um bd e trazer pra cá */}
                 <TableView>
                     {cuts.map((c, k) => (
-                            <ItemView key={k}>
+                        <ShimmerPlaceholder
+                        style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10}}
+                        autoRun={true}
+                        visible={isVisible}
+                        key={k}
+                        >
+                            <ItemView>
                                 
                             <Pressable onPress={() => setCutAndDuration(c.name, c.duration)} onLongPress={() => setModalVisible(true)}
                             style={{
@@ -120,6 +134,7 @@ function Price(props) {
                                     </>
                             </Pressable>
                             </ItemView>
+                        </ShimmerPlaceholder>
                     ))}                   
                 </TableView>
 

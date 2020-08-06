@@ -76,7 +76,7 @@ export const CommentsAvatar = styled.Image`
 `;
 export const CommentsName = styled.Text`
     font-size: 16px;
-    color: #fff;
+    color: #333;
     margin-left: 10px;
 `;
 export const CommentsRate = styled.View`

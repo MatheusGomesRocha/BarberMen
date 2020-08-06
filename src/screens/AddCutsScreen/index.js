@@ -7,7 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 import uuid from 'uuid/v4';
 import ModalComponent from '../../components/ModalComponent';
 
-import { Pressable } from 'react-native';
+import { Pressable, Alert } from 'react-native';
 import {
     TextView,    // View de bem-vindo
     SmallText,        // Texto grande de Bem-Vindo
@@ -67,10 +67,6 @@ export default () => {
         }
     }
 
-    function editCut() {
-        alert('olá mundo');
-    }
-
     function deleteCut(id) {
         firestore()
         .collection('cuts')
@@ -79,6 +75,26 @@ export default () => {
         .then(() => {
             alert('Serviço deletado');
         })
+    }
+
+    function editCut(name, id) {
+        Alert.alert(
+            name,
+            "O que você deseja fazer?",
+            [
+              {
+                text: "Cancelar",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              {
+                text: "Editar",
+                onPress: () => console.log("Edit")
+              },
+              { text: "Deletar", onPress: () => deleteCut(id) }
+            ],
+            { cancelable: false }
+        );
     }
 
     useEffect(() => {
@@ -133,7 +149,7 @@ export default () => {
                     
                     {cuts.map((c, k) => (
                         <ItemView key={k}>
-                            <Pressable onPress={() => editCut()} onLongPress={() => deleteCut(c.id)}
+                            <Pressable onPress={() => editCut(c.name, c.id)} onLongPress={() => deleteCut(c.id)}
                             style={{
                                 flexDirection:'row', backgroundColor: 'transparent', 
                                 color: '#333', height: 60, width: '90%', borderRadius: 100, justifyContent: 'center',
