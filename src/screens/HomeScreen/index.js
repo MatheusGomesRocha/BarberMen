@@ -55,6 +55,7 @@ let day = new Date().getDate();
 let month = new Date().getMonth()+1;
 let year = new Date().getFullYear()
 let today = day+'/'+month+'/'+year;
+
 useEffect(() => {
     if(user) {
         firestore()
@@ -69,7 +70,7 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-    const subscriber = firestore()
+    firestore()
     .collection('comments')
     .onSnapshot(querySnapshot => {
       const commentArray = [];
@@ -85,7 +86,6 @@ useEffect(() => {
     });
 
   // Unsubscribe from events when no longer in use
-  return () => subscriber();
 }, [])
 
 useEffect(() => {

@@ -15,6 +15,7 @@ import {
 
 import { 
     Pressable,
+    Alert
 } from 'react-native';
 
 import { 
@@ -85,11 +86,33 @@ function Price(props) {
         color = "#fff";                             // Cor para textos e bordas do input
       }
 
-      useEffect(() => {
+    useEffect(() => {
         setTimeout(() => {
             setIsVisible(true);
         }, 3000)
     }, [])
+
+    function AddFavorites(name, id) {
+        console.log(name+'+'+id)
+    }
+
+    function customAlert(name, id) {
+        Alert.alert(
+            'Favoritar',
+            "Adicionar "+name+"aos favoritos?",
+            [
+              {
+                text: "Cancelar",
+                style: "cancel"
+              },
+              {
+                text: "OK",
+                onPress: () => AddFavorites(name, id),
+              },
+            ],
+            { cancelable: false }
+        );
+    }
 
     return (
         <Container bgColor={bg}>
@@ -122,7 +145,7 @@ function Price(props) {
                         >
                             <ItemView>
                                 
-                            <Pressable onPress={() => setCutAndDuration(c.name, c.duration)} onLongPress={() => setModalVisible(true)}
+                            <Pressable onPress={() => setCutAndDuration(c.name, c.duration)} onLongPress={() => customAlert(c.name, c.id)}
                             style={{
                                     flexDirection:'row', backgroundColor: name == c.name?'#3ED3A1':color, 
                                     color: '#fff', height: 60, width: '90%', borderRadius: 100, justifyContent: 'center',

@@ -43,11 +43,12 @@ export const BtnText = styled.Text`
 
 export const CutsView = styled.View`
     margin: 100px 0 50px 0;
-
 `;
 
 export const ItemView = styled.View`
-    align-items: center;
+    width: 100%;
+    height: 60px;
     justify-content: center;
-    padding: 10px;
+    align-items: center;
+    margin: 10px 0 10px 0;
 `;

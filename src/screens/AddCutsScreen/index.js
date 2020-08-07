@@ -6,6 +6,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import uuid from 'uuid/v4';
 import ModalComponent from '../../components/ModalComponent';
+import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 
 import { Pressable, Alert } from 'react-native';
 import {
@@ -37,6 +38,7 @@ export default () => {
     const [name, setName] = useState('');
     const [duration, setDuration] = useState('');
     const [price, setPrice] = useState('');
+    const [isVisible, setIsVisible] = useState(false);
 
     const dark = useSelector(state => state.user.dark);
     function addCut() {
@@ -77,19 +79,18 @@ export default () => {
         })
     }
 
-    function editCut(name, id) {
+    function ChooseWhat(name, id, duration, price) {
         Alert.alert(
             name,
             "O que você deseja fazer?",
             [
               {
                 text: "Cancelar",
-                onPress: () => console.log("Cancel Pressed"),
                 style: "cancel"
               },
               {
                 text: "Editar",
-                onPress: () => console.log("Edit")
+                onPress: () => navigation.navigate('editcut', {name, id, duration, price}),
               },
               { text: "Deletar", onPress: () => deleteCut(id) }
             ],
@@ -116,6 +117,13 @@ export default () => {
 
         return () => subscriber();
     }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 3000)
+    }, [])
+
 
     let bg = '#fff';    // Usando para o background e para cor do BtnText
     let color = '#333'; // Usando para cor do Texto e para background do BtnComponent
@@ -148,8 +156,14 @@ export default () => {
                     <Texto color="rgba(0, 0, 0, 0.5)" style={{fontSize: 18}}> Aqui estão os cortes que você já adicionou (aperte no corte para editar, e segure para deletar) </Texto>
                     
                     {cuts.map((c, k) => (
-                        <ItemView key={k}>
-                            <Pressable onPress={() => editCut(c.name, c.id)} onLongPress={() => deleteCut(c.id)}
+                        <ShimmerPlaceholder
+                        style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10}}
+                        autoRun={true}
+                        visible={isVisible}
+                        key={k}
+                        >
+                        <ItemView>
+                            <Pressable onPress={() => ChooseWhat(c.name, c.id, c.duration, c.price)} onLongPress={() => deleteCut(c.id)}
                             style={{
                                 flexDirection:'row', backgroundColor: 'transparent', 
                                 color: '#333', height: 60, width: '90%', borderRadius: 100, justifyContent: 'center',
@@ -159,6 +173,7 @@ export default () => {
                                 <BtnText color={color}> {c.name} </BtnText>
                             </Pressable>
                         </ItemView>
+                        </ShimmerPlaceholder>
                     ))}
                 </CutsView>
             </Scroll>

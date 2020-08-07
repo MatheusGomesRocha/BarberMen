@@ -33,7 +33,6 @@ export const ViewSignUp = styled.View`
 `;
 
 
-
 // + View de um input
 // + Input
 export const InputView = styled.View`
