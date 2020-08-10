@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import BtnComponent from '../../components/BtnComponent';
 import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 
 import {
@@ -39,6 +40,8 @@ function Price(props) {
     const dark = useSelector(state => state.user.dark);
     const [cuts, setCuts] = useState([]);
     const [isVisible, setIsVisible] = useState(false);
+    const userInfo = auth().currentUser;
+    const [userName, setUserName] = useState();
 
     function setCutAndDuration(cut, duration) {        // Função que seta um corte para o redux
         if(user) {
@@ -79,6 +82,19 @@ function Price(props) {
         return () => subscriber();
       }, []);
 
+      useEffect(() => {
+        if(userInfo) {
+            firestore()
+            .collection('users')
+            .where('id', '==', userInfo.uid)
+            .get().then(querySnapshot => {
+                querySnapshot.forEach(documentSnapshot => {
+                    setUserName(documentSnapshot.data().name);
+                })
+            })
+        }
+      }, []);
+
       let bg = "#fff";
       let color = "#333";
       if(dark) {
@@ -93,13 +109,23 @@ function Price(props) {
     }, [])
 
     function AddFavorites(name, id) {
-        console.log(name+'+'+id)
+        firestore()
+        .collection('favorites')
+        .doc(userInfo.uid)
+        .set({
+            idUser: userInfo.uid,
+            idCut: id,
+            nameUser: userName,
+            nameCut: name,
+        }).then(() => {
+            alert('Adicionado com sucesso aos favoritos')
+        })
     }
 
     function customAlert(name, id) {
         Alert.alert(
             'Favoritar',
-            "Adicionar "+name+"aos favoritos?",
+            "Adicionar "+name+" aos favoritos?",
             [
               {
                 text: "Cancelar",
