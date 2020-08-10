@@ -111,7 +111,7 @@ function Price(props) {
     function AddFavorites(name, id) {
         firestore()
         .collection('favorites')
-        .doc(userInfo.uid)
+        .doc(id)
         .set({
             idUser: userInfo.uid,
             idCut: id,
