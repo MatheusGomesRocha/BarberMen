@@ -22,7 +22,8 @@ export default () => {
             style: {    // Estilo da TabBar
                 height: 70,
                 padding: 8,
-                backgroundColor: '#333',
+                backgroundColor: '#203B46',
+                borderTopColor: '#203B46'
             },
             labelStyle: {   // Estilo do Label
                 fontSize: 16,

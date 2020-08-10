@@ -6,7 +6,7 @@ import styled from 'styled-components/native';
 //View de toda a tela
 export const Container = styled.SafeAreaView`   
     flex: 1;
-    background-color: #fff;
+    background-color: #264653;
 `;
 
 
@@ -45,7 +45,7 @@ export const CommentsTitle = styled.View`
 `
 export const TitleText = styled.Text`
     font-size: 24px;
-    color: #333;
+    color: #2A9D8F;
 `;
 
 
@@ -76,7 +76,7 @@ export const CommentsAvatar = styled.Image`
 `;
 export const CommentsName = styled.Text`
     font-size: 16px;
-    color: #333;
+    color: #2A9D8F;
     margin-left: 10px;
 `;
 export const CommentsRate = styled.View`
@@ -87,7 +87,7 @@ export const CommentsRate = styled.View`
 `;
 export const CommentsDate = styled.Text`
     margin-left: 10px;
-    color: rgba(0, 0, 0, 0.5);
+    color: #2A9D8F;
     font-size: 16px;
 `;
 export const CommentsText = styled.Text`
@@ -95,7 +95,7 @@ export const CommentsText = styled.Text`
     margin-top: 5px;
     align-items: center;
     justify-content: center;
-    color: rgba(0, 0, 0, 0.5);
+    color: #2A9D8F;
 `;
 
 
@@ -106,10 +106,10 @@ export const AddComments = styled.View`
     padding: 10px;
 `;
 export const Input = styled.TextInput`
-    border: 1px solid #333;
+    border: 1px solid #2A9D8F;
     border-radius: 100px;
     padding: 10px;
     margin-bottom: 20px;
-    color: #333;
+    color: #2A9D8F;
     font-size: 16px;
 `;

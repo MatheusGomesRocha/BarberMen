@@ -19,16 +19,13 @@ import {
     SettingsView,   // View com todos os buttons
     SettingsButton, // Button
     DefaultText,    // Texto padrão com os nomes
-    EnabledText,    // Texto de ON OFF no Switch
 } from './style';
 
 function SettingsScreen(props) {    
     const navigation = useNavigation();
-    const darkMode = useSelector(state => state.user.dark);
     const user = useSelector(state => state.user.email);
     let userSplit = user.split('@')[0];     // Quebrando email para pegar o nome antes do @
     const [isAdmin, setIsAdmin] = useState(false)
-    const [isEnabled, setIsEnabled] = useState(darkMode);
 
     const userInfo = auth().currentUser;    // Pegando usuário logado
 
@@ -63,21 +60,11 @@ function SettingsScreen(props) {
             });
         });
     }
-
-    if(isEnabled) {
-        props.setDark(true);
-    } else {
-        props.setDark(false);
-    }
-
        
 
     let bg = '#fff';        // Função para mudar cor com Dark Mode
     let color = "#333";
-    if(darkMode) {
-        bg = '#333';
-        color = "#fff";
-    }
+    
 
 
     return (
@@ -93,19 +80,6 @@ function SettingsScreen(props) {
 
                 <SettingsView>
                     <>
-                        <SettingsButton onPress={toggleSwitch} underlayColor="transparent">
-                            <>
-                                <DefaultText color={color} width="75%"> Dark Mode </DefaultText>
-                                { isEnabled ? ( <EnabledText color={color}> On </EnabledText>) : ( <EnabledText> Off </EnabledText>)}
-                                <Switch
-                                trackColor={{ false: "#333", true: "#fff" }}
-                                thumbColor={isEnabled ? "#fff" : "#333"}
-                                ios_backgroundColor="#3e3e3e"
-                                onValueChange={() => {}}
-                                value={isEnabled}
-                                />
-                            </>
-                        </SettingsButton>
 
                         {isAdmin?
                             <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('addcuts')}>

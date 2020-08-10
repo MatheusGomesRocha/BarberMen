@@ -131,8 +131,8 @@ function AddComment() {
                     <SvgBarber width={280} height={220} />
                 </SvgView>
                 <TextView>                    
-                    <BigText> Bem Vindo </BigText>
-                    <SmallText> 
+                    <BigText color="#2A9D8F"> Bem Vindo </BigText>
+                    <SmallText color="#2A9D8F"> 
                         App oficial da barbearia BarberMen, aqui você pode 
                         marcar seu horário e ainda pagar o serviço 
                     </SmallText>
@@ -161,7 +161,7 @@ function AddComment() {
 
                 <CommentsTitle>
                     <TitleText> Reviews </TitleText>
-                    <Icon name="arrow-right" color='rgba(0, 0, 0, 0.5)' size={22} style={{marginTop: 7}} />
+                    <Icon name="arrow-right" color='#2A9D8F' size={22} style={{marginTop: 7}} />
                 </CommentsTitle>
 
             
@@ -194,11 +194,11 @@ function AddComment() {
                                 visible={isVisible}
                             >
                                 <CommentsRate>
-                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#333' size={16} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
                                     <CommentsDate> {c.added} </CommentsDate>
                                 </CommentsRate>
                             </ShimmerPlaceholder>
@@ -216,8 +216,8 @@ function AddComment() {
                 </CommentsView>
 
                 <AddComments>
-                    <Input placeholderTextColor='rgba(0, 0, 0, 0.5)' onChangeText={c=>setNewComment(c)} placeholder="Escreva um comentário..." />
-                    <BtnComponent onPress={AddComment} width="100%" bgColor='#333' radius="100px">
+                    <Input placeholderTextColor='#2A9D8F' onChangeText={c=>setNewComment(c)} placeholder="Escreva um comentário..." />
+                    <BtnComponent onPress={AddComment} width="100%" bgColor='#E76F51' radius="100px">
                         <BtnText style={{textAlign: 'center', color: '#fff'}}> Enviar </BtnText>
                     </BtnComponent>
                 </AddComments>
