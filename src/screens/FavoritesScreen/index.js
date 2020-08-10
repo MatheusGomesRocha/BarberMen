@@ -1,4 +1,12 @@
 import React, {useState, useEffect} from 'react';
+import firestore from '@react-native-firebase/firestore';
+
+import {
+    TextView,    // View de bem-vindo
+    BigText,        // Texto grande de Bem-Vindo
+    SmallText,      // Texto pequeno de introdução
+} from '../../components/TextView';
+
 import {
     Container,
     
@@ -9,7 +17,6 @@ import {
     FavoritesBtn,
     FavoritesText,
 } from './style';
-import firestore from '@react-native-firebase/firestore';
 
 export default () => {
     const [favorites, setFavorites] = useState([]);
@@ -37,6 +44,13 @@ export default () => {
     return(
         <Container>
             <Scroll>
+
+                <TextView style={{marginTop: 50}}>
+                    <BigText color="#333"> Favoritos </BigText>
+                    <SmallText color="rgba(0, 0, 0, 0.5)"> 
+                        Aqui estão os cortes que você adicionou aos favoritos (uma opção para escolher seu corte mais rapidamente)
+                    </SmallText>
+                </TextView>
 
                 <FavoritesView>
                     {favorites.map((f, k) => (

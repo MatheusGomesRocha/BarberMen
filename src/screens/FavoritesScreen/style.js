@@ -8,11 +8,12 @@ export const Container = styled.SafeAreaView`
 export const Scroll = styled.ScrollView``;
 
 export const FavoritesView = styled.View`
-
+    margin-top: 50px;
 `;
 export const FavoritesItem = styled.View`
     borderBottomWidth: 1px;
     borderBottomColor: rgba(0, 0, 0, 0.5);
+    
     height: 70px;
     flex-direction: row;
     align-items: center;
