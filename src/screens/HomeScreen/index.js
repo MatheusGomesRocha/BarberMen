@@ -140,7 +140,7 @@ function AddComment() {
                 {!user?
                     <LoginBtnView>
                         
-                        <BtnComponent underlayColor="rgba(0, 0, 0, 0.8)" bgColor='#E76F51' width="80%" 
+                        <BtnComponent underlayColor="rgba(0, 0, 0, 0.8)" bgColor='#E76F51' width="100%" 
                             onPress={() => navigation.navigate('login')}>
                             <>
                                 <BtnText style={{color: '#fff'}}> Login </BtnText> 
@@ -148,7 +148,7 @@ function AddComment() {
                             </>
                         </BtnComponent>
                     
-                        <BtnComponent mTop="20px" bdColor='#E76F51' border="1px solid" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="80%" 
+                        <BtnComponent mTop="20px" bdColor='#E76F51' border="1px solid" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="100%" 
                             onPress={() => navigation.navigate('signup')}>
                             <>
                                 <BtnText style={{color: '#434343'}}> Cadastro </BtnText> 

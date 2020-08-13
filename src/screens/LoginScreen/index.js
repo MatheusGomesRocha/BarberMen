@@ -72,7 +72,7 @@ function LoginScreen(props) {
                     </InputView>
 
                     <BtnView>
-                        <BtnComponent underlayColor="#000" onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#333">
+                        <BtnComponent underlayColor="#000" onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#E76F51">
                             <BtnText> Login </BtnText>
                         </BtnComponent>
                         <BtnText style={{color:"#333", marginTop:10, marginBottom: 25}}> Esqueceu a senha? </BtnText>

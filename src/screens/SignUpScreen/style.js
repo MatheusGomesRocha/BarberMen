@@ -5,11 +5,13 @@ import styled from 'styled-components/native';
 export const Container = styled.SafeAreaView`
     flex: 1;
     background-color: #fff;
+    justify-content: center;
 `
 
 
 // Só irá realizar scroll dentro dessa view acima
 export const Scroll = styled.ScrollView`
+    margin: 0 20px 0 20px;
 `;
 
 
@@ -37,8 +39,8 @@ export const ViewSignUp = styled.View`
 // + Input
 export const InputView = styled.View`
     justify-content: center;
-    width: 80%;
-    margin: 0 0 20px 35px;
+    width: 100%;
+    margin: 0 0 20px 0;
 `;
 export const Input = styled.TextInput`
     padding: 10px;

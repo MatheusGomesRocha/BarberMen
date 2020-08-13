@@ -14,6 +14,13 @@ import {
     SmallText,      // Texto pequeno de introdução
 } from '../../components/TextView';
 
+import {
+    Header,
+    HeaderLeft,
+    HeaderRight,
+    HeaderButton,
+} from '../../components/HeaderComponent';
+
 import { 
     Pressable,
     Alert,
@@ -31,10 +38,7 @@ import {
     ItemView,       // View onde fica 1 item (TEMPORÁRIO. PEGAR DADOS QUE VÃO VIR DO FIREBASE DEPOIS DE SEREM CADASTRADOS PELO O USUÁRIO E PASSAR PARA UM BUTTON)
     ItemText,       // Texto que fica o nome do item 
     PriceText,      // Texto que fica o preço do item
-    
-
-    Header,
-    HeaderText
+ 
 } from './style';
 
 function Price(props) {
@@ -147,11 +151,10 @@ function Price(props) {
     return (
         <Container bgColor={bg}>
             <Header>
-                <HeaderText style={{marginLeft: 10, fontSize: 20, color: '#fff'}}> Cortes </HeaderText>
-                    
-                <TouchableHighlight style={{height: 'auto'}} onPress={() => goToDate()}>
-                    <HeaderText style={{fontSize: 18, color: '#000', marginRight: 10}}> Seguinte <Icon name="angle-right" size={18} /> </HeaderText>
-                </TouchableHighlight>
+                <HeaderLeft> Cortes </HeaderLeft>
+                <HeaderButton onPress={() => goToDate()}>
+                    <HeaderRight color={name?'#000':'#434343'}> Seguinte <Icon name="angle-right" size={18} /> </HeaderRight>
+                </HeaderButton>
             </Header>
             <Scroll decelerationRate="fast">
                 
@@ -166,7 +169,7 @@ function Price(props) {
                 <TableView>
                     {cuts.map((c, k) => (
                         <ShimmerPlaceholder
-                        style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10}}
+                        style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10, margiLeft: 20, marginRight: 20}}
                         autoRun={true}
                         visible={isVisible}
                         key={k}

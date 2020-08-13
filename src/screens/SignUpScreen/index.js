@@ -98,10 +98,6 @@ function SignUpScreen(props) {
                     </InputView>
                     <InputView>
                         <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
-                        placeholder="CPF" keyboardType="numeric" onChangeText={c=>setCpf(c)}/>
-                    </InputView>
-                    <InputView>
-                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Contato" keyboardType="numeric" onChangeText={co=>setContact(co)}/>
                     </InputView>
                     <InputView>
@@ -114,7 +110,7 @@ function SignUpScreen(props) {
                     </InputView>
 
                     <BtnView>
-                        <BtnComponent onPress={() => SignUp(email, password)} width="80%" radius="100px" height="55px" bgColor="#333">
+                        <BtnComponent onPress={() => SignUp(email, password)} width="100%" radius="100px" height="55px" bgColor="#E76F51">
                             <BtnText> Finalizar </BtnText>
                         </BtnComponent>
                     </BtnView>
