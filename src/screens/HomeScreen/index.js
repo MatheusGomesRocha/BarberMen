@@ -182,8 +182,8 @@ function AddComment() {
                                 autoRun={true}
                                 visible={isVisible}
                             >
-                                <CommentsName> {c.userName} </CommentsName>
-                                <CommentsDate style={{marginTop: 5}}> {c.added} </CommentsDate>
+                                <CommentsName>{c.userName} </CommentsName>
+                                <CommentsDate style={{marginTop: 5}}>{c.added} </CommentsDate>
 
                             </ShimmerPlaceholder>
 
@@ -195,11 +195,11 @@ function AddComment() {
                                 visible={isVisible}
                             >
                                 <CommentsRate>
-                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#434343' size={20} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#434343' size={20} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#434343' size={20} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#434343' size={20} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#434343' size={20} style={{marginRight: 3}} />
                                 </CommentsRate>
                             </ShimmerPlaceholder>
 
@@ -208,7 +208,7 @@ function AddComment() {
                                 autoRun={true}
                                 visible={isVisible}
                             >
-                                <CommentsText> {c.userComment} </CommentsText>
+                                <CommentsText>{c.userComment} </CommentsText>
                             </ShimmerPlaceholder>
 
                         </Comments>

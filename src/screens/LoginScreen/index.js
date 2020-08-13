@@ -36,13 +36,13 @@ function LoginScreen(props) {
                 auth()
                 .signInWithEmailAndPassword(e, p)
                 .then(() => {
-                    props.setEmail(e);
                     navigation.reset({
                         index: 0,
                         routes: [
                             { name: 'home' },
                         ]
                     });
+                    props.setEmail(e);
                     alert('Logado com sucesso');
                 })
                 .catch(error => {

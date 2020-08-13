@@ -9,6 +9,7 @@ export const Container = styled.SafeAreaView`
 
 // View que realiza scroll
 export const Scroll = styled.ScrollView`
+    margin: 0 20px 0 20px;
 `;
 
 

@@ -9,7 +9,9 @@ export const Container = styled.SafeAreaView`
 
 
 // View de scroll
-export const Scroll = styled.ScrollView``;
+export const Scroll = styled.ScrollView`
+    
+`;
 
 export const Flat = styled.FlatList`
     flex-direction: row;

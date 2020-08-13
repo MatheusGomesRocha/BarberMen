@@ -93,7 +93,7 @@ export const CommentsDate = styled.Text`
 `;
 export const CommentsText = styled.Text`
     font-size: 17px;
-    margin-top: 5px;
+    margin-top: 10px;
     align-items: center;
     justify-content: center;
     color: #434343;

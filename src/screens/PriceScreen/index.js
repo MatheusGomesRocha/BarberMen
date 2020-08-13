@@ -180,7 +180,7 @@ function Price(props) {
                             <Pressable onPress={() => setCutAndDuration(c.name, c.duration)} onLongPress={() => customAlert(c.name, c.id)}
                             style={{
                                     flexDirection:'row', backgroundColor: name == c.name?'#B43718':'#E76F51', 
-                                    color: '#fff', height: 60, width: '90%', borderRadius: 100, justifyContent: 'center',
+                                    color: '#fff', height: 60, width: '100%', borderRadius: 100, justifyContent: 'center',
                                     alignItems: 'center'
                                 }}>
                                     <>
