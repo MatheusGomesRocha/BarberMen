@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import SvgBarber from '../../assets/svg/undraw_barber_3uel.svg';     // SVG BARBER
+import SvgBarber from '../../assets/svg/home.svg';     // SVG BARBER
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
@@ -131,24 +131,16 @@ function AddComment() {
                     <SvgBarber width={280} height={220} />
                 </SvgView>
                 <TextView>                    
-                    <BigText color="#2A9D8F"> Bem Vindo </BigText>
-                    <SmallText color="#2A9D8F"> 
-                        App oficial da barbearia BarberMen, aqui você pode 
-                        marcar seu horário e ainda pagar o serviço 
+                    <BigText color="#434343"> BarberMen </BigText>
+                    <SmallText color="#434343"> 
+                    Bem vindo ao App da barbearia Barbemen, aqui você pode marcar seu atendimento e ainda pagar via cartão ou PicPay 
                     </SmallText>
                 </TextView>
                 
                 {!user?
                     <LoginBtnView>
-                        <BtnComponent bdColor='#333' border="1px solid" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="80%" 
-                            onPress={() => navigation.navigate('signup')}>
-                            <>
-                                <BtnText style={{color: '#333'}}> Cadastrar-se </BtnText> 
-                                <Icon name="angle-right" size={25} style={{color: '#333'}} />
-                            </>
-                        </BtnComponent>
                         
-                        <BtnComponent mTop="20px" underlayColor="rgba(0, 0, 0, 0.8)" bgColor='#333' width="80%" 
+                        <BtnComponent underlayColor="rgba(0, 0, 0, 0.8)" bgColor='#E76F51' width="80%" 
                             onPress={() => navigation.navigate('login')}>
                             <>
                                 <BtnText style={{color: '#fff'}}> Login </BtnText> 
@@ -156,12 +148,19 @@ function AddComment() {
                             </>
                         </BtnComponent>
                     
+                        <BtnComponent mTop="20px" bdColor='#E76F51' border="1px solid" underlayColor="rgba(0, 0, 0, 0.1)" bgColor="transparent" width="80%" 
+                            onPress={() => navigation.navigate('signup')}>
+                            <>
+                                <BtnText style={{color: '#434343'}}> Cadastro </BtnText> 
+                                <Icon name="angle-right" size={25} style={{color: '#434343'}} />
+                            </>
+                        </BtnComponent>
                     </LoginBtnView>
                 :null}
 
                 <CommentsTitle>
                     <TitleText> Reviews </TitleText>
-                    <Icon name="arrow-right" color='#2A9D8F' size={22} style={{marginTop: 7}} />
+                    <Icon name="arrow-right" color='#434343' size={22} style={{marginTop: 7}} />
                 </CommentsTitle>
 
             
@@ -184,6 +183,8 @@ function AddComment() {
                                 visible={isVisible}
                             >
                                 <CommentsName> {c.userName} </CommentsName>
+                                <CommentsDate style={{marginTop: 5}}> {c.added} </CommentsDate>
+
                             </ShimmerPlaceholder>
 
                             </CommentsHeader>
@@ -194,12 +195,11 @@ function AddComment() {
                                 visible={isVisible}
                             >
                                 <CommentsRate>
-                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
-                                    <Icon name="star-o" color='#2A9D8F' size={16} style={{marginRight: 3}} />
-                                    <CommentsDate> {c.added} </CommentsDate>
+                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
+                                    <Icon name="star-o" color='#434343' size={18} style={{marginRight: 3}} />
                                 </CommentsRate>
                             </ShimmerPlaceholder>
 
@@ -216,7 +216,7 @@ function AddComment() {
                 </CommentsView>
 
                 <AddComments>
-                    <Input placeholderTextColor='#2A9D8F' onChangeText={c=>setNewComment(c)} placeholder="Escreva um comentário..." />
+                    <Input placeholderTextColor='#434343' onChangeText={c=>setNewComment(c)} placeholder="Escreva um comentário..." />
                     <BtnComponent onPress={AddComment} width="100%" bgColor='#E76F51' radius="100px">
                         <BtnText style={{textAlign: 'center', color: '#fff'}}> Enviar </BtnText>
                     </BtnComponent>

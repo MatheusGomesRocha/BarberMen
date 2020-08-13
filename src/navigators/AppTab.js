@@ -17,13 +17,14 @@ export default () => {
         tabBarOptions={{ 
             showIcon: true,     // Mostrar os icons
             showLabel: true,    // Mostrar o Label
-            activeTintColor: '#fff',    // Cor quando a tab estiver "focada"
-            inactiveTintColor: '#999',  // Cor quando não estiver "focada"
+            activeTintColor: '#E76F51',    // Cor quando a tab estiver "focada"
+            inactiveTintColor: '#E76F5170',  // Cor quando não estiver "focada"
             style: {    // Estilo da TabBar
                 height: 70,
                 padding: 8,
-                backgroundColor: '#203B46',
-                borderTopColor: '#203B46'
+                backgroundColor: '#ffffff',
+                borderTopColor: '#E76F51',
+                borderTopWidth: 1
             },
             labelStyle: {   // Estilo do Label
                 fontSize: 16,
@@ -56,7 +57,7 @@ export default () => {
                 
                 // name no Icon irá receber a variável para ser adicionado dinamicamente
                 // Se a Tab estiver focado, irá receber a cor Preta ´para dar um destaque a mais dos outros 
-                return <Icon name={icon} size={25} style={{ color: focused ? '#fff' : '#999'}}/>
+                return <Icon name={icon} size={25} style={{ color: focused ? '#E76F51' : '#E76F5170'}}/>
             }
         })} 
         >

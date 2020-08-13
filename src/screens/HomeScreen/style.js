@@ -6,12 +6,13 @@ import styled from 'styled-components/native';
 //View de toda a tela
 export const Container = styled.SafeAreaView`   
     flex: 1;
-    background-color: #264653;
+    background-color: #fff;
 `;
 
 
 //View para realizar scroll
 export const Scroll = styled.ScrollView`
+    margin: 0 20px 0 20px;
 `;
 
 
@@ -41,11 +42,11 @@ export const BtnText = styled.Text`
 export const CommentsTitle = styled.View`
     flex-direction: row;
     justify-content: space-between;
-    margin: 50px 20px 0 20px;
+    margin: 50px 20px 0 0px;
 `
 export const TitleText = styled.Text`
     font-size: 24px;
-    color: #2A9D8F;
+    color: #434343;
 `;
 
 
@@ -60,7 +61,7 @@ export const TitleText = styled.Text`
 export const CommentsView = styled.View`
 `;
 export const Comments = styled.View`
-    margin: 35px 20px 25px 20px;
+    margin: 35px 0px 20px 0px;
     align-items: flex-start;
     justify-content: flex-start;
     padding: 10px;
@@ -76,7 +77,7 @@ export const CommentsAvatar = styled.Image`
 `;
 export const CommentsName = styled.Text`
     font-size: 16px;
-    color: #2A9D8F;
+    color: #434343;
     margin-left: 10px;
 `;
 export const CommentsRate = styled.View`
@@ -87,7 +88,7 @@ export const CommentsRate = styled.View`
 `;
 export const CommentsDate = styled.Text`
     margin-left: 10px;
-    color: #2A9D8F;
+    color: #434343;
     font-size: 16px;
 `;
 export const CommentsText = styled.Text`
@@ -95,21 +96,21 @@ export const CommentsText = styled.Text`
     margin-top: 5px;
     align-items: center;
     justify-content: center;
-    color: #2A9D8F;
+    color: #434343;
 `;
 
 
 // + View com input e button para add comentários
 // + Input de add comentários
 export const AddComments = styled.View`
-    margin: 25px 20px 25px 20px;
+    margin: 25px 0px 25px 0px;
     padding: 10px;
 `;
 export const Input = styled.TextInput`
-    border: 1px solid #2A9D8F;
+    border: 1px solid #434343;
     border-radius: 100px;
     padding: 10px;
     margin-bottom: 20px;
-    color: #2A9D8F;
+    color: #434343;
     font-size: 16px;
 `;

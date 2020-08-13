@@ -16,7 +16,8 @@ import {
 
 import { 
     Pressable,
-    Alert
+    Alert,
+    TouchableHighlight,
 } from 'react-native';
 
 import { 
@@ -31,6 +32,9 @@ import {
     ItemText,       // Texto que fica o nome do item 
     PriceText,      // Texto que fica o preço do item
     
+
+    Header,
+    HeaderText
 } from './style';
 
 function Price(props) {
@@ -142,20 +146,18 @@ function Price(props) {
 
     return (
         <Container bgColor={bg}>
-            <BtnComponent underlayColor={name?'#3AA3A1':'#bbb'} onPress={() => goToDate()} width="60px" height="60px" radius="100px" bgColor={name?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
-                <Icon name="arrow-right" size={25} color="#333"/>
-            </BtnComponent>
+            <Header>
+                <HeaderText style={{marginLeft: 10, fontSize: 20, color: '#fff'}}> Cortes </HeaderText>
+                    
+                <TouchableHighlight style={{height: 'auto'}} onPress={() => goToDate()}>
+                    <HeaderText style={{fontSize: 18, color: '#000', marginRight: 10}}> Seguinte <Icon name="angle-right" size={18} /> </HeaderText>
+                </TouchableHighlight>
+            </Header>
             <Scroll decelerationRate="fast">
                 
-                <SvgView>
-                    <SvgMoney width={280} height={260}/>
-                </SvgView>
-
                 <TextView>
-                    <BigText color={color}> Preços de serviços </BigText>
-                    <SmallText color={color}> 
-                        Escolha o corte que irá fazer clicando nele, você será redirecionado para escolher
-                        o dia e horário, caso não tenha escolhido ainda.
+                    <SmallText color="#434343"> 
+                        Escolha o serviço que deseja
                     </SmallText>
                 </TextView>
 
@@ -173,13 +175,13 @@ function Price(props) {
                                 
                             <Pressable onPress={() => setCutAndDuration(c.name, c.duration)} onLongPress={() => customAlert(c.name, c.id)}
                             style={{
-                                    flexDirection:'row', backgroundColor: name == c.name?'#3ED3A1':color, 
+                                    flexDirection:'row', backgroundColor: name == c.name?'#B43718':'#E76F51', 
                                     color: '#fff', height: 60, width: '90%', borderRadius: 100, justifyContent: 'center',
                                     alignItems: 'center'
                                 }}>
                                     <>
-                                    <ItemText color={name == c.name?'#333': bg}> {c.name} </ItemText>
-                                    <PriceText color={name == c.name?'#333': bg}> R$ {c.price} </PriceText>
+                                    <ItemText color='#fff'> {c.name} </ItemText>
+                                    <PriceText color='#fff'> R$ {c.price} </PriceText>
                                     </>
                             </Pressable>
                             </ItemView>

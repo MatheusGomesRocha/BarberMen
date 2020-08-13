@@ -17,8 +17,8 @@ export const BigText = styled.Text`
 
 `;
 export const SmallText = styled.Text`
-    margin: 10px 20px 0 20px;
+    margin: 30px 0 20px 0;
     text-align: center;
     color: ${props=>props.color || 'rgba(0, 0, 0, 0.5)'};
-    font-size: 16px;
+    font-size: 20px;
 `;

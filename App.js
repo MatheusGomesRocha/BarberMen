@@ -15,7 +15,7 @@ function Bar() {      /** Barra de status do aparelho */
    * Cor amarelo queimado FFc491
    */
   return (
-    <StatusBar barStyle="light-content" backgroundColor="#264653"/>
+    <StatusBar barStyle="light-content" backgroundColor="#E76F51"/>
   );
 }
 
