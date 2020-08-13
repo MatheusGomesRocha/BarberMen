@@ -4,7 +4,7 @@ export const Header = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 80px;
     background-color: #E76F51;
 `;
 export const HeaderLeft = styled.Text`
@@ -18,5 +18,6 @@ export const HeaderRight = styled.Text`
     font-size: 18px;
 `
 export const HeaderButton = styled.TouchableOpacity`
+    height: 80px;
     justify-content: center;
 `;

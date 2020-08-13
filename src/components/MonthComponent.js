@@ -26,7 +26,7 @@ const MonthView = styled.TouchableHighlight`
 const Item = styled.View`
     width: 50%;
     height: 60px;
-    background-color: ${props=>props.bgColor || '#333'};
+    background-color: #E76F51;
     border-radius: 15px;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@ const Texto = styled.Text`
     font-size: 24px;
 `;
 const Btn = styled.TouchableHighlight`
-    background-color: ${props=>props.bgColor || '#333'};
+    background-color: #E76F51;
     height: 40px;
     width: 40px;
     border-radius: 25px;
@@ -129,17 +129,17 @@ function MonthScreen (props) {
             {months.map((month, k) => (
                 <MonthView key={k} width={size}>
                     <>
-                        <Btn bgColor={color} onPress={() => back()}>
+                        <Btn onPress={() => back()}>
                             <Icon name="angle-left" size={25} style={{ color: bg }}/>
                         </Btn>
                         <Item bgColor={color} style={k == selectMonth ? {    // quando o mês for selecionado
-                            backgroundColor: '#3ED3A1',
+                            backgroundColor: '#B43718',
                             width: '50%',
                             height: 60,
                         } : {}}>
                             <Texto color={bg}> {month} </Texto>
                         </Item>
-                        <Btn bgColor={color} onPress={() => next()}>
+                        <Btn onPress={() => next()}>
                             <Icon name="angle-right" size={25} style={{ color: bg }}/>
                         </Btn>
                     </>

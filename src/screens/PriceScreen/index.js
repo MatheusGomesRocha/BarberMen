@@ -152,10 +152,11 @@ function Price(props) {
         <Container bgColor={bg}>
             <Header>
                 <HeaderLeft> Cortes </HeaderLeft>
-                <HeaderButton onPress={() => goToDate()}>
-                    <HeaderRight color={name?'#000':'#434343'}> Seguinte <Icon name="angle-right" size={18} /> </HeaderRight>
+                <HeaderButton underlayColor="transparent" onPress={() => goToDate()}>
+                    <HeaderRight color={name?'#000':'#434343'}> Seguinte <Icon name="angle-right" size={20} /> </HeaderRight>
                 </HeaderButton>
             </Header>
+
             <Scroll decelerationRate="fast">
                 
                 <TextView>

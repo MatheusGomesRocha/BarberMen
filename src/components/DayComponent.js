@@ -31,7 +31,7 @@ const Item = styled.View`
     align-items: center;
 `;
 const Texto = styled.Text`
-    color: ${props=>props.color};
+    color: #fff;
 `;
 
 
@@ -47,15 +47,6 @@ function DayScreen(props) {
     const dayRef = useRef();  // Pega referência do dia
     const [selectDay, setSelectDay] = useState(props.selectDay);
     const choseDay = useSelector(state=>state.user.day);    
-    const dark = useSelector(state=>state.user.dark);
-
-    let bg = '#fff';
-    let color = '#333';
-    if(dark) {
-        bg = '#333';
-        color = '#fff';
-    }
-
     
     function handleScrollEnd(e) {   
         let posX = e.nativeEvent.contentOffset.x;       // Pegando o valor X horizontal do Scroll
@@ -110,8 +101,8 @@ function DayScreen(props) {
         >
             {days.map((d, k) => (     // Mapenado os meses "m" e uma Key para o Button "k"
                 <DayButton key={k} width={dayWPx} underlayColor="transparent" onPress={() => setDayToDispatch(d)}>
-                <Item bgColor={choseDay == d ? '#3ED3A1': '#333' && color}>
-                    <Texto color={bg}> {d} </Texto>
+                <Item bgColor={choseDay == d ? '#B43718': '#E76F51'}>
+                    <Texto> {d} </Texto>
                 </Item>
             </DayButton>
             ))}

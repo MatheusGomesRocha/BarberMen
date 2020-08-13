@@ -14,6 +14,13 @@ import {
 } from '../../components/TextView';
 
 import {
+    Header,
+    HeaderLeft,
+    HeaderRight,
+    HeaderButton,
+} from '../../components/HeaderComponent';
+
+import {
     Container,  // View de toda a tela
 
     Scroll,     // View que realiza o scroll
@@ -38,34 +45,22 @@ export default () => {
         }
     }
 
-    const dark = useSelector(state=>state.user.dark);
-
-    let bg = '#fff';
-    let color = '#333';
-    let small = 'rgba(0, 0, 0, 0.5)'
-    if(dark) {
-        bg = '#333';
-        color = '#fff';
-        small = 'rgba(255, 255, 255, 0.5)'
-    }
 
     return (
-        <Container bgColor={bg}>
-            <BtnComponent underlayColor={day?'#3AA3A1':'#bbb'} onPress={() => goToHour()} width="60px" height="60px" radius="100px" bgColor={day?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
-                <Icon name="arrow-right" size={25} color="#333"/>
-            </BtnComponent>
+        <Container>
+            <Header>
+                <HeaderButton underlayColor="transparent"  onPress={() => navigation.goBack()}>
+                    <HeaderLeft>  <Icon name="angle-left" size={22} /> Dia/Mês </HeaderLeft>
+                </HeaderButton>
+                <HeaderButton underlayColor="transparent" onPress={() => goToHour()}>
+                    <HeaderRight color={selectDay?'#000':'#434343'}> Seguinte <Icon name="angle-right" size={18} /> </HeaderRight>
+                </HeaderButton>
+            </Header>
 
             <Scroll>
-
-                <SvgView>
-                    <Svg width={280} height={260} />
-                </SvgView>
-
                 <TextView>
-                    <BigText color={color}> Escolha o dia </BigText>
-                    <SmallText color={small}> 
-                        Veja os dias disponíveis e posteriormente selecione horário que 
-                        você prefere para ser atendido
+                    <SmallText color="#434343"> 
+                        Agende o Dia/Mês que deseja ser atendido
                     </SmallText>
                 </TextView>
 

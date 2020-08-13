@@ -14,6 +14,13 @@ import {
 } from '../../components/TextView';
 
 import {
+    Header,
+    HeaderLeft,
+    HeaderRight,
+    HeaderButton,
+} from '../../components/HeaderComponent';
+
+import {
     Container,  // View Toda a tela
 
     Scroll,     // View de scroll
@@ -27,7 +34,7 @@ import {
 } from './style';
 
 const screenSize = Math.round(Dimensions.get('window').width);  // Pegando tamanho da tela do celula
-let size4 = Math.round(screenSize / 4) + "px";   // Usar para passar a prop de tamanho do DayButton pois precisa dizer a forma de medição de tamanho
+let size4 = Math.round(screenSize / 3) + "px";   // Usar para passar a prop de tamanho do DayButton pois precisa dizer a forma de medição de tamanho
 
 function HourScreen(props) {
     const navigation = useNavigation();
@@ -70,17 +77,6 @@ function HourScreen(props) {
             alert('Você precisar selecionar um horário');
         }
     }
-
-    let hourFire = [];
-
-    {hours.map((h) => {
-        hourFirebase.map((hDB) => {
-            if(h.hour.includes(hDB.hour)) {
-                hourFire = h.hour;
-            }
-        })
-    })}
-    
     
     useEffect(() => {
         const subscriber = firestore()
@@ -101,39 +97,29 @@ function HourScreen(props) {
         // Unsubscribe from events when no longer in use
         return () => subscriber();
       }, []);
-  
-    const dark = useSelector(state=>state.user.dark);
-    let bg = '#fff';
-    let color = '#333';
-    let small = 'rgba(0, 0, 0, 0.5)';
-    if(dark) {
-        bg = '#333';
-        color = '#fff';
-        small = 'rgba(255, 255, 255, 0.5)';
-    }
-
 
     return(
-        <Container bgColor={bg}>
-            <BtnComponent underlayColor={hour?'#3AA3A1':'#bbb'} onPress={() => finishChoose()} width="60px" height="60px" radius="100px" bgColor={hour?'#3ED3A1':'#ccc'} style={{zIndex: 9999, position: 'absolute', right: 15, top: 15}}>
-                <Icon name="arrow-right" size={25} color="#333"/>
-            </BtnComponent>
+        <Container>
+            <Header>
+                <HeaderButton underlayColor="transparent"  onPress={() => navigation.goBack()}>
+                    <HeaderLeft>  <Icon name="angle-left" size={22} /> Horário </HeaderLeft>
+                </HeaderButton>
+                <HeaderButton underlayColor="transparent" onPress={() => finishChoose()}>
+                    <HeaderRight color={hour?'#000':'#434343'}> Seguinte <Icon name="angle-right" size={18} /> </HeaderRight>
+                </HeaderButton>
+            </Header>
+
             <Scroll>
 
-            <SvgView>
-                <Svg width={280} height={260}/>
-            </SvgView>
-
             <TextView>
-                <BigText color={color}> Escolha o horário </BigText>
-                <SmallText color={small}> {hourFire} Finalize o  atendimento escolhendo o melhor horário para você (os horários em vermelho, estão ocupados) </SmallText>
+                <SmallText color="#434343">  Por último escolha o horário </SmallText>
             </TextView>
 
             <HourView>
                 {hours.map((h, k) => (
                     <HourItem key={k} width={size4}>
-                        <BtnComponent onPress={() => setTime(h.hour)} underlayColor="#3ED3A1" bgColor={hour == h.hour?'#3ED3A1': '#333' && color} width="95%"  radius="100px">
-                            <HourText color={hour==h.hour?'#333': '#fff' && bg}> {h.hour} </HourText>
+                        <BtnComponent onPress={() => setTime(h.hour)} bgColor={hour == h.hour?'#B43718': '#E76F51'} width="95%"  radius="100px">
+                            <HourText color="#fff"> {h.hour} </HourText>
                         </BtnComponent>
                     </HourItem>   
                                          

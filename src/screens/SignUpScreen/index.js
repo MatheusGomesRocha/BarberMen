@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import BtnComponent from '../../components/BtnComponent';
-import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
+import Svg from '../../assets/svg/user_pic.svg';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
