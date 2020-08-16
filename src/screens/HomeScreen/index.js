@@ -27,6 +27,8 @@ import {
     CommentsTitle,  // View onde fica todo o título da sessão de comentários
     TitleText,      // Texto com o título da sessão de comentários
 
+    Flat,
+     
     CommentsView,   // View com todos os comentários em um array
     Comments,       // View dentro do array que retorna para cada comentário
     CommentsHeader, // View com avatar e nome do usuário
@@ -163,7 +165,6 @@ function AddComment() {
                     <Icon name="arrow-right" color='#434343' size={22} style={{marginTop: 7}} />
                 </CommentsTitle>
 
-            
                 <CommentsView>
                     {comments.map((c, k) => (
                         <Comments key={k}>

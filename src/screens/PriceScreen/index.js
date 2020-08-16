@@ -7,6 +7,7 @@ import SvgMoney from '../../assets/svg/undraw_wallet_aym5.svg';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
+import Cutlist from '../../FlatListsComponents/cuts';
 
 import {
     TextView,    // View de bem-vindo
@@ -19,12 +20,12 @@ import {
     HeaderLeft,
     HeaderRight,
     HeaderButton,
+    Teste
 } from '../../components/HeaderComponent';
 
 import { 
     Pressable,
     Alert,
-    TouchableHighlight,
 } from 'react-native';
 
 import { 
@@ -33,6 +34,8 @@ import {
     Scroll,         // View que realiza scroll
     
     SvgView,        // View que fica o SVG
+
+    Flat,
 
     TableView,      // View onde ficam todos os items 
     ItemView,       // View onde fica 1 item (TEMPORÁRIO. PEGAR DADOS QUE VÃO VIR DO FIREBASE DEPOIS DE SEREM CADASTRADOS PELO O USUÁRIO E PASSAR PARA UM BUTTON)
@@ -47,20 +50,11 @@ function Price(props) {
     const user = useSelector(state => state.user.email);
     const dark = useSelector(state => state.user.dark);
     const [cuts, setCuts] = useState([]);
-    const [isVisible, setIsVisible] = useState(false);
     const userInfo = auth().currentUser;
     const [userName, setUserName] = useState();
+    const [isVisible, setIsVisible] = useState(false);
 
-    function setCutAndDuration(cut, duration) {        // Função que seta um corte para o redux
-        if(user) {
-            props.setCut(cut);
-            props.setDuration(duration);
-        } else {
-            alert('Você precisa está logado para realizar essa ação');
-        }
-    }
-
-    function goToDate() {       // Função ao apertar no botão grande
+    function goToDate() {       // Função ao apertar no botão Seguinte
         if(!user) {
             alert('Você precisa estar logado para realizar essa ação');
         } else if(!name) {
@@ -110,12 +104,6 @@ function Price(props) {
         color = "#fff";                             // Cor para textos e bordas do input
       }
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsVisible(true);
-        }, 3000)
-    }, [])
-
     function AddFavorites(name, id) {
         firestore()
         .collection('favorites')
@@ -148,52 +136,80 @@ function Price(props) {
         );
     }
 
+
+    /* TODA ESSA PARTE COMENTADA FOI ENVIADA PARA UM COMPONENT DE LISTA PARA FACILITAR NA LEITURA DO CÓDIGO */
+
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setIsVisible(true);
+    //     }, 3000)
+    // }, [])
+
+
+    // function setCutAndDuration(cut, duration) {        // Função que seta um corte para o redux
+    //     if(user) {
+    //         props.setCut(cut);
+    //         props.setDuration(duration);
+    //     } else {
+    //         alert('Você precisa está logado para realizar essa ação');
+    //     }
+    // }
+
+
+    // function PriceComponents(props) {
+    //     return(
+    //         <ShimmerPlaceholder
+    //         style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10, margiLeft: 20, marginRight: 20}}
+    //         autoRun={true}
+    //         visible={isVisible}
+    //         >
+    //             <ItemView>
+                    
+    //             <Pressable onPress={() => setCutAndDuration(props.data.name, props.data.duration)} onLongPress={() => customAlert(props.data.name, props.data.id)}
+    //             style={{
+    //                     flexDirection:'row', backgroundColor: name == props.data.name?'#B43718':'#E76F51', 
+    //                     color: '#fff', height: 60, width: '100%', borderRadius: 100, justifyContent: 'center',
+    //                     alignItems: 'center'
+    //                 }}>
+    //                     <>
+    //                     <ItemText color='#fff'> {props.data.name} </ItemText>
+    //                     <PriceText color='#fff'> R$ {props.data.price} </PriceText>
+    //                     </>
+    //             </Pressable>
+    //             </ItemView>
+    //         </ShimmerPlaceholder>               
+    //     );
+    // }
+
+
     return (
         <Container bgColor={bg}>
+
             <Header>
                 <HeaderLeft> Cortes </HeaderLeft>
                 <HeaderButton underlayColor="transparent" onPress={() => goToDate()}>
                     <HeaderRight color={name?'#000':'#434343'}> Seguinte <Icon name="angle-right" size={20} /> </HeaderRight>
                 </HeaderButton>
             </Header>
-
-            <Scroll decelerationRate="fast">
+            
                 
-                <TextView>
-                    <SmallText color="#434343"> 
-                        Escolha o serviço que deseja
-                    </SmallText>
-                </TextView>
+                {/** FlatList que trás o component com o array */}
+                <Flat
+                    ListHeaderComponent={
+                        <>
+                            <TextView style={{marginBottom: 20}}>
+                                <SmallText color="#434343"> 
+                                    Escolha o serviço que deseja
+                                </SmallText>
+                            </TextView>
+                        </>
+                    }
+                    data={cuts}
+                    renderItem={({item}) => <Cutlist data={item} />}
+                    keyExtractor={(item) => item.id}
+                />
 
-                
-                {/** Depois cadastrar esses dados em um bd e trazer pra cá */}
-                <TableView>
-                    {cuts.map((c, k) => (
-                        <ShimmerPlaceholder
-                        style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10, margiLeft: 20, marginRight: 20}}
-                        autoRun={true}
-                        visible={isVisible}
-                        key={k}
-                        >
-                            <ItemView>
-                                
-                            <Pressable onPress={() => setCutAndDuration(c.name, c.duration)} onLongPress={() => customAlert(c.name, c.id)}
-                            style={{
-                                    flexDirection:'row', backgroundColor: name == c.name?'#B43718':'#E76F51', 
-                                    color: '#fff', height: 60, width: '100%', borderRadius: 100, justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}>
-                                    <>
-                                    <ItemText color='#fff'> {c.name} </ItemText>
-                                    <PriceText color='#fff'> R$ {c.price} </PriceText>
-                                    </>
-                            </Pressable>
-                            </ItemView>
-                        </ShimmerPlaceholder>
-                    ))}                   
-                </TableView>
-
-            </Scroll>
         </Container>
     );
 }

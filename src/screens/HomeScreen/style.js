@@ -49,6 +49,8 @@ export const TitleText = styled.Text`
     color: #434343;
 `;
 
+export const Flat = styled.FlatList`
+`;
 
 // + View com todos os comentários em um array
 // + View dentro do array que retorna para cada comentário

@@ -20,6 +20,10 @@ export const SvgView = styled.View`
 `;
 
 
+export const Flat = styled.FlatList`
+    margin: 0 20px 0 20px;
+`;
+
 // + View onde ficam todos os items 
 // + View onde fica 1 item (TEMPORÁRIO. PEGAR DADOS QUE VÃO VIR DO FIREBASE DEPOIS DE SEREM CADASTRADOS PELO O USUÁRIO E PASSAR PARA UM BUTTON)
 // + Texto que fica o nome do item 
