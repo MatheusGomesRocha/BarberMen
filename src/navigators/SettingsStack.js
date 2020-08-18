@@ -13,12 +13,12 @@ const SettingsStack = createStackNavigator();
 export default () => {
     return (
         <SettingsStack.Navigator>
-            <SettingsStack.Screen name="default" component={SettingsScreen} />
-            <SettingsStack.Screen name="profile" component={ProfileScreen} />
-            <SettingsStack.Screen name="employee" component={EmployeesScreen} />
-            <SettingsStack.Screen name="ask" component={AsksScreen} />
-            <SettingsStack.Screen name="addcuts" component={AddCutsScreen} />
-            <SettingsStack.Screen name="editcut" component={EditCutScreen} />
+            <SettingsStack.Screen name="default" component={SettingsScreen} options={{ headerTitle: null, headerTransparent: true }}/>
+            <SettingsStack.Screen name="profile" component={ProfileScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
+            <SettingsStack.Screen name="employee" component={EmployeesScreen} options={{ headerTitle: null, headerTransparent: true }}/>
+            <SettingsStack.Screen name="ask" component={AsksScreen} options={{ headerTitle: null, headerTransparent: true }}/>
+            <SettingsStack.Screen name="addcuts" component={AddCutsScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
+            <SettingsStack.Screen name="editcut" component={EditCutScreen} options={{ headerTitle: null, headerTransparent: true }}/>
         </SettingsStack.Navigator>
     );
 }

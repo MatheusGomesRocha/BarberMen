@@ -7,12 +7,23 @@ import firestore from '@react-native-firebase/firestore';
 import uuid from 'uuid/v4';
 import ModalComponent from '../../components/ModalComponent';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Cutlist from '../../FlatListsComponents/CutManage';
 
 import { Pressable, Alert } from 'react-native';
 import {
     TextView,    // View de bem-vindo
     SmallText,        // Texto grande de Bem-Vindo
 } from '../../components/TextView';
+
+import {
+    Header,
+    HeaderLeft,
+    HeaderRight,
+    HeaderButton,
+    Teste
+} from '../../components/HeaderComponent';
+
 
 import {
     Container,
@@ -28,6 +39,8 @@ import {
 
     CutsView,
     ItemView,
+
+    Flat
 } from './style';
 
 export default () => {
@@ -40,7 +53,9 @@ export default () => {
     const [price, setPrice] = useState('');
     const [isVisible, setIsVisible] = useState(false);
 
+    const cutId = useSelector(state => state.user.cut);
     const dark = useSelector(state => state.user.dark);
+
     function addCut() {
         let id = uuid();
 
@@ -79,7 +94,7 @@ export default () => {
         })
     }
 
-    function ChooseWhat(name, id, duration, price) {
+    function ChooseWhat(id) {
         Alert.alert(
             name,
             "O que você deseja fazer?",
@@ -87,10 +102,6 @@ export default () => {
               {
                 text: "Cancelar",
                 style: "cancel"
-              },
-              {
-                text: "Editar",
-                onPress: () => navigation.navigate('editcut', {name, id, duration, price}),
               },
               { text: "Deletar", onPress: () => deleteCut(id) }
             ],
@@ -134,11 +145,53 @@ export default () => {
         placeColor = 'rgba(255, 255, 255, 0.5)';
     }
 
+    function CutList2(props) {
+        return(
+            <ShimmerPlaceholder
+            style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10, margiLeft: 20, marginRight: 20}}
+            autoRun={true}
+            visible={isVisible}
+            >
+                <ItemView>
+                    
+                <Pressable onPress={() => setCutAndDuration(props.data.name, props.data.duration)} onLongPress={() => customAlert(props.data.name, props.data.id)}
+                style={{
+                        flexDirection:'row', backgroundColor: name == props.data.name?'#B43718':'#E76F51', 
+                        color: '#fff', height: 60, width: '100%', borderRadius: 100, justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        <>
+                        <ItemText color='#fff'> {props.data.name} </ItemText>
+                        <PriceText color='#fff'> R$ {props.data.price} </PriceText>
+                        </>
+                </Pressable>
+                </ItemView>
+        </ShimmerPlaceholder>    
+        );
+    }
+
     return(
         <Container bgColor={bg}>
-            <Scroll>
+            {/* <BtnComponent bgColor="#E76F51" width="80px" height="80px" radius="100px"
+                style={{
+                    position: 'absolute',
+                    bottom: 15,
+                    right: 15,
+                    zIndex: 999,
+                }}
+                onPress={() => alert('olá mundo')}
+            >
+                <BtnText> <Icon name="plus" size={40}/> </BtnText>
+            </BtnComponent> */}
 
-                <Texto color={color}> Adicione novos cortes </Texto>
+            <Header>
+                <HeaderLeft> <Icon name="angle-left" size={22} /> Gerenciar </HeaderLeft>
+                <HeaderButton underlayColor="transparent" onPress={() => ChooseWhat(cutId)}>
+                    <HeaderRight style={{marginRight: 10}} color={cutId?'#000':'#43434380'}> <Icon name="trash" size={35} /> </HeaderRight>
+                </HeaderButton>
+            </Header>
+
+                {/* <Texto color={color}> Adicione novos cortes </Texto>
 
                 <DurationView>
                     <Input color={color} bdColor={color} placeholderTextColor={placeColor} placeholder="nome do corte/serviço (infantil, padrão + barba)" onChangeText={n=>setName(n)} />
@@ -149,13 +202,11 @@ export default () => {
                     <BtnComponent mTop="20px" onPress={() => addCut()} bgColor={color} width="90%" radius="100px">
                         <BtnText color={bg}> Finalizar </BtnText>
                     </BtnComponent>
-                </DurationView>    
+                </DurationView>     */}
 
-                <CutsView>
 
-                    <Texto color="rgba(0, 0, 0, 0.5)" style={{fontSize: 18}}> Aqui estão os cortes que você já adicionou (aperte no corte para editar, e segure para deletar) </Texto>
                     
-                    {cuts.map((c, k) => (
+                    {/* {cuts.map((c, k) => (
                         <ShimmerPlaceholder
                         style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10}}
                         autoRun={true}
@@ -174,9 +225,20 @@ export default () => {
                             </Pressable>
                         </ItemView>
                         </ShimmerPlaceholder>
-                    ))}
-                </CutsView>
-            </Scroll>
+                    ))} */}
+
+                    <Flat
+                    ListHeaderComponent={
+                        <>
+                            <Texto> 
+                                Clique no serviço, e para excluir clique no ícone no canto superior direito
+                            </Texto>
+                        </>
+                    }
+                    data={cuts}
+                    renderItem={({item}) => <Cutlist data={item} />}
+                    keyExtractor={(item) => item.id}
+                />
         </Container>
     );
 }

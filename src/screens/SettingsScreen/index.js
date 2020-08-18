@@ -71,7 +71,7 @@ function SettingsScreen(props) {
         <Container bgColor={bg}>
             <Scroll>
 
-                <UserView bgColor={bg}> 
+                <UserView> 
                     <SvgPic width={70} height={70}/>
                     {!user?
                     <Texto color={color}> Faça o login </Texto> 
@@ -84,7 +84,7 @@ function SettingsScreen(props) {
                         {isAdmin?
                             <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('addcuts')}>
                                 <>
-                                    <DefaultText color={color}> Adiconar novos cortes </DefaultText> 
+                                    <DefaultText color={color}> Gerenciar serviços </DefaultText> 
                                     <Icon name="angle-right" size={30} color={color}/>
                                 </>
                             </SettingsButton>

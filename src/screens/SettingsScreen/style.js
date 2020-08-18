@@ -15,7 +15,7 @@ export const Scroll = styled.ScrollView``;
 // + View com foto do usuário
 // + Texto abaixo da foto do usuário
 export const UserView = styled.View`
-    background-color: ${props=>props.bgColor || '#fff'};
+    background-color: #E76F51;
     height: 180px;
     width: 100%;
     align-items: center;

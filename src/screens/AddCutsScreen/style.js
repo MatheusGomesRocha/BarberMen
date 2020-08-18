@@ -10,12 +10,14 @@ export const Scroll = styled.ScrollView`
 `;
 
 export const Texto = styled.Text`
-    color: ${props=>props.color || '#fff'};
-    font-size: 22px;
-    margin: 20px 25px 20px 25px;
+    color: #434343;
+    font-size: 18px;
+    margin: 20px 25px 50px 25px;
     text-align: center;
 `;
 
+export const Flat = styled.FlatList`
+`;
 
 export const DurationView = styled.View`
     width: 100%;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -6,12 +6,33 @@ import HomeStack from './HomeStack';
 import PriceStack from './PriceStack';
 import SettingsStack from './SettingsStack';
 import FavoritesScreen from '../screens/FavoritesScreen';
+import AddCutsScreen from '../screens/AddCutsScreen';
+import {useSelector} from 'react-redux';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const AppTab = createBottomTabNavigator();
 
 // Cor amarelo queimado FFc491
 
 export default () => {
+    const user = useSelector(state => state.user.email);
+    const [isAdmin, setIsAdmin] = useState(false)
+
+    const userInfo = auth().currentUser;    // Pegando usuário logado
+
+    if(user) {      // Função que verifica se existe algum usuario, e se ele é admin
+        firestore()
+        .collection('users')
+        .where('id', '==', userInfo.uid)
+        .get()
+        .then(querySnapshot => {    
+            querySnapshot.forEach(documentSnapshot => {
+                setIsAdmin(documentSnapshot.data().admin)
+            });
+        });
+    }
+
     return (
         <AppTab.Navigator
         tabBarOptions={{ 
@@ -43,6 +64,9 @@ export default () => {
                     case 'cut':
                         icon = "cut";
                     break;
+                    case 'manage':
+                        icon = 'tasks';
+                    break;
                     case 'favorites':
                         if(focused) {
                             icon = "heart";
@@ -62,7 +86,10 @@ export default () => {
         })} 
         >
             <AppTab.Screen name="home" component={HomeStack} options={{ tabBarLabel: 'Início'}}/>
-            <AppTab.Screen name="cut" component={PriceStack} options={{ tabBarLabel: 'Cortes'}}/>
+            {isAdmin?
+                <AppTab.Screen name="manage" component={AddCutsScreen} options={{ tabBarLabel: 'Gerenciar'}}/>
+                :<AppTab.Screen name="cut" component={PriceStack} options={{ tabBarLabel: 'Cortes'}}/>
+            }
             <AppTab.Screen name="favorites" component={FavoritesScreen} options={{ tabBarLabel: 'Favoritos'}}/>
             <AppTab.Screen name="settings" component={SettingsStack} options={{ tabBarLabel: 'Ajustes'}}/>
         </AppTab.Navigator>

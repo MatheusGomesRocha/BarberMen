@@ -10,6 +10,7 @@ const initialState = {
     duration: '',
     favorites: [],
     dark:  false,
+    deleteCut: '',
 }
 
 export default (state = initialState, action) => {
@@ -29,6 +30,7 @@ export default (state = initialState, action) => {
         case 'SET_CUT':
             return {...state, cut: action.payload.cut};
         break;
+        
         case 'SET_DURATION':
             return {...state, duration: action.payload.duration};
         break;
@@ -37,6 +39,9 @@ export default (state = initialState, action) => {
         break;
         case 'SIGN_OUT':
             return initialState;
+        break;
+        case 'DELETE_CUT':
+            return {...state, deleteCut: action.payload.deleteCut};
         break;
     }
     return state;

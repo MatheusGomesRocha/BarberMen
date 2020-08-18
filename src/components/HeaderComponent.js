@@ -11,6 +11,7 @@ export const Header = styled.View`
     align-items: center;
     background-color: #E76F51;
     height: 80px;
+    
 `;
 export const HeaderLeft = styled.Text`
     color: #fff;
