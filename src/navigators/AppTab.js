@@ -6,8 +6,8 @@ import HomeStack from './HomeStack';
 import PriceStack from './PriceStack';
 import SettingsStack from './SettingsStack';
 import FavoritesScreen from '../screens/FavoritesScreen';
-import AddCutsScreen from '../screens/AddCutsScreen';
-import EditCutScreen from '../screens/EditCutScreen';
+import ManageCutScreen from '../screens/ManageCutScreen';
+import AddCutScreen from '../screens/AddCutScreen';
 
 import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
@@ -92,11 +92,11 @@ export default () => {
         >
             <AppTab.Screen name="home" component={HomeStack} options={{ tabBarLabel: 'Início'}}/>
             {isAdmin?
-                <AppTab.Screen name="manage" component={AddCutsScreen} options={{ tabBarLabel: 'Gerenciar'}}/>
+                <AppTab.Screen name="manage" component={ManageCutScreen} options={{ tabBarLabel: 'Gerenciar'}}/>
                 :<AppTab.Screen name="cut" component={PriceStack} options={{ tabBarLabel: 'Cortes'}}/>
             }
             {isAdmin?
-                <AppTab.Screen name="addcut" component={EditCutScreen} options={{ tabBarLabel: 'Adicionar'}}/>
+                <AppTab.Screen name="addcut" component={AddCutScreen} options={{ tabBarLabel: 'Adicionar'}}/>
                 :<AppTab.Screen name="favorites" component={FavoritesScreen} options={{ tabBarLabel: 'Favoritos'}}/>
             }    
             <AppTab.Screen name="settings" component={SettingsStack} options={{ tabBarLabel: 'Ajustes'}}/>

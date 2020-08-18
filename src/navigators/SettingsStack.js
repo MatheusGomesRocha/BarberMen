@@ -4,8 +4,6 @@ import SettingsScreen from '../screens/SettingsScreen';     // Tela principal de
 import ProfileScreen from '../screens/ProfileScreen';       // Tela de ver perfil
 import EmployeesScreen from '../screens/EmployeesScreen';   // Tela de ver funcionários
 import AsksScreen from '../screens/AsksScreen';             // Tela de ver perguntas frenquentes
-import AddCutsScreen from '../screens/AddCutsScreen';
-import EditCutScreen from '../screens/EditCutScreen';
 
 const SettingsStack = createStackNavigator();
 
@@ -17,8 +15,6 @@ export default () => {
             <SettingsStack.Screen name="profile" component={ProfileScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
             <SettingsStack.Screen name="employee" component={EmployeesScreen} options={{ headerTitle: null, headerTransparent: true }}/>
             <SettingsStack.Screen name="ask" component={AsksScreen} options={{ headerTitle: null, headerTransparent: true }}/>
-            <SettingsStack.Screen name="addcuts" component={AddCutsScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
-            <SettingsStack.Screen name="editcut" component={EditCutScreen} options={{ headerTitle: null, headerTransparent: true }}/>
         </SettingsStack.Navigator>
     );
 }
