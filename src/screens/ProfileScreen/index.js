@@ -7,6 +7,14 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import ImagePicker from 'react-native-image-picker';
 import Axios from 'axios';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import {
+    Header,
+    HeaderLeft,
+    HeaderRight,
+    HeaderButton,
+} from '../../components/HeaderComponent';
 
 import {
     Container,      // View toda a tela
@@ -140,7 +148,14 @@ export default () => {
     }
     
     return (
-        <Container bgColor={bg}>                
+        <Container bgColor={bg}>  
+
+            <Header>
+                <HeaderButton underlayColor="transparent"  onPress={() => navigation.goBack()}>
+                    <HeaderLeft>  <Icon name="angle-left" size={22} />  Horário </HeaderLeft>
+                </HeaderButton>
+            </Header>  
+
                 <Scroll>
 
                     <PicView>
@@ -148,7 +163,7 @@ export default () => {
                             avatar ? avatar 
                             : require('../../assets/img/perfil1.jpg') 
                         } />
-                        <BtnComponent onPress={() => ImagePicker.showImagePicker({}, ImageAvatar)} bgColor={color} width="50%" height="40px" mTop="20px" radius="20px">
+                        <BtnComponent onPress={() => ImagePicker.showImagePicker({}, ImageAvatar)} bgColor="#E76F51" width="50%" height="40px" mTop="20px" radius="20px">
                             <Texto color={bg}> Editar imagem </Texto>
                         </BtnComponent>
                     </PicView>
@@ -164,7 +179,7 @@ export default () => {
                     </InputView>
                 
                     <BtnView>
-                        <BtnComponent onPress={UpdateData} width="80%" radius="100px" height="50px" bgColor={color}>
+                        <BtnComponent onPress={UpdateData} width="80%" radius="100px" height="50px" bgColor="#E76F51">
                             <BtnText color={bg}> Salvar </BtnText> 
                         </BtnComponent>
                     </BtnView>
