@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.TouchableOpacity`
+export default styled.TouchableHighlight`
     background-color: ${props=>props.bgColor};
     width: ${props=>props.width};
     height: ${props=>props.height || '60px'};

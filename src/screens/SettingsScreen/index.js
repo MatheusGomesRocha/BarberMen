@@ -80,15 +80,6 @@ function SettingsScreen(props) {
 
                 <SettingsView>
                     <>
-
-                        {isAdmin?
-                            <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('addcuts')}>
-                                <>
-                                    <DefaultText color={color}> Gerenciar serviços </DefaultText> 
-                                    <Icon name="angle-right" size={30} color={color}/>
-                                </>
-                            </SettingsButton>
-                        :null}
                         
                         {/* Aparecer apenas se estiver logado */}
                         {user?

@@ -4,7 +4,6 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import uuid from 'uuid/v4';
 import ModalComponent from '../../components/ModalComponent';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -55,34 +54,6 @@ export default () => {
 
     const cutId = useSelector(state => state.user.cut);
     const dark = useSelector(state => state.user.dark);
-
-    function addCut() {
-        let id = uuid();
-
-        if(!name || !duration || !price) {
-            alert('Todos os campos são obrigatórios');
-        } else {
-            firestore()
-            .collection('cuts')
-            .doc(id)
-            .set({
-                id: id,
-                name: name,
-                duration: duration,
-                price: price,
-            }).then(() => {
-                navigation.reset({
-                    index: 0,
-                    routes: [
-                        { name: 'addcuts' },
-                    ]
-                })
-                alert('Corte/Serviço adicionado com sucesso');
-            }).catch(error => {
-                alert('Algum erro aconteceu, tente novamente mais tarde');
-            })
-        }
-    }
 
     function deleteCut(id) {
         firestore()
@@ -143,31 +114,6 @@ export default () => {
         bg = '#333';
         color = '#fff';
         placeColor = 'rgba(255, 255, 255, 0.5)';
-    }
-
-    function CutList2(props) {
-        return(
-            <ShimmerPlaceholder
-            style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10, margiLeft: 20, marginRight: 20}}
-            autoRun={true}
-            visible={isVisible}
-            >
-                <ItemView>
-                    
-                <Pressable onPress={() => setCutAndDuration(props.data.name, props.data.duration)} onLongPress={() => customAlert(props.data.name, props.data.id)}
-                style={{
-                        flexDirection:'row', backgroundColor: name == props.data.name?'#B43718':'#E76F51', 
-                        color: '#fff', height: 60, width: '100%', borderRadius: 100, justifyContent: 'center',
-                        alignItems: 'center'
-                    }}>
-                        <>
-                        <ItemText color='#fff'> {props.data.name} </ItemText>
-                        <PriceText color='#fff'> R$ {props.data.price} </PriceText>
-                        </>
-                </Pressable>
-                </ItemView>
-        </ShimmerPlaceholder>    
-        );
     }
 
     return(

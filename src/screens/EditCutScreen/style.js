@@ -5,17 +5,26 @@ export const Container = styled.SafeAreaView`
     background-color: #fff;
 `;
 
+export const Scroll = styled.ScrollView``;
+
+
+// View que ficou o SVG
+export const SvgView = styled.View`
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    margin-top: 20px;
+`;
+
 export const EditView = styled.View`
     width: 100%;
     align-items: center;
-    justify-content: center;
-    margin-top: 50px;
 `;
 
 
 export const InputView = styled.View`
     width: 90%;
-    margin-top: 30px;
+    margin-top: 20px;
 `;
 export const InputText = styled.Text`
     font-size: 16px;
@@ -30,5 +39,5 @@ export const EditInput = styled.TextInput`
 
 export const BtnText = styled.Text`
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
 `;
