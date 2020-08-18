@@ -28,13 +28,12 @@ function SignUpScreen(props) {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [cpf, setCpf] = useState('');
     const [contact, setContact] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
     function SignUp  (e, p) {
-        if(!name || !email || !cpf || !contact || !password || !confirmPassword) {
+        if(!name || !email || !contact || !password || !confirmPassword) {
             alert('Todos os campos são obrigatiórios')
         } else if(password != confirmPassword) {
             alert('As senhas devem coincidir');
