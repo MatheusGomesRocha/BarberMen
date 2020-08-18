@@ -7,6 +7,8 @@ import PriceStack from './PriceStack';
 import SettingsStack from './SettingsStack';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import AddCutsScreen from '../screens/AddCutsScreen';
+import EditCutScreen from '../screens/EditCutScreen';
+
 import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -67,6 +69,9 @@ export default () => {
                     case 'manage':
                         icon = 'tasks';
                     break;
+                    case 'addcut':
+                        icon = 'plus';
+                    break;
                     case 'favorites':
                         if(focused) {
                             icon = "heart";
@@ -90,7 +95,10 @@ export default () => {
                 <AppTab.Screen name="manage" component={AddCutsScreen} options={{ tabBarLabel: 'Gerenciar'}}/>
                 :<AppTab.Screen name="cut" component={PriceStack} options={{ tabBarLabel: 'Cortes'}}/>
             }
-            <AppTab.Screen name="favorites" component={FavoritesScreen} options={{ tabBarLabel: 'Favoritos'}}/>
+            {isAdmin?
+                <AppTab.Screen name="addcut" component={EditCutScreen} options={{ tabBarLabel: 'Adicionar'}}/>
+                :<AppTab.Screen name="favorites" component={FavoritesScreen} options={{ tabBarLabel: 'Favoritos'}}/>
+            }    
             <AppTab.Screen name="settings" component={SettingsStack} options={{ tabBarLabel: 'Ajustes'}}/>
         </AppTab.Navigator>
     );

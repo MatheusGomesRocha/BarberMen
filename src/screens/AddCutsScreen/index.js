@@ -172,24 +172,24 @@ export default () => {
 
     return(
         <Container bgColor={bg}>
-            {/* <BtnComponent bgColor="#E76F51" width="80px" height="80px" radius="100px"
+            <BtnComponent bgColor="#E76F51" width="80px" height="80px" radius="100px"
                 style={{
                     position: 'absolute',
                     bottom: 15,
                     right: 15,
                     zIndex: 999,
                 }}
-                onPress={() => alert('olá mundo')}
+                onPress={() => ChooseWhat(cutId)}
             >
-                <BtnText> <Icon name="plus" size={40}/> </BtnText>
-            </BtnComponent> */}
+                <BtnText> <Icon name="trash" size={40}/> </BtnText>
+            </BtnComponent>
 
-            <Header>
-                <HeaderLeft> <Icon name="angle-left" size={22} /> Gerenciar </HeaderLeft>
+            {/* <Header>
+                <HeaderLeft> Gerenciar </HeaderLeft>
                 <HeaderButton underlayColor="transparent" onPress={() => ChooseWhat(cutId)}>
                     <HeaderRight style={{marginRight: 10}} color={cutId?'#000':'#43434380'}> <Icon name="trash" size={35} /> </HeaderRight>
                 </HeaderButton>
-            </Header>
+            </Header> */}
 
                 {/* <Texto color={color}> Adicione novos cortes </Texto>
 

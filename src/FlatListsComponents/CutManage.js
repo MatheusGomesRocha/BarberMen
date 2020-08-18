@@ -52,7 +52,7 @@ function Cuts(props) {
 
     return(
         <ShimmerPlaceholder
-            style={{height: 80, width: '100%'}}
+            style={{height: 80, width: '100%', marginBottom: 5}}
             autoRun={true}
             visible={isVisible}
             >
