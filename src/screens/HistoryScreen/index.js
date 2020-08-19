@@ -33,12 +33,12 @@ export default () => {
     return(
         <Container>
 
+            
+
+            <Scroll>
             <Header height="60px" justify="center">
                 <HeaderLeft> Histórico </HeaderLeft>
             </Header>
-
-            <Scroll>
-
             <HistoryView>
                 {history.map((h, k) => (
                     <ItemView key={k}>
