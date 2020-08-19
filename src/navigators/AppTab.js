@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeStack from './HomeStack';
 import PriceStack from './PriceStack';
 import SettingsStack from './SettingsStack';
-import FavoritesScreen from '../screens/FavoritesScreen';
+import HistoryScreen from '../screens/HistoryScreen';
 import ManageCutScreen from '../screens/ManageCutScreen';
 import AddCutScreen from '../screens/AddCutScreen';
 
@@ -72,12 +72,8 @@ export default () => {
                     case 'addcut':
                         icon = 'plus';
                     break;
-                    case 'favorites':
-                        if(focused) {
-                            icon = "heart";
-                        } else {
-                            icon = "heart-o";
-                        }
+                    case 'history':
+                        icon = 'clock-o';
                     break;
                     case 'settings':
                         icon = "cog";
@@ -97,7 +93,7 @@ export default () => {
             }
             {isAdmin?
                 <AppTab.Screen name="addcut" component={AddCutScreen} options={{ tabBarLabel: 'Adicionar'}}/>
-                :<AppTab.Screen name="favorites" component={FavoritesScreen} options={{ tabBarLabel: 'Favoritos'}}/>
+                :<AppTab.Screen name="history" component={HistoryScreen} options={{ tabBarLabel: 'Histórico'}}/>
             }    
             <AppTab.Screen name="settings" component={SettingsStack} options={{ tabBarLabel: 'Ajustes'}}/>
         </AppTab.Navigator>

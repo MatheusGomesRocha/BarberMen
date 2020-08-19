@@ -15,7 +15,13 @@ import {
     SmallText,      // Texto pequeno de introdução
 } from '../../components/TextView';
 
-import Header from '../../components/HeaderComponent';
+import {
+    Header,
+    HeaderLeft,
+    HeaderRight,
+    HeaderButton,
+    Teste
+} from '../../components/HeaderComponent';
 
 import { 
     Pressable,
@@ -180,7 +186,12 @@ function Price(props) {
     return (
         <Container bgColor={bg}>
 
-            <Header left="Cortes" right="Seguinte" />
+            <Header>
+                <HeaderLeft> Cortes </HeaderLeft>
+                <HeaderButton underlayColor="transparent" onPress={() => goToDate()}>
+                    <HeaderRight color={name?'#000':'#434343'}> Seguinte <Icon name="angle-right" size={20} /> </HeaderRight>
+                </HeaderButton>
+            </Header>
             
                 
                 {/** FlatList que trás o component com o array */}
