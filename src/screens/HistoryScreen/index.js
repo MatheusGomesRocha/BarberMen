@@ -33,26 +33,24 @@ export default () => {
     return(
         <Container>
 
-            
-
             <Scroll>
-            <Header height="60px" justify="center">
-                <HeaderLeft> Histórico </HeaderLeft>
-            </Header>
-            <HistoryView>
-                {history.map((h, k) => (
-                    <ItemView key={k}>
-                        <LeftView>
-                            <DefaultText>{h.serviço}</DefaultText>
-                            <DefaultText>{h.date}</DefaultText>
-                            <DefaultText>{h.barber}</DefaultText>
-                        </LeftView>
-                        <RightView>
-                            <DefaultText>{h.price}</DefaultText>
-                        </RightView>
-                    </ItemView>
-                ))}
-            </HistoryView>
+                <Header height="60px" justify="center">
+                    <HeaderLeft> Histórico </HeaderLeft>
+                </Header>
+                <HistoryView>
+                    {history.map((h, k) => (
+                        <ItemView key={k}>
+                            <LeftView>
+                                <DefaultText>{h.serviço}</DefaultText>
+                                <DefaultText>{h.date}</DefaultText>
+                                <DefaultText>{h.barber}</DefaultText>
+                            </LeftView>
+                            <RightView>
+                                <DefaultText>{h.price}</DefaultText>
+                            </RightView>
+                        </ItemView>
+                    ))}
+                </HistoryView>
 
             </Scroll>
 

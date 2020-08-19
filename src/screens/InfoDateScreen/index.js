@@ -3,6 +3,15 @@ import { useSelector } from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
 import firestore from '@react-native-firebase/firestore';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import {
+    Header,
+    HeaderLeft,
+    HeaderRight,
+    HeaderButton,
+    Teste
+} from '../../components/HeaderComponent';
 
 import {
     TextView,    // View de bem-vindo
@@ -53,23 +62,25 @@ export default () => {
 
     return (
         <Container>
-            <Scroll>
-            <TextView>
-                <BigText> Finalize seu atendimento </BigText>
-                <SmallText> Aqui contém tudo que você escolheu, revise para ver se está tudo correto, se estiver, finalize e aguarde para ser atendido</SmallText> 
-            </TextView>
-            <InfoView>
-                <InfoText> Corte: {cutName} </InfoText>
-                <InfoText> Data: {day}/{month} </InfoText>
-                <InfoText> Horário: {hour} </InfoText>
-                <InfoText> Duração: {duration} </InfoText>
-            </InfoView>
 
             <BtnView>
-                <BtnComponent onPress={() => SetAppointment()} width="90%" bgColor="#333" radius="100px" style={{marginTop: 50}}>
-                    <BtnText>Finalizar</BtnText> 
+                <BtnComponent onPress={() => SetAppointment()} width="80px" height="80px" bgColor="#E76F51" radius="100px" style={{marginTop: 50}}>
+                    <BtnText> <Icon name="angle-right" size={40} /> </BtnText> 
                 </BtnComponent>
             </BtnView>
+
+            <Scroll>
+
+                <TextView style={{marginLeft: 20, marginRight: 20}}>
+                    <SmallText> Confira se os dados estão corretos e clique em "finalizar" para confirmar seu agendamento </SmallText> 
+                </TextView>
+                <InfoView>
+                    <InfoText> Dia/Mês: {day}/{month} </InfoText>
+                    <InfoText> Horário: {hour} </InfoText>
+                    <InfoText> Serviço/Corte: {cutName} </InfoText>
+                    <InfoText> Duração: {duration} </InfoText>
+                </InfoView>
+
             </Scroll>
             
         </Container>

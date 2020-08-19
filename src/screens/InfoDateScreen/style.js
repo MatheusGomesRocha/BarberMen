@@ -19,11 +19,10 @@ export const InfoView = styled.View`
     width: 100%;
     height: 200px;
     justify-content: center;
-    align-items: center;
     margin-top: 50px;
 `;
 export const InfoText = styled.Text`
-    padding: 10px;
+    padding: 5px;
     font-size: 18px;
 `;
 
@@ -31,10 +30,12 @@ export const InfoText = styled.Text`
 // + View do BtnComponent
 // + Texto do BtnComponent
 export const BtnView = styled.View`
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    z-index: 999;
 `;
 export const BtnText = styled.Text`
     color: #fff;
-    font-size: 16px;
-`
+    font-size: 18px;
+`;
