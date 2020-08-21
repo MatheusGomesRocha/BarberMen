@@ -37,10 +37,12 @@ function Cuts(props) {
         }, 3000)
     }, [])
 
-    function setCutAndDuration(cut, duration) {        // Função que seta um corte para o redux
+    function setCutAndDuration(cut, duration, price) {        // Função que seta um corte para o redux
         if(user) {
             props.setCut(cut);
             props.setDuration(duration);
+            props.setPrice(price)
+            
         } else {
             alert('Você precisa está logado para realizar essa ação');
         }
@@ -54,7 +56,7 @@ function Cuts(props) {
             >
                 <ItemView>
                     
-                <Pressable onPress={() => setCutAndDuration(props.data.name, props.data.duration)} onLongPress={() => customAlert(props.data.name, props.data.id)}
+                <Pressable onPress={() => setCutAndDuration(props.data.name, props.data.duration, props.data.price)} onLongPress={() => customAlert(props.data.name, props.data.id)}
                 style={{
                         flexDirection:'row', backgroundColor: name == props.data.name?'#B43718':'#E76F51', 
                         color: '#fff', height: 60, width: '100%', borderRadius: 100, justifyContent: 'center',
@@ -74,7 +76,8 @@ function Cuts(props) {
 const mapDispatchToProps = (dispatch) => {          /** Executa uma função que cria uma props para realizar o dispatch para o redux */
     return {
         setCut:(cut)=>dispatch({type:'SET_CUT', payload: {cut}}),       // Fazendo a inserção no reducer
-        setDuration:(duration)=>dispatch({type:'SET_DURATION', payload: {duration}}) 
+        setDuration:(duration)=>dispatch({type:'SET_DURATION', payload: {duration}}), 
+        setPrice:(price)=>dispatch({type:'SET_PRICE', payload: {price}}), 
     };
 
 }

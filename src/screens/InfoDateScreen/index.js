@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import uuid from 'uuid/v4';
 
 import {
     Header,
@@ -39,15 +41,23 @@ export default () => {
     const day = useSelector(state=> state.user.day);
     const hour = useSelector(state => state.user.hour);
     const duration = useSelector(state => state.user.duration);
+    const price = useSelector(state => state.user.price);
 
     function SetAppointment() {
+        let id = uuid();
+        const userId = auth().currentUser.uid;
+
         firestore()
         .collection('appointments')
         .add({
+            id: id,
+            userId: userId,
             cut: cutName,
+            price: price,
             day: day+'/'+month,
             hour: hour + ' ',
-            duration: duration
+            duration: duration,
+            barber: 'Matheus'
         }).then(() => {
             alert('Horário agendado. Cerfique-se de chegar antes do horário marcado para não ocorrer problemas')
             navigation.reset({
@@ -57,12 +67,17 @@ export default () => {
                 ]
             });
         })
-
     }
 
     return (
         <Container>
 
+            <Header>
+                <HeaderButton underlayColor="transparent"  onPress={() => navigation.goBack()}>
+                    <HeaderLeft>  <Icon name="angle-left" size={22} /> Confirmação </HeaderLeft>
+                </HeaderButton>
+            </Header>
+            
             <BtnView>
                 <BtnComponent onPress={() => SetAppointment()} width="80px" height="80px" bgColor="#E76F51" radius="100px" style={{marginTop: 50}}>
                     <BtnText> <Icon name="angle-right" size={40} /> </BtnText> 
@@ -78,6 +93,7 @@ export default () => {
                     <InfoText> Dia/Mês: {day}/{month} </InfoText>
                     <InfoText> Horário: {hour} </InfoText>
                     <InfoText> Serviço/Corte: {cutName} </InfoText>
+                    <InfoText> Preço: R$ {price} </InfoText>
                     <InfoText> Duração: {duration} </InfoText>
                 </InfoView>
 

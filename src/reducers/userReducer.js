@@ -3,6 +3,7 @@ import React from 'react';
 const initialState = {
     name: '',
     email: '',
+    price: '',
     cut: '',
     day: '',
     month: '',
@@ -30,7 +31,9 @@ export default (state = initialState, action) => {
         case 'SET_CUT':
             return {...state, cut: action.payload.cut};
         break;
-        
+        case 'SET_PRICE':
+            return {... state, price: action.payload.price};
+        break;
         case 'SET_DURATION':
             return {...state, duration: action.payload.duration};
         break;

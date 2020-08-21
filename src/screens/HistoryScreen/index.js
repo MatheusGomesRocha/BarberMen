@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import {
     Header,
@@ -18,18 +20,34 @@ import {
     LeftView,
     RightView,
     DefaultText,
+    Bold,
 
 } from './style';
 
-let history = [
-    {id: 1, serviço: 'platinar', date: '20/08/2020', barber: 'Mourão', price: '25,00'},
-    {id: 2, serviço: 'platinar', date: '20/08/2020', barber: 'Mourão', price: '25,00'},
-    {id: 3, serviço: 'platinar', date: '20/08/2020', barber: 'Mourão', price: '25,00'},
-    {id: 4, serviço: 'platinar', date: '20/08/2020', barber: 'Mourão', price: '25,00'},
-    {id: 5, serviço: 'platinar', date: '20/08/2020', barber: 'Mourão', price: '25,00'},
-]
 
 export default () => {
+    const [history, setHistory] = useState([]);
+    const userId = auth().currentUser;
+
+    
+    useEffect(() => {
+          firestore()
+          .collection('appointments')
+          .where('userId', '==', userId.uid)
+          .onSnapshot(querySnapshot => {
+            const historyFire = [];
+
+            querySnapshot.forEach(documentSnapshot => {
+                historyFire.push({
+                    ...documentSnapshot.data(),
+                    key: documentSnapshot.id,
+                });
+            });
+
+            setHistory(historyFire);
+          });
+        } ,[]);
+    
     return(
         <Container>
 
@@ -41,12 +59,12 @@ export default () => {
                     {history.map((h, k) => (
                         <ItemView key={k}>
                             <LeftView>
-                                <DefaultText>{h.serviço}</DefaultText>
-                                <DefaultText>{h.date}</DefaultText>
-                                <DefaultText>{h.barber}</DefaultText>
+                                <DefaultText> <Bold> Serviço: </Bold> {h.cut}</DefaultText>
+                                <DefaultText> <Bold> Data: </Bold> {h.day}/2020</DefaultText>
+                                <DefaultText> <Bold> Barbeiro: </Bold> {h.barber}</DefaultText>
                             </LeftView>
                             <RightView>
-                                <DefaultText>{h.price}</DefaultText>
+                                <DefaultText> <Bold> Preço: </Bold> R$ {h.price}</DefaultText>
                             </RightView>
                         </ItemView>
                     ))}

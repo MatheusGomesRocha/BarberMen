@@ -28,5 +28,10 @@ export const RightView = styled.View`
 `;
 
 export const DefaultText = styled.Text`
-    font-size: 17px;
+    font-size: 16px;
+`;
+
+export const Bold = styled.Text`
+    font-weight: bold;
+    font-size: 15px;
 `;

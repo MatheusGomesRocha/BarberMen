@@ -89,7 +89,8 @@ function Price(props) {
             firestore()
             .collection('users')
             .where('id', '==', userInfo.uid)
-            .get().then(querySnapshot => {
+            .get()
+            .then(querySnapshot => {
                 querySnapshot.forEach(documentSnapshot => {
                     setUserName(documentSnapshot.data().name);
                 })
@@ -218,7 +219,7 @@ function Price(props) {
 const mapDispatchToProps = (dispatch) => {          /** Executa uma função que cria uma props para realizar o dispatch para o redux */
     return {
         setCut:(cut)=>dispatch({type:'SET_CUT', payload: {cut}}),       // Fazendo a inserção no reducer
-        setDuration:(duration)=>dispatch({type:'SET_DURATION', payload: {duration}}) 
+        setDuration:(duration)=>dispatch({type:'SET_DURATION', payload: {duration}}), 
     };
 
 }
