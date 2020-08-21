@@ -23,7 +23,7 @@ export const UserView = styled.View`
 `;
 export const Texto = styled.Text`
     margin-top: 10px;
-    color: ${props=>props.color || '#333'};
+    color: #fff;
     font-size: 24px;
     text-align: center;
 `;
@@ -35,14 +35,15 @@ export const Texto = styled.Text`
 // + Texto de ON OFF no Switch
 export const SettingsView = styled.View`
     width: 100%;
-    borderBottomWidth: 1px;
-    borderBottomColor: #000;
     flex-direction: column;
+    borderBottomWidth: 1px;
+    borderBottomColor: rgba(0, 0, 0, 0.1);
 `;
 export const SettingsButton = styled.TouchableHighlight`
     height: 60px;
     borderTopWidth: 1px;
     borderTopColor: rgba(0, 0, 0, 0.1);
+    
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;    

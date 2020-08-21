@@ -9,7 +9,7 @@ import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Cutlist from '../../FlatListsComponents/CutManage';
 
-import { Pressable, Alert } from 'react-native';
+import { Pressable, Alert, Dimensions } from 'react-native';
 import {
     TextView,    // View de bem-vindo
     SmallText,        // Texto grande de Bem-Vindo
@@ -55,6 +55,8 @@ export default () => {
     const cutId = useSelector(state => state.user.cut);
     const dark = useSelector(state => state.user.dark);
 
+    const screenSize = Math.round(Dimensions.get('window').width);  // Pegando tamanho da tela do celular
+    let middle = Math.round(screenSize / 2 - 35);
     function deleteCut(id) {
         firestore()
         .collection('cuts')
@@ -118,11 +120,11 @@ export default () => {
 
     return(
         <Container bgColor={bg}>
-            <BtnComponent bgColor="#E76F51" width="80px" height="80px" radius="100px"
+            <BtnComponent bgColor="#E76F51" width="70px" height="70px" radius="100px"
                 style={{
                     position: 'absolute',
                     bottom: 15,
-                    right: 15,
+                    right: middle,
                     zIndex: 999,
                 }}
                 onPress={() => ChooseWhat(cutId)}

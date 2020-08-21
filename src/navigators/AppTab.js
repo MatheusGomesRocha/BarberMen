@@ -87,12 +87,16 @@ export default () => {
         })} 
         >
             <AppTab.Screen name="home" component={HomeStack} options={{ tabBarLabel: 'Início'}}/>
-            {isAdmin?
+            {user?
+                isAdmin?
                 <AppTab.Screen name="manage" component={ManageCutScreen} options={{ tabBarLabel: 'Gerenciar'}}/>
                 :<AppTab.Screen name="cut" component={PriceStack} options={{ tabBarLabel: 'Cortes'}}/>
+                :<AppTab.Screen name="cut" component={PriceStack} options={{ tabBarLabel: 'Cortes'}}/>
             }
-            {isAdmin?
+            {user?
+                isAdmin?
                 <AppTab.Screen name="addcut" component={AddCutScreen} options={{ tabBarLabel: 'Adicionar'}}/>
+                :<AppTab.Screen name="history" component={HistoryScreen} options={{ tabBarLabel: 'Histórico'}}/>
                 :<AppTab.Screen name="history" component={HistoryScreen} options={{ tabBarLabel: 'Histórico'}}/>
             }    
             <AppTab.Screen name="settings" component={SettingsStack} options={{ tabBarLabel: 'Ajustes'}}/>
