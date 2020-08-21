@@ -76,14 +76,11 @@ export default () => {
                 <HeaderButton underlayColor="transparent"  onPress={() => navigation.goBack()}>
                     <HeaderLeft>  <Icon name="angle-left" size={22} /> Confirmação </HeaderLeft>
                 </HeaderButton>
+                <HeaderButton underlayColor="transparent" onPress={() => finishChoose()}>
+                    <HeaderRight color={hour?'#000':'#434343'}> Finalizar <Icon name="angle-right" size={18} /> </HeaderRight>
+                </HeaderButton>
             </Header>
             
-            <BtnView>
-                <BtnComponent onPress={() => SetAppointment()} width="80px" height="80px" bgColor="#E76F51" radius="100px" style={{marginTop: 50}}>
-                    <BtnText> <Icon name="angle-right" size={40} /> </BtnText> 
-                </BtnComponent>
-            </BtnView>
-
             <Scroll>
 
                 <TextView style={{marginLeft: 20, marginRight: 20}}>

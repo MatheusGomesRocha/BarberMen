@@ -1,4 +1,15 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
+
+import {
+    Header,
+    HeaderLeft,
+    HeaderRight,
+    HeaderButton,
+    Teste
+} from '../../components/HeaderComponent';
+
 import {
     Container,              // View toda a tela
     
@@ -12,8 +23,16 @@ import {
 } from './style';
 
 export default () => {
+    const navigation = useNavigation();
+
     return(
         <Container>
+            <Header>
+                <HeaderButton underlayColor="transparent"  onPress={() => navigation.goBack()}>
+                    <HeaderLeft>  <Icon name="angle-left" size={22} /> Funcionários </HeaderLeft>
+                </HeaderButton>
+            </Header>
+
             <Scroll>
 
                 <AllView>

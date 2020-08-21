@@ -1,5 +1,15 @@
 import React from 'react';
 import BtnComponent from '../../components/BtnComponent';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
+
+import {
+    Header,
+    HeaderLeft,
+    HeaderRight,
+    HeaderButton,
+    Teste
+} from '../../components/HeaderComponent';
 
 import {
     Container,      // View toda a tela
@@ -12,9 +22,17 @@ import {
 } from './style';
 
 export default () => {
+    const navigation = useNavigation();
 
     return(
         <Container>
+
+            <Header>
+                <HeaderButton underlayColor="transparent"  onPress={() => navigation.goBack()}>
+                    <HeaderLeft>  <Icon name="angle-left" size={22} /> Perguntas </HeaderLeft>
+                </HeaderButton>
+            </Header>
+
             <Scroll>
 
                 <AskView>

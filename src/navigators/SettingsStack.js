@@ -11,10 +11,10 @@ const SettingsStack = createStackNavigator();
 export default () => {
     return (
         <SettingsStack.Navigator>
-            <SettingsStack.Screen name="default" component={SettingsScreen} options={{ headerTitle: null, headerTransparent: true }}/>
+            <SettingsStack.Screen name="default" component={SettingsScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
             <SettingsStack.Screen name="profile" component={ProfileScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
-            <SettingsStack.Screen name="employee" component={EmployeesScreen} options={{ headerTitle: null, headerTransparent: true }}/>
-            <SettingsStack.Screen name="ask" component={AsksScreen} options={{ headerTitle: null, headerTransparent: true }}/>
+            <SettingsStack.Screen name="employee" component={EmployeesScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
+            <SettingsStack.Screen name="ask" component={AsksScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
         </SettingsStack.Navigator>
     );
 }
