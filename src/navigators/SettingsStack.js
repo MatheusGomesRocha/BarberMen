@@ -4,6 +4,7 @@ import SettingsScreen from '../screens/SettingsScreen';     // Tela principal de
 import ProfileScreen from '../screens/ProfileScreen';       // Tela de ver perfil
 import EmployeesScreen from '../screens/EmployeesScreen';   // Tela de ver funcionários
 import AsksScreen from '../screens/AsksScreen';             // Tela de ver perguntas frenquentes
+import HelpScreen from '../screens/HelpScreen';             // Tela de ver perguntas frenquentes
 
 const SettingsStack = createStackNavigator();
 
@@ -15,6 +16,7 @@ export default () => {
             <SettingsStack.Screen name="profile" component={ProfileScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
             <SettingsStack.Screen name="employee" component={EmployeesScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
             <SettingsStack.Screen name="ask" component={AsksScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
+            <SettingsStack.Screen name="help" component={HelpScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
         </SettingsStack.Navigator>
     );
 }

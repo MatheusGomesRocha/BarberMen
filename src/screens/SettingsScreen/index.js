@@ -106,14 +106,6 @@ function SettingsScreen(props) {
 
                         <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
-                                <DefaultText color={color}> Histórico </DefaultText> 
-                                <Icon name="angle-right" size={30} color={color}/>
-                            </>
-                        </SettingsButton>
-
-
-                        <SettingsButton underlayColor="transparent" onPress={test}>
-                            <>
                                 <DefaultText color={color}> Localização </DefaultText> 
                                 <Icon name="angle-right" size={30} color={color}/>
                             </>
@@ -125,6 +117,14 @@ function SettingsScreen(props) {
                                 <Icon name="angle-right" size={30} color={color}/>
                             </>
                         </SettingsButton>
+
+                        <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('help')}>
+                            <>
+                                <DefaultText color={color}> Ajuda </DefaultText> 
+                                <Icon name="angle-right" size={30} color={color}/>
+                            </>
+                        </SettingsButton>
+
 
                         <SettingsButton underlayColor="transparent" onPress={() => alert('(85) 994264687\n\nMatheus Gomes')}>
                             <>
