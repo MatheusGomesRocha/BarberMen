@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
-import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SvgBarber from '../../assets/svg/home.svg';     // SVG BARBER
 import auth from '@react-native-firebase/auth';
@@ -9,7 +8,6 @@ import firestore from '@react-native-firebase/firestore';
 import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 
 import {
-    TextView,    // View de bem-vindo
     BigText,        // Texto grande de Bem-Vindo
     SmallText,      // Texto pequeno de introdução
 } from '../../components/TextView';
@@ -26,16 +24,14 @@ import {
 
     CommentsTitle,  // View onde fica todo o título da sessão de comentários
     TitleText,      // Texto com o título da sessão de comentários
-
-    Flat,
      
     CommentsView,   // View com todos os comentários em um array
     Comments,       // View dentro do array que retorna para cada comentário
     CommentsHeader, // View com avatar e nome do usuário
     CommentsAvatar, // Imagem do avatar 
     CommentsName,   // Texto do nome
-    CommentsRate,   // View com estrelas mostrando o rating e a data do comentário
     CommentsDate,   // Text com a data do comentário
+    CommentsRate,   // View com icons de estrelas mostrando o rating e a data do comentário
     CommentsText,   // Texto da sessão de comentários
 
     AddComments,    // View com input e button para add comentários
@@ -45,24 +41,31 @@ import {
 
 export default () => {
 const navigation = useNavigation();
-const dark = useSelector(state => state.user.dark);
-const user = useSelector(state => state.user.email);
-const userInfo = auth().currentUser;
-const [userName, setUserName] = useState(''); 
+
+const [userName, setUserName] = useState();
 const [comments, setComments] = useState([]);
 const [newComment, setNewComment] = useState('');
 const [isVisible, setIsVisible] = useState(false);
 
+const user = auth().currentUser;        // Pengado usuário logado
+
+/** Setando data de hoje e formatando para padrão do Brasil */
 let day = new Date().getDate();
 let month = new Date().getMonth()+1;
 let year = new Date().getFullYear()
 let today = day+'/'+month+'/'+year;
 
-useEffect(() => {
+useEffect(() => {       // ShimmerPlaceholder será desfeito após 3 segundos (3000 milisegundos) e mostrará os comentários
+    setTimeout(() => {
+        setIsVisible(true);
+    }, 3000)
+}, [])
+
+useEffect(() => {       // Se tiver alguém logado, irá ser procurado na firebase alguém que tenha o mesmo id do usuário logado para setar o nome dele em uma constante
     if(user) {
         firestore()
         .collection('users')
-        .where('id', '==', userInfo.uid)
+        .where('id', '==', user.uid)
         .get().then(querySnapshot => {
             querySnapshot.forEach(documentSnapshot => {
                 setUserName(documentSnapshot.data().name);
@@ -71,7 +74,7 @@ useEffect(() => {
     }
 }, [])
 
-useEffect(() => {
+useEffect(() => {       // Pegando todos os comentários e setando-os em um array
     firestore()
     .collection('comments')
     .onSnapshot(querySnapshot => {
@@ -90,19 +93,15 @@ useEffect(() => {
   // Unsubscribe from events when no longer in use
 }, [])
 
-useEffect(() => {
-    setTimeout(() => {
-        setIsVisible(true);
-    }, 3000)
-}, [])
+
    
-function AddComment() {
-    if(user) {
+function AddComment() {     // Function de adicionar comentários, para isso precisar ter usuário logado e ter digitado algo no input
+    if(user) {  
         if(newComment) {
             firestore()
             .collection('comments')
             .add({
-                userId: userInfo.uid,
+                userId: user.uid,
                 userName: userName,
                 userComment: newComment,
                 added: today,
@@ -132,12 +131,10 @@ function AddComment() {
                 <SvgView>
                     <SvgBarber width={280} height={220} />
                 </SvgView>
-                <TextView>                    
-                    <BigText color="#434343"> BarberMen </BigText>
+                    <BigText bot="0" color="#434343"> BarberMen </BigText>
                     <SmallText color="#434343"> 
                     Bem vindo ao App da barbearia Barbemen, aqui você pode marcar seu atendimento e ainda pagar via cartão ou PicPay 
                     </SmallText>
-                </TextView>
                 
                 {!user?
                     <LoginBtnView>

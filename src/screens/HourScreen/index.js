@@ -1,15 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useSelector, connect } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { Dimensions, Pressable, FlatList } from 'react-native';
 import BtnComponent from '../../components/BtnComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Svg from '../../assets/svg/undraw_in_no_time_6igu.svg'
-import firestore from '@react-native-firebase/firestore';
 
 import {
     TextView,    // View de bem-vindo
-    BigText,        // Texto grande de Bem-Vindo
     SmallText,      // Texto pequeno de introdução
 } from '../../components/TextView';
 
@@ -30,7 +27,6 @@ import {
     HourView,   // View com todos os horários
     HourItem,   // View com um horário que percorre o array
     HourText,   // Texto com os horários
-    
 } from './style';
 
 const screenSize = Math.round(Dimensions.get('window').width);  // Pegando tamanho da tela do celula
@@ -78,26 +74,6 @@ function HourScreen(props) {
         }
     }
     
-    useEffect(() => {
-        const subscriber = firestore()
-          .collection('appointments')
-          .onSnapshot(querySnapshot => {
-            const hourArray = [];
-
-            querySnapshot.forEach(documentSnapshot => {
-                hourArray.push({
-                    ...documentSnapshot.data(),
-                    key: documentSnapshot.id,
-                });
-            });
-
-            setHourFirebase(hourArray);
-          });
-    
-        // Unsubscribe from events when no longer in use
-        return () => subscriber();
-      }, []);
-
     return(
         <Container>
             <Header>
@@ -133,7 +109,7 @@ function HourScreen(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        setHour:(hour)=>dispatch({type:'SET_HOUR', payload:{hour}})
+        setHour:(hour)=>dispatch({type:'SET_HOUR', payload:{hour}})     // Dispatch que seta a hora selecionada com redux
     };
 }
 

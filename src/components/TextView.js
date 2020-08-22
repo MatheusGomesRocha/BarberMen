@@ -10,15 +10,14 @@ export const TextView = styled.View`
     justify-content: center;
 `;
 export const BigText = styled.Text`
-    font-weight: bold;
-    font-size: 40px;
+    font-size: 28px;
     text-align: center;
-    color: ${props=>props.color || '#333'};
-
+    color: #434343;
+    margin-bottom: ${props=>props.bot || '20px'}; 
 `;
 export const SmallText = styled.Text`
     margin: 30px 0 20px 0;
     text-align: center;
-    color: ${props=>props.color || 'rgba(0, 0, 0, 0.5)'};
+    color: rgba(0, 0, 0, 0.5);
     font-size: 20px;
 `;

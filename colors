@@ -2,3 +2,7 @@ Background: #fff,
 Text: #434343,
 Btn: #E76F51,
 BtnText: #fff,
+
+size:
+
+BtnText: 18px

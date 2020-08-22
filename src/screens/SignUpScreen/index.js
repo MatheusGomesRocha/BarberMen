@@ -32,23 +32,24 @@ function SignUpScreen(props) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    function SignUp  (e, p) {
+    function SignUp  (e, p) {       // Função de cadastro
+        // Todos os dados precisam estar preenchidos e as senhas teêm que coincidir para que funcione
         if(!name || !email || !contact || !password || !confirmPassword) {
             alert('Todos os campos são obrigatiórios')
         } else if(password != confirmPassword) {
             alert('As senhas devem coincidir');
         } 
         else {
-            auth()
-            .createUserWithEmailAndPassword(e, p)
-            .then(() => {
+            auth()      // Cria um usuário com email e senha no firebase Auth
+            .createUserWithEmailAndPassword(e, p)   
+            .then(() => {       
                 auth()
-                .signInWithEmailAndPassword(e, p);
-                props.setEmail(e);
-                const user = auth().currentUser;
-                firestore()
+                .signInWithEmailAndPassword(e, p);  // Depois de criar no Auth é feito o login
+                props.setEmail(e);                  // O email do usuário é setado com redux
+                const user = auth().currentUser;    // Pega o usuário logado (que acabou de logar junto com o cadastro)
+                firestore()                         // Seta os dados preenchidos em uma collection "users" no firestore
                 .collection('users')
-                .doc(user.uid)
+                .doc(user.uid)                      // O doc que é a identificação do Documento, irá receber o uid(ID) do usuário
                 .set({
                     id: user.uid,
                     name: name,
@@ -65,7 +66,7 @@ function SignUpScreen(props) {
                 });
             })
             .catch(error => {
-                if(error.code == 'auth/email-already-in-use') {
+                if(error.code == 'auth/email-already-in-use') {     // Erro que acontece caso já tenha um usuário com o mesmo email
                     alert('Este email já está cadastro, tente outro');
                 }
             })
@@ -122,7 +123,7 @@ function SignUpScreen(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setEmail:(email)=>dispatch({type:'SET_EMAIL', payload: {email}})
+        setEmail:(email)=>dispatch({type:'SET_EMAIL', payload: {email}})        // Seta o email no redux
     };
 }
 

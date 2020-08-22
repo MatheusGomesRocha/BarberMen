@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 // View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${props=>props.bgColor || '#fff'};
+    background-color: #fff;
 `;
 
 
@@ -32,7 +32,6 @@ export const Texto = styled.Text`
 // + View com todos os buttons
 // + Button
 // + Texto padrão com os nomes
-// + Texto de ON OFF no Switch
 export const SettingsView = styled.View`
     width: 100%;
     flex-direction: column;
@@ -53,10 +52,6 @@ export const DefaultText = styled.Text`
     align-items: flex-start;
     font-size: 16px;
     margin-left: 10px;
-    width: ${props=>props.width || '90%'} ;
-    color: ${props=>props.color || '#333'};
-`;
-export const EnabledText = styled.Text`
-    font-size: 14px;
-    color:  ${props=>props.color || '#333'};
+    width: 90% ;
+    color: #434343;
 `;

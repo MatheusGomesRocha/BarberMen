@@ -8,24 +8,12 @@ export const Container = styled.SafeAreaView`
     justify-content: center;
 `
 
-
-// + View com svg e texto de Login
-// + Texto Login grande
-export const TextView = styled.View`
-    height: 45%;
-    align-items: center;
-    justify-content: center;
-`
-export const BigText = styled.Text`
-    font-size: 28px;
-    text-align: center;
-`;
+// Permite a rolagem da tela
+export const Scroll = styled.ScrollView``;
 
 
 // View com o form de login
-export const ViewLogin = styled.View`
-   
-`;
+export const ViewLogin = styled.View``;
 
 
 // + View de um input

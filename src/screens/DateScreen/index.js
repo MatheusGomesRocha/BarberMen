@@ -3,13 +3,9 @@ import {useNavigation} from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import MonthView from '../../components/MonthComponent';
 import DayView from '../../components/DayComponent';
-import Svg from '../../assets/svg/undraw_date_picker_gorr.svg'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import BtnComponent from '../../components/BtnComponent';
 
 import {
-    TextView,    // View de bem-vindo
-    BigText,        // Texto grande de Bem-Vindo
     SmallText,      // Texto pequeno de introdução
 } from '../../components/TextView';
 
@@ -31,13 +27,13 @@ import {
 
 export default () => {
     const navigation = useNavigation();
-    let today = new Date();
-    const [selectMonth, setSelectMonth] = useState(today.getMonth());      
-    const [selectDay, setSelectDay] = useState(today.getDate());            
+    let today = new Date();                                             // Iniciando uma nova data
+    const [selectMonth, setSelectMonth] = useState(today.getMonth());   // Pegando mês atual   
+    const [selectDay, setSelectDay] = useState(today.getDate());        // Pegando dia atual    
 
     const day = useSelector(state => state.user.day);
     
-    function goToHour() {
+    function goToHour() {       // Function que é realizada ao clicar no Button "seguinte" caso já tenha selecionado um dia para ir
         if(day) {
             navigation.navigate('hour');
         } else {
@@ -58,11 +54,9 @@ export default () => {
             </Header>
 
             <Scroll>
-                <TextView>
-                    <SmallText color="#434343"> 
-                        Agende o Dia/Mês que deseja ser atendido
-                    </SmallText>
-                </TextView>
+                <SmallText color="#434343"> 
+                    Agende o Dia/Mês que deseja ser atendido
+                </SmallText>
 
                 <MonthView
                     selectMonth={selectMonth}

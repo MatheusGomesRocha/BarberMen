@@ -6,42 +6,29 @@ import HistoryList from '../../FlatListsComponents/History';
 import {
     Header,
     HeaderLeft,
-    HeaderRight,
-    HeaderButton,
-    Teste
 } from '../../components/HeaderComponent';
 
 import {
-    Container,
+    Container,      // Tela
 
-    Scroll,
-
-    Flat,
-
-    HistoryView,
-    ItemView,
-    LeftView,
-    RightView,
-    DefaultText,
-    Bold,
-
+    Flat,           // FlatList
 } from './style';
 
 
 export default () => {
     const [history, setHistory] = useState([]);
-    const userId = auth().currentUser;
+    const user = auth().currentUser;      // Pegando usuário logado
 
     
-    useEffect(() => {
-          firestore()
+    useEffect(() => {       // Pegando os agendamentos do usuário logado no firebase
+          firestore()   
           .collection('appointments')
-          .where('userId', '==', userId.uid)
+          .where('userId', '==', user.uid)
           .onSnapshot(querySnapshot => {
             const historyFire = [];
 
-            querySnapshot.forEach(documentSnapshot => {
-                historyFire.push({
+            querySnapshot.forEach(documentSnapshot => {     // Passando os dados para um array e depois enviando para o FlatList como prop
+                historyFire.push({      
                     ...documentSnapshot.data(),
                     key: documentSnapshot.id,
                 });
@@ -53,21 +40,18 @@ export default () => {
     
     return(
         <Container>
-                            
-                
-                
-                <Flat
-                    ListHeaderComponent={
-                        <>
-                            <Header height="60px" justify="center">
+            <Flat
+                ListHeaderComponent={
+                    <>
+                        <Header height="60px" justify="center">
                                 <HeaderLeft> Histórico </HeaderLeft>
-                            </Header>
-                        </>
-                    }
+                        </Header>
+                    </>
+                }
                 data={history}
                 renderItem={({item}) => <HistoryList data={item} />}
                 keyExtractor={(item) => item.id} 
-                />
+            />
 
 
             {/* <DefaultText>

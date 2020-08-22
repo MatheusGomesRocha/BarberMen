@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 // View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${props=>props.bgColor || '#fff'};
+    background-color: #fff;
 `;
 
 
@@ -12,37 +12,30 @@ export const Container = styled.SafeAreaView`
 export const Scroll = styled.ScrollView``;
 
 
-// + View de profile picture
-// + Texto do Button para trocar a foto
-export const Img = styled.Image`
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-`;
+// + View de profile image
+// + Image
 export const PicView = styled.View`
     align-items: center;
     justify-content: center;
     height: 200px;
 `;
-export const Texto = styled.Text`
-    color: ${props=>props.color || '#333'};
+export const Img = styled.Image`
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
 `;
 
 
-// + View do Input
-// + Label do input
-// + O input
-export const InputView = styled.View`
-    width: 80%;
-    margin: 0 0 25px 35px;
-`;
+// Input
 export const Input = styled.TextInput`
-    color: ${props=>props.color || '#333'};
+    color: #434343;
     border: 1px solid;
-    border-color: ${props=>props.bdColor || '#333'};
+    border-color: #434343;
     border-radius: 50px;
     padding: 10px;
     font-size: 14px;
+    width: 80%;
+    margin: 0 0 25px 35px;
 `;
 
 
@@ -54,6 +47,6 @@ export const BtnView = styled.View`
     justify-content: center;
 `;
 export const BtnText = styled.Text`
-    color: ${props=>props.color || '#fff'}; 
+    color: #fff; 
     font-size: 18px;
 `;

@@ -1,44 +1,39 @@
 import React, {useState} from 'react';
 import BtnComponent from '../../components/BtnComponent';
-import {useRoute, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
-import SvgAdd from '../../assets/svg/undraw_add_tasks_mxew.svg';     // SVG BARBER
 import uuid from 'uuid/v4';
 
 import {
-    TextView,    // View de bem-vindo
-    BigText,        // Texto grande de Bem-Vindo
     SmallText,      // Texto pequeno de introdução
 } from '../../components/TextView';
 
-import {
-    Container,
+import {    
+    Container,      // Tela
 
-    Scroll,
+    Scroll,         // Permite a rolagem da tela
 
-    SvgView,
-
-    EditView,
-    InputView,
-    InputText,
-    EditInput,
-
-    BtnText,
+    AddView,       // View pai
+    AddInput,      // Caixas de Input
+    InputText,      // Texto do Input
+    
+    BtnText,        // Texto do BtnComponent
 } from './style';
 
 export default () => {
     const navigation = useNavigation();
     
+    /** Criando constantes que receberão valores ao usuário(admin) clicar no Button adicionar */
     const [name, setName] = useState();
     const [duration, setDuration] = useState();
     const [price, setPrice] = useState();
 
-    function AddCut() {
-        let id = uuid();
+    function AddCut() {     // Essa função cria um document na collection "cuts" no firebase
+        let id = uuid();    // Random ID 
 
-        if(!name || !duration || !price) {
+        if(!name || !duration || !price) {      // Todos os Inputs precisam está preenchidos
             alert('Todos os campos são obrigatórios');
-        } else {
+        } else {            
             firestore()
             .collection('cuts')
             .doc(id)
@@ -63,23 +58,17 @@ export default () => {
                     Adicione um novo serviço
                 </SmallText>
 
-                <EditView>
+                <AddView>
 
-                    <InputView>
-                        <EditInput onChangeText={n=>setName(n)} placeholder="Corte/Serviço"/>
-                    </InputView>
-                    <InputView>
-                        <EditInput onChangeText={d=>setPrice(d)} placeholder="Preço"/>
-                    </InputView>
-                    <InputView>
-                        <EditInput onChangeText={p=>setDuration(p)} placeholder="Duração (15~30 minutos)"/>
-                    </InputView>
+                    <AddInput onChangeText={n=>setName(n)} placeholder="Corte/Serviço"/>
+                    <AddInput onChangeText={d=>setPrice(d)} placeholder="Preço"/>
+                    <AddInput onChangeText={p=>setDuration(p)} placeholder="Duração (15~30 minutos)"/>
 
                     <BtnComponent underlayColor="#B43718" onPress={() => AddCut()} width="90%" bgColor="#E76F51" radius="100px" mTop="30px">
                         <BtnText> Adicionar </BtnText> 
                     </BtnComponent>
 
-                    </EditView>
+                    </AddView>
                 </Scroll>
         </Container>
     );

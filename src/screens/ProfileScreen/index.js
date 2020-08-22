@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
-import Svg from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 import BtnComponent from '../../components/BtnComponent';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -21,8 +19,8 @@ import {
     
     Scroll,         // View que realiza o Scroll
 
-    PicView,        // View de profile picture
-    Img,
+    PicView,        // View de profile image
+    Img,            // Image
     Texto,          // Texto do Button para trocar a foto
 
     InputView,      // View do Input
@@ -34,18 +32,19 @@ import {
 
 
 export default () => {
-    const userInfo = auth().currentUser;
+    const navigation = useNavigation();
+
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState('');
     const [pass, setPass] = useState('');
-    const [newAvatar, setNewAvatar] = useState('');
-    const [newName, setNewName] = useState('');
-    const [newPass, setNewPass] = useState('');
-    const [newEmail, setNewEmail] = useState('');
-    const dark = useSelector(state=>state.user.dark);
 
-    const navigation = useNavigation();
+    const [newEmail, setNewEmail] = useState('');
+    const [newName, setNewName] = useState('');
+    const [newAvatar, setNewAvatar] = useState('');
+    const [newPass, setNewPass] = useState('');
+
+    const userInfo = auth().currentUser;
 
     function ImageAvatar(data) {
         if(data.didCancel) {
@@ -75,7 +74,7 @@ export default () => {
         })
     }
 
-    useEffect(() => {
+    useEffect(() => {       // Pega os dados na collection "users" do usuário logado, e setar em uma state, Email, Name, Avatar e Password
         firestore()
         .collection('users')
         .where('id', '==', userInfo.uid)
@@ -91,12 +90,16 @@ export default () => {
     }, [])
 
     
-    function UpdateData() {
-        if(avatar || newName || newEmail || newPass) {
-            let nameFire = '';
+    function UpdateData() {     // Função que realiza o update das infos do usuário
+        if(avatar || newName || newEmail || newPass) {      // Verifica se tem algum desses preenchido
+            
+            // Cria novas variáveis
+            let nameFire = '';    
             let emailFire = '';
             let passFire = '';
 
+            // Caso newName esteja preenchido, recebe o que o usuário digitou, senão, recebe o nome do usuário logado
+            // É desse jeito com os 2 abaixo
             if(newName) {
                 nameFire = newName;
             } else {
@@ -115,7 +118,7 @@ export default () => {
                 passFire = pass;
             }
 
-            firestore()
+            firestore()     // Realiza o update 
             .collection('users')
             .doc(userInfo.uid)
             .update({
@@ -125,11 +128,6 @@ export default () => {
                 pass: passFire,                    
             })
             .then(() => {
-                navigation.reset({
-                    routes: [
-                        { name: 'profile' },
-                    ]
-                })
                 alert('Usuário editado');
             });
         } else {
@@ -137,22 +135,13 @@ export default () => {
         }
         
     }
-        
-    let bg = "#fff";
-    let color = "#333";
-    let placeColor = 'rgba(0, 0, 0, 0.5)';
-    if(dark) {
-        bg = "#333";                                // Cor para backgrounds e texto de buttons
-        color = "#fff";                             // Cor para textos e bordas do input
-        placeColor = 'rgba(255, 255, 255, 0.5)';    // Cor para placeholder
-    }
-    
+   
     return (
-        <Container bgColor={bg}>  
+        <Container>  
 
             <Header>
                 <HeaderButton underlayColor="transparent"  onPress={() => navigation.goBack()}>
-                    <HeaderLeft>  <Icon name="angle-left" size={22} />  Horário </HeaderLeft>
+                    <HeaderLeft>  <Icon name="angle-left" size={22} />  Editar Perfil </HeaderLeft>
                 </HeaderButton>
             </Header>  
 
@@ -164,23 +153,17 @@ export default () => {
                             : require('../../assets/img/perfil1.jpg') 
                         } />
                         <BtnComponent onPress={() => ImagePicker.showImagePicker({}, ImageAvatar)} bgColor="#E76F51" width="50%" height="40px" mTop="20px" radius="20px">
-                            <Texto color={bg}> Editar imagem </Texto>
+                            <BtnText> Trocar </BtnText>
                         </BtnComponent>
                     </PicView>
 
-                    <InputView>
-                        <Input onChangeText={n=>setNewName(n)} color={color} bdColor={color} placeholderTextColor={placeColor} placeholder={name} />
-                    </InputView>
-                    <InputView>
-                        <Input onChangeText={e=>setNewEmail(e)} color={color} bdColor={color} placeholderTextColor={placeColor} placeholder={email} />
-                    </InputView>
-                    <InputView>
-                        <Input onChangeText={p=>setNewPass(p)} color={color} bdColor={color} placeholderTextColor={placeColor} placeholder={pass} />
-                    </InputView>
-                
+                    <Input onChangeText={n=>setNewName(n)} placeholder={name} />
+                    <Input onChangeText={e=>setNewEmail(e)} placeholder={email} />
+                    <Input onChangeText={p=>setNewPass(p)} placeholder={pass} />
+    
                     <BtnView>
                         <BtnComponent onPress={UpdateData} width="80%" radius="100px" height="50px" bgColor="#E76F51">
-                            <BtnText color={bg}> Salvar </BtnText> 
+                            <BtnText> Salvar </BtnText> 
                         </BtnComponent>
                     </BtnView>
 

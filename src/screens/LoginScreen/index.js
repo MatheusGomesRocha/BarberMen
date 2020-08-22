@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch, connect, useSelector} from 'react-redux';
+import {connect} from 'react-redux';
 import BtnComponent from '../../components/BtnComponent';
 import Svg from '../../assets/svg/user_pic.svg';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
+
+import {
+    TextView,    // View de bem-vindo
+    BigText,      // Texto pequeno de introdução
+} from '../../components/TextView';
 
 import {
     Container,  // View toda a tela 
 
-    TextView,   // View com svg e texto de Login 
-    BigText,    // Texto Login grande
+    Scroll,     // Permite a rolagem da tela
 
     ViewLogin,  // View com o form de login
 
@@ -23,8 +26,6 @@ import {
 
 function LoginScreen(props) {
     const navigation = useNavigation();
-    const dispatch = useDispatch();
-    const userEmail = useSelector(state => state.user.email);
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
@@ -50,43 +51,44 @@ function LoginScreen(props) {
                         alert('Email ou senha incorreta');
                     }
                 });
-        }
-        
-           
+        }   
     }
 
     return (
         <Container>
-            <TextView>
-                    <Svg width="150px" height="100px" />
-                    <BigText> Login </BigText>
-            </TextView>
-            
-            <ViewLogin>
+            <Scroll>
+                <TextView>
+                        <Svg width="150px" height="100px" />
+                        <BigText> Login </BigText>
+                </TextView>
                 
-                    <InputView>
-                        <Input keyboardType="email-address" onChangeText={e=>setEmail(e)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Email"/>
-                    </InputView>
-                    <InputView>
-                        <Input onChangeText={p=>setPass(p)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Senha"/>
-                    </InputView>
+                <ViewLogin>
+                    
+                        <InputView>
+                            <Input keyboardType="email-address" onChangeText={e=>setEmail(e)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Email"/>
+                        </InputView>
+                        <InputView>
+                            <Input onChangeText={p=>setPass(p)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Senha"/>
+                        </InputView>
 
-                    <BtnView>
-                        <BtnComponent underlayColor="#000" onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#E76F51">
-                            <BtnText> Login </BtnText>
-                        </BtnComponent>
-                        <BtnText style={{color:"#333", marginTop:10, marginBottom: 25}}> Esqueceu a senha? </BtnText>
+                        <BtnView>
+                            <BtnComponent underlayColor="#000" onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#E76F51">
+                                <BtnText> Login </BtnText>
+                            </BtnComponent>
+                            <BtnText style={{color:"#333", marginTop:10, marginBottom: 25}}> Esqueceu a senha? </BtnText>
 
-                    </BtnView>
+                        </BtnView>
 
-            </ViewLogin>
+                </ViewLogin>
+            </Scroll>
+            
         </Container>
     );
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setEmail:(email)=>dispatch({type:'SET_EMAIL', payload: {email}})
+        setEmail:(email)=>dispatch({type:'SET_EMAIL', payload: {email}})    // Seta o email do usuário com redux
     };
 }
 

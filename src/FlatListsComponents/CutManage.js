@@ -32,17 +32,10 @@ const RightView = styled.View`
 
 
 function Cuts(props) {
-    const name = useSelector(state => state.user.cut);      // Pegando o corte que foi mandado via redux
-    const [isVisible, setIsVisible] = useState(false);
+    const cutId = useSelector(state => state.user.cut);      // Pegando o corte que foi mandado via redux
     const user = useSelector(state => state.user.email);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsVisible(true);
-        }, 3000)
-    }, [])
-
-    function setCutAndDuration(id) {        // Função que seta um corte para o redux
+    function setCut(id) {        // Função que seta um corte para o redux
         if(user) {
             props.setCut(id);
         } else {
@@ -51,30 +44,25 @@ function Cuts(props) {
     }
 
     return(
-        <ShimmerPlaceholder
-            style={{height: 80, width: '100%', marginBottom: 5}}
-            autoRun={true}
-            visible={isVisible}
-            >
+       
                 <ItemView>
-                    <Pressable onPress={() => setCutAndDuration(props.data.id)} onLongPress={() => customAlert(props.data.name, props.data.id)}
+                    <Pressable onPress={() => setCut(props.data.id)}
                     style={{
-                            flexDirection:'row', backgroundColor: name == props.data.id?'#434343':'transparent', 
+                            flexDirection:'row', backgroundColor: cutId == props.data.id?'#434343':'transparent', 
                             color: '#fff', height: 80, width: '100%', 
                             alignItems: 'center'
                         }}>
                             <>
                                 <LeftView>
-                                    <ItemText style={{color:name == props.data.id?'#fff':'#434343' }}>{props.data.name}</ItemText>
-                                    <PriceText style={{color:name == props.data.id?'#fff':'#434343' }}>{props.data.duration} </PriceText>
+                                    <ItemText style={{color:cutId == props.data.id?'#fff':'#434343' }}>{props.data.name}</ItemText>
+                                    <PriceText style={{color:cutId == props.data.id?'#fff':'#434343' }}>{props.data.duration} </PriceText>
                                 </LeftView>
                                 <RightView>
-                                    <ItemText style={{color:name == props.data.id?'#fff':'#434343' }}> R${props.data.price} </ItemText> 
+                                    <ItemText style={{color:cutId == props.data.id?'#fff':'#434343' }}> R${props.data.price} </ItemText> 
                                 </RightView>
                             </>
                     </Pressable>
                 </ItemView>
-        </ShimmerPlaceholder>      
     );
 }
 

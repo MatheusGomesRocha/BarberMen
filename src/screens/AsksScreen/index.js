@@ -6,9 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
     Header,
     HeaderLeft,
-    HeaderRight,
     HeaderButton,
-    Teste
 } from '../../components/HeaderComponent';
 
 import {

@@ -19,7 +19,7 @@ export const InfoView = styled.View`
     width: 100%;
     height: 200px;
     justify-content: center;
-    margin-top: 50px;
+    margin: 50px 0 25px 0;
 `;
 export const InfoText = styled.Text`
     padding: 5px;

@@ -49,8 +49,6 @@ export const TitleText = styled.Text`
     color: #434343;
 `;
 
-export const Flat = styled.FlatList`
-`;
 
 // + View com todos os comentários em um array
 // + View dentro do array que retorna para cada comentário
@@ -82,16 +80,16 @@ export const CommentsName = styled.Text`
     color: #434343;
     margin-left: 10px;
 `;
+export const CommentsDate = styled.Text`
+    margin-left: 10px;
+    color: #434343;
+    font-size: 16px;
+`;
 export const CommentsRate = styled.View`
     flex-direction: row;
     margin: 10px 0 0 5px;
     align-items: center;
     justify-content: center;
-`;
-export const CommentsDate = styled.Text`
-    margin-left: 10px;
-    color: #434343;
-    font-size: 16px;
 `;
 export const CommentsText = styled.Text`
     font-size: 17px;

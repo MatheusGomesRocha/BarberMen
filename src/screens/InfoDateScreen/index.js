@@ -12,7 +12,6 @@ import {
     HeaderLeft,
     HeaderRight,
     HeaderButton,
-    Teste
 } from '../../components/HeaderComponent';
 
 import {
@@ -43,7 +42,7 @@ export default () => {
     const duration = useSelector(state => state.user.duration);
     const price = useSelector(state => state.user.price);
 
-    function SetAppointment() {
+    function SetAppointment() {         // Function que adiciona o agendamento em uma collection "appointments" no firebase
         let id = uuid();
         const userId = auth().currentUser.uid;
 

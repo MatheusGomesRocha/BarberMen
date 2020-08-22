@@ -4,30 +4,25 @@ import { useNavigation } from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
 
 import {
-    TextView,    // View de bem-vindo
-    BigText,        // Texto grande de Bem-Vindo
-    SmallText,      // Texto pequeno de introdução
+    SmallText,   // Texto pequeno de introdução
 } from '../../components/TextView';
 
 import {
     Header,
     HeaderLeft,
-    HeaderRight,
     HeaderButton,
-    Teste
 } from '../../components/HeaderComponent';
 
 import {
-    Container,
+    Container,  // Tela
 
-    Scroll, 
+    Scroll,     // Permite a rolagem da tela
 
-    InputView,
-    LabelText,
-    Input,
-    LabelView,
+    InputView,  // View que fica os Inputs
+    LabelText,  // Texto
+    Input,      // Input
 
-    BtnText,
+    BtnText,    // Texto do BtnComponent
 } from './style';
 
 export default () => {
@@ -44,9 +39,7 @@ export default () => {
                     </HeaderButton>
                 </Header>
 
-                <TextView>
-                    <SmallText color="#434343">  Tem alguma dúvida ou reclamação? Nos mande uma mensagem, seu feedback é importante para nós </SmallText>
-                </TextView>
+                <SmallText color="#434343">  Tem alguma dúvida ou reclamação? Nos mande uma mensagem, seu feedback é importante para nós </SmallText>
 
                 <InputView>
                     <LabelText> Título da mensagem </LabelText>
