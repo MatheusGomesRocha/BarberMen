@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import HistoryList from '../../FlatListsComponents/History';
 
 import {
     Header,
@@ -14,6 +15,8 @@ import {
     Container,
 
     Scroll,
+
+    Flat,
 
     HistoryView,
     ItemView,
@@ -50,27 +53,22 @@ export default () => {
     
     return(
         <Container>
+                            
+                
+                
+                <Flat
+                    ListHeaderComponent={
+                        <>
+                            <Header height="60px" justify="center">
+                                <HeaderLeft> Histórico </HeaderLeft>
+                            </Header>
+                        </>
+                    }
+                data={history}
+                renderItem={({item}) => <HistoryList data={item} />}
+                keyExtractor={(item) => item.id} 
+                />
 
-            <Scroll>
-                <Header height="60px" justify="center">
-                    <HeaderLeft> Histórico </HeaderLeft>
-                </Header>
-                <HistoryView>
-                    {history.map((h, k) => (
-                        <ItemView key={k}>
-                            <LeftView>
-                                <DefaultText> <Bold> Serviço: </Bold> {h.cut}</DefaultText>
-                                <DefaultText> <Bold> Data: </Bold> {h.day}/2020</DefaultText>
-                                <DefaultText> <Bold> Barbeiro: </Bold> {h.barber}</DefaultText>
-                            </LeftView>
-                            <RightView>
-                                <DefaultText> <Bold> Preço: </Bold> R$ {h.price}</DefaultText>
-                            </RightView>
-                        </ItemView>
-                    ))}
-                </HistoryView>
-
-            </Scroll>
 
             {/* <DefaultText>
                 Você ainda não realizou nenhum agendamento
