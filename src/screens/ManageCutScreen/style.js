@@ -36,7 +36,6 @@ export const Input = styled.TextInput`
     flex-wrap: nowrap;
 `;
 
-
 export const BtnText = styled.Text`
     color: ${props=>props.color || '#fff'};
     font-size: 18px;
