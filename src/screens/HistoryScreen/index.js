@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import HistoryList from '../../FlatListsComponents/History';
 
 import {
@@ -12,6 +13,9 @@ import {
     Container,      // Tela
 
     Flat,           // FlatList
+
+    IfNotView,      // View caso não usuário não tenha historico
+    IfNotText,      // Texto caso não usuário não tenha historico
 } from './style';
 
 
@@ -40,23 +44,32 @@ export default () => {
     
     return(
         <Container>
-            <Flat
-                ListHeaderComponent={
-                    <>
-                        <Header height="60px" justify="center">
-                                <HeaderLeft> Histórico </HeaderLeft>
-                        </Header>
-                    </>
-                }
-                data={history}
-                renderItem={({item}) => <HistoryList data={item} />}
-                keyExtractor={(item) => item.id} 
-            />
 
-
-            {/* <DefaultText>
-                Você ainda não realizou nenhum agendamento
-            </DefaultText> */}
+            {history?
+                <Flat
+                    ListHeaderComponent={
+                        <>
+                            <Header height="60px" justify="center">
+                                    <HeaderLeft> Histórico </HeaderLeft>
+                            </Header>
+                        </>
+                    }
+                    data={history}
+                    renderItem={({item}) => <HistoryList data={item} />}
+                    keyExtractor={(item) => item.id} 
+                />
+            :
+            <>
+                <Header height="60px" justify="center">
+                    <HeaderLeft> Histórico </HeaderLeft>
+                </Header>
+            
+                <IfNotView>
+                    <Icon name="clipboard" size={35} />
+                    <IfNotText> Você ainda não agendou nenhum serviço para ter um histórico </IfNotText>
+                </IfNotView> 
+            </>
+            }
         </Container>
     );
 }

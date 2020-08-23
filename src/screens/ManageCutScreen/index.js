@@ -15,6 +15,9 @@ import {
     BtnText,        // Texto do Button  
 
     Flat,           // FlatList
+
+    IfNotView,      // View caso não usuário não tenha historico
+    IfNotText,      // Texto caso não usuário não tenha historico
 } from './style';
 
 export default () => {
@@ -73,30 +76,39 @@ export default () => {
 
     return(
         <Container>
-            <BtnComponent bgColor="#E76F51" width="70px" height="70px" radius="100px"
-                style={{
-                    position: 'absolute',
-                    bottom: 15,
-                    right: middle,
-                    zIndex: 999,
-                }}
-                onPress={() => ChooseWhat(cutId)}
-            >
-                <BtnText> <Icon name="trash" size={40}/> </BtnText>
-            </BtnComponent>
+            {cuts?
+            <>
+                <BtnComponent bgColor="#E76F51" width="70px" height="70px" radius="100px"
+                    style={{
+                        position: 'absolute',
+                        bottom: 15,
+                        right: middle,
+                        zIndex: 999,
+                    }}
+                    onPress={() => ChooseWhat(cutId)}
+                >
+                    <BtnText> <Icon name="trash" size={40}/> </BtnText>
+                </BtnComponent>
 
-            <Flat
-                ListHeaderComponent={
-                    <>
-                        <Texto> 
-                            Clique no serviço, e para excluir clique no ícone no canto superior direito
-                        </Texto>
-                    </>
-                }
-                data={cuts}
-                renderItem={({item}) => <Cutlist data={item} />}
-                keyExtractor={(item) => item.id}
-            />
+                <Flat
+                    ListHeaderComponent={
+                        <>
+                            <Texto> 
+                                Clique no serviço, e para excluir clique no ícone no canto superior direito
+                            </Texto>
+                        </>
+                    }
+                    data={cuts}
+                    renderItem={({item}) => <Cutlist data={item} />}
+                    keyExtractor={(item) => item.id}
+                />
+            </>
+            :
+                <IfNotView>
+                    <Icon name="clipboard" size={35} />
+                    <IfNotText> Você ainda não cadastrou nenhum serviço para gerenciar </IfNotText>
+                </IfNotView>
+            }   
         </Container>
     );
 }
