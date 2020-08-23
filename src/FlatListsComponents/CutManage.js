@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, connect} from 'react-redux';
 import styled from 'styled-components/native';
-import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 import {Pressable} from 'react-native';
 
 
@@ -44,25 +43,24 @@ function Cuts(props) {
     }
 
     return(
-       
-                <ItemView>
-                    <Pressable onPress={() => setCut(props.data.id)}
-                    style={{
-                            flexDirection:'row', backgroundColor: cutId == props.data.id?'#434343':'transparent', 
-                            color: '#fff', height: 80, width: '100%', 
-                            alignItems: 'center'
-                        }}>
-                            <>
-                                <LeftView>
-                                    <ItemText style={{color:cutId == props.data.id?'#fff':'#434343' }}>{props.data.name}</ItemText>
-                                    <PriceText style={{color:cutId == props.data.id?'#fff':'#434343' }}>{props.data.duration} </PriceText>
-                                </LeftView>
-                                <RightView>
-                                    <ItemText style={{color:cutId == props.data.id?'#fff':'#434343' }}> R${props.data.price} </ItemText> 
-                                </RightView>
-                            </>
-                    </Pressable>
-                </ItemView>
+            <ItemView>
+                <Pressable onPress={() => setCut(props.data.id)}
+                style={{
+                        flexDirection:'row', backgroundColor: cutId == props.data.id?'#434343':'transparent', 
+                        color: '#fff', height: 80, width: '100%', 
+                        alignItems: 'center'
+                    }}>
+                        <>
+                            <LeftView>
+                                <ItemText style={{color:cutId == props.data.id?'#fff':'#434343' }}>{props.data.name}</ItemText>
+                                <PriceText style={{color:cutId == props.data.id?'#fff':'#434343' }}>{props.data.duration} </PriceText>
+                            </LeftView>
+                            <RightView>
+                                <ItemText style={{color:cutId == props.data.id?'#fff':'#434343' }}> R${props.data.price} </ItemText> 
+                            </RightView>
+                        </>
+                </Pressable>
+            </ItemView>
     );
 }
 

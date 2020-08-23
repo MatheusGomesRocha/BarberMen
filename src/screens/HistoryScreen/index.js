@@ -23,41 +23,42 @@ export default () => {
     const [history, setHistory] = useState([]);
     const user = auth().currentUser;      // Pegando usuário logado
 
-    
-    useEffect(() => {       // Pegando os agendamentos do usuário logado no firebase
-          firestore()   
-          .collection('appointments')
-          .where('userId', '==', user.uid)
-          .onSnapshot(querySnapshot => {
-            const historyFire = [];
+        useEffect(() => {       // Pegando os agendamentos do usuário logado no firebase
+            if(user) {
+                firestore()   
+                .collection('appointments')
+                .where('userId', '==', user.uid)
+                .onSnapshot(querySnapshot => {
+                    const historyFire = [];
 
-            querySnapshot.forEach(documentSnapshot => {     // Passando os dados para um array e depois enviando para o FlatList como prop
-                historyFire.push({      
-                    ...documentSnapshot.data(),
-                    key: documentSnapshot.id,
+                    querySnapshot.forEach(documentSnapshot => {     // Passando os dados para um array e depois enviando para o FlatList como prop
+                        historyFire.push({      
+                            ...documentSnapshot.data(),
+                            key: documentSnapshot.id,
+                        });
+                    });
+
+                    setHistory(historyFire);
                 });
-            });
+            }
+            } ,[]);
 
-            setHistory(historyFire);
-          });
-        } ,[]);
-    
     return(
         <Container>
-
-            {history?
-                <Flat
-                    ListHeaderComponent={
-                        <>
-                            <Header height="60px" justify="center">
-                                    <HeaderLeft> Histórico </HeaderLeft>
-                            </Header>
-                        </>
-                    }
-                    data={history}
-                    renderItem={({item}) => <HistoryList data={item} />}
-                    keyExtractor={(item) => item.id} 
-                />
+            {user?
+                history?
+                    <Flat
+                        ListHeaderComponent={
+                            <>
+                                <Header height="60px" justify="center">
+                                        <HeaderLeft> Histórico </HeaderLeft>
+                                </Header>
+                            </>
+                        }
+                        data={history}
+                        renderItem={({item}) => <HistoryList data={item} />}
+                        keyExtractor={(item) => item.id} 
+                    />
             :
             <>
                 <Header height="60px" justify="center">
@@ -67,6 +68,17 @@ export default () => {
                 <IfNotView>
                     <Icon name="clipboard" size={35} />
                     <IfNotText> Você ainda não agendou nenhum serviço para ter um histórico </IfNotText>
+                </IfNotView> 
+            </>
+            : 
+            <>
+                <Header height="60px" justify="center">
+                    <HeaderLeft> Histórico </HeaderLeft>
+                </Header>
+            
+                <IfNotView>
+                    <Icon name="clipboard" size={35} />
+                    <IfNotText> Você precisa está logado para ver seu histórico </IfNotText>
                 </IfNotView> 
             </>
             }

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, connect} from 'react-redux';
 import styled from 'styled-components/native';
-import ShimmerPlaceholder from 'react-native-shimmer-placeholder';
 import {Pressable} from 'react-native';
 
 
@@ -49,13 +48,7 @@ function Cuts(props) {
     }
 
     return(
-        <ShimmerPlaceholder
-            style={{height: 60, width: '100%', borderRadius: 100, marginTop: 10, marginBottom: 10, margiLeft: 20, marginRight: 20}}
-            autoRun={true}
-            visible={isVisible}
-            >
-                <ItemView>
-                    
+            <ItemView>
                 <Pressable onPress={() => setCutAndDuration(props.data.name, props.data.duration, props.data.price)} onLongPress={() => customAlert(props.data.name, props.data.id)}
                 style={{
                         flexDirection:'row', backgroundColor: name == props.data.name?'#B43718':'#E76F51', 
@@ -63,12 +56,11 @@ function Cuts(props) {
                         alignItems: 'center'
                     }}>
                         <>
-                        <ItemText color='#fff'> {props.data.name} </ItemText>
-                        <PriceText color='#fff'> R$ {props.data.price} </PriceText>
+                            <ItemText color='#fff'> {props.data.name} </ItemText>
+                            <PriceText color='#fff'> R$ {props.data.price} </PriceText>
                         </>
                 </Pressable>
-                </ItemView>
-        </ShimmerPlaceholder>      
+            </ItemView>
     );
 }
 

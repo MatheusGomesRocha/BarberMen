@@ -92,19 +92,12 @@ function SettingsScreen(props) {
                             </>
                         </SettingsButton>
 
-                        <SettingsButton underlayColor="transparent" onPress={test}>
+                        {/* <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
                                 <DefaultText> Localização </DefaultText> 
                                 <Icon name="angle-right" size={30}/>
                             </>
-                        </SettingsButton>
-
-                        <SettingsButton underlayColor="transparent" onPress={test}>
-                            <>
-                                <DefaultText> Cupom de desconto </DefaultText> 
-                                <Icon name="angle-right" size={30}/>
-                            </>
-                        </SettingsButton>
+                        </SettingsButton> */}
 
                         <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('help')}>
                             <>
