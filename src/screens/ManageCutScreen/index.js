@@ -94,7 +94,7 @@ export default () => {
                     ListHeaderComponent={
                         <>
                             <Texto> 
-                                Clique no serviço, e para excluir clique no ícone no canto superior direito
+                                Clique no serviço, e para excluir clique no ícone de lixeira
                             </Texto>
                         </>
                     }

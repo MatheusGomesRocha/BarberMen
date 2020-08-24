@@ -13,7 +13,8 @@ export const Scroll = styled.ScrollView``;
 
 
 // View com o form de login
-export const ViewLogin = styled.View``;
+export const ViewLogin = styled.View`
+`;
 
 
 // + View de um input

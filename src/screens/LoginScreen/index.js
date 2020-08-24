@@ -56,7 +56,6 @@ function LoginScreen(props) {
 
     return (
         <Container>
-            <Scroll>
                 <TextView>
                         <Svg width="150px" height="100px" />
                         <BigText> Login </BigText>
@@ -80,7 +79,6 @@ function LoginScreen(props) {
                         </BtnView>
 
                 </ViewLogin>
-            </Scroll>
             
         </Container>
     );
