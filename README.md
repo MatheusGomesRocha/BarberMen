@@ -25,6 +25,8 @@
   Histórico de agendamento do usuário
   <br>
   <br>
+  <br>
+  <br>
   
   ### Admin
   <img src="src/assets/img/Adicionar_Corte.jpeg" height="350px"/>
