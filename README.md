@@ -13,10 +13,6 @@
   Aqui o usuário consegue realizar o login, caso já seja cadastrado
   <br>
   <br>
-  <img src="src/assets/img/Configurações.jpeg" height="350px"/>
-  Tela de configurações
-  <br>
-  <br>
   <img src="src/assets/img/Escolher_Corte.jpeg" height="350px"/>
   Aqui o usuário pode escolher o corte que deseja fazer, depois o dia, depois o horário e finalizar
   <br>
@@ -44,3 +40,10 @@
   # Histórico de lançamentos
   - 0.1 
     - Projeto terminado mas ainda não lançado na play store
+    
+    
+ 
+ # Meta
+ - Desenvolvedores
+  - Francisco Matheus Gomes Rocha
+  
