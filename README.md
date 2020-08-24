@@ -41,6 +41,6 @@
   <br>
   
   
-  #Histórico de lançamentos
+  # Histórico de lançamentos
   - 0.1 
     - Projeto terminado mas ainda não lançado na play store
