@@ -9,13 +9,12 @@
   
   <img src="src/assets/img/HomeScreen.jpeg" height="350px"/>
   <li>
-  Tela Inicial, onde o usuário pode realizar o login e cadastro, e mais abaixo deixar seu comentário sobre a barbearia
-  
+    Tela Inicial, onde o usuário pode realizar o login e cadastro, e mais abaixo deixar seu comentário sobre a barbearia
+  </li>
+   
+  <img src="src/assets/img/Login.jpeg" height="350px"/>
+  <li>
+  Aqui o usuário consegue realizar o login, caso já seja cadastrado
   </li>
   </ol>
-  
-  
-  
-  <img src="src/assets/img/Login.jpeg" height="350px"/>
-  Aqui o usuário consegue realizar o login, caso já seja cadastrado
   
