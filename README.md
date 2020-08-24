@@ -5,8 +5,13 @@
 ## Exemplo de uso
 
   ### Usuário comum
-  <img src="src/assets/img/HomeScreen.jpeg" height="350px"/>
+  <ol>
+  <li>
+    <img src="src/assets/img/HomeScreen.jpeg" height="350px"/>
   Tela Inicial, onde o usuário pode realizar o login e cadastro, e mais abaixo deixar seu comentário sobre a barbearia
+  
+  </li>
+  </ol>
   
   
   
