@@ -35,6 +35,12 @@
   <br>
   <img src="src/assets/img/Gerenciar_Corte.jpeg" height="350px"/>
   Aqui pode ser feito a exclusão dos cortes/serviços, apenas por um Admin
- 
+  <br>
+  <br>
+  <br>
+  <br>
   
   
+  #Histórico de lançamentos
+  - 0.1 
+    - Projeto terminado mas ainda não lançado na play store
