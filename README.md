@@ -6,8 +6,9 @@
 
   ### Usuário comum
   <ol>
-  <li>
+  
     <img src="src/assets/img/HomeScreen.jpeg" height="350px"/>
+    <li>
   Tela Inicial, onde o usuário pode realizar o login e cadastro, e mais abaixo deixar seu comentário sobre a barbearia
   
   </li>
