@@ -9,5 +9,5 @@
   Tela Inicial, onde o usuário pode realizar o login e cadastro, e mais abaixo deixar seu comentário sobre a barbearia
   
   <img src="src/assets/img/Login.jpeg" height="350px"/>
-  - Aqui o usuário consegue realizar o login, caso já seja cadastrado
+  Aqui o usuário consegue realizar o login, caso já seja cadastrado
   
