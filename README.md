@@ -8,7 +8,7 @@
   <ol>
   
   <img src="src/assets/img/HomeScreen.jpeg" height="350px"/>
-  <br><br>
+  <br>
   <li>
     Tela Inicial, onde o usuário pode realizar o login e cadastro, e mais abaixo deixar seu comentário sobre a barbearia
   </li>
