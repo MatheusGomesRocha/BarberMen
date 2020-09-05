@@ -4,41 +4,43 @@ import styled from 'styled-components/native';
 // View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #fff;
+    background-color: #48CAE4;
     justify-content: center;
+    align-items: center;
 `
-
-// Permite a rolagem da tela
-export const Scroll = styled.ScrollView``;
-
 
 // View com o form de login
 export const ViewLogin = styled.View`
 `;
 
 
-// + View de um input
-// + Input
-export const InputView = styled.View`
-    justify-content: center;
-    width: 80%;
-    margin: 0 0 25px 35px;
-`;
+// Input
 export const Input = styled.TextInput`
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #333;
-    border-radius: 50px;
+    border-radius: 10px;
+    height: 60px;
+    background-color: #fff;
+    width: 80%;
+    margin-top: 10px;
 `;
 
 
-// + View de Button de realizar login
-// + Texto do Button e Forgot
-export const BtnView = styled.View`
-    align-items: center;
-    justify-content: center;
-`;
+// Texto do Button e Forgot
 export const BtnText = styled.Text`
     font-size: 18px;
     color: #fff;
 `;
+
+
+// + Texto do cadastro
+// + Botão para ir para o cadastro
+export const RegisterText = styled.Text`
+    color: #eee;
+    font-size: 16px;
+`;
+export const RegisterBtn = styled.TouchableOpacity`
+    flex-direction: row;
+    margin-top: 15px;
+`;
+

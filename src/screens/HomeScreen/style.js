@@ -6,111 +6,60 @@ import styled from 'styled-components/native';
 //View de toda a tela
 export const Container = styled.SafeAreaView`   
     flex: 1;
-    background-color: #fff;
+    background-color: #48CAE4;
 `;
 
 
 //View para realizar scroll
 export const Scroll = styled.ScrollView`
-    margin: 0 20px 0 20px;
+    flex: 1;
+    padding: 20px;
 `;
 
 
-// View que ficou o SVG
-export const SvgView = styled.View`
-    align-items: center;
-    justify-content: center;
-`;
-
-
-// + View com botão de login 
-// + Texto dentro do button
-export const LoginBtnView = styled.View`
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-`;
-export const BtnText = styled.Text`
-    color: #fff;
-    font-size: 20px;
-    width: 80%;
-`;
-
-
-// + View onde fica todo o título da sessão de comentários
-// + Texto com o título da sessão de comentários
-export const CommentsTitle = styled.View`
+export const Header = styled.View`
     flex-direction: row;
     justify-content: space-between;
-    margin: 50px 20px 0 0px;
-`
-export const TitleText = styled.Text`
+    align-items: center;
+    margin-top: 30px;
+`;
+export const HeaderTitle = styled.Text`
+    color: #fff;
     font-size: 24px;
-    color: #434343;
+    font-weight: bold;
+    width: 60%;
+`;
+export const HeaderBtn = styled.TouchableOpacity`
+    width: 26px;
+    height: 26px;
 `;
 
-
-// + View com todos os comentários em um array
-// + View dentro do array que retorna para cada comentário
-// + View com avatar e nome do usuário
-// + Imagem do avatar 
-// + Texto do nome
-// + View com estrelas mostrando o rating e a data do comentário
-// + Text com a data do comentário
-// + Texto da sessão de comentários
-export const CommentsView = styled.View`
-`;
-export const Comments = styled.View`
-    margin: 35px 0px 20px 0px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 10px;
-`;
-export const CommentsHeader = styled.View`
+export const Location = styled.View`
     flex-direction: row;
     align-items: center;
-`;
-export const CommentsAvatar = styled.Image`
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-`;
-export const CommentsName = styled.Text`
-    font-size: 16px;
-    color: #434343;
-    margin-left: 10px;
-`;
-export const CommentsDate = styled.Text`
-    margin-left: 10px;
-    color: #434343;
-    font-size: 16px;
-`;
-export const CommentsRate = styled.View`
-    flex-direction: row;
-    margin: 10px 0 0 5px;
-    align-items: center;
-    justify-content: center;
-`;
-export const CommentsText = styled.Text`
-    font-size: 17px;
-    margin-top: 10px;
-    align-items: center;
-    justify-content: center;
-    color: #434343;
-`;
-
-
-// + View com input e button para add comentários
-// + Input de add comentários
-export const AddComments = styled.View`
-    margin: 25px 0px 25px 0px;
-    padding: 10px;
-`;
-export const Input = styled.TextInput`
-    border: 1px solid #434343;
+    height: 70px;
+    background-color: #fff;
     border-radius: 100px;
-    padding: 10px;
-    margin-bottom: 20px;
-    color: #434343;
-    font-size: 16px;
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 `;
+export const LocationInput = styled.TextInput`
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+`;
+export const LocationBtn = styled.TouchableOpacity`
+    width: 24px;
+    height: 24px;
+`;
+
+export const LoadingIcon = styled.ActivityIndicator`
+    margin-top: 50px;
+`;
+
+export const ListArea = styled.View`
+    margin: 30px 0 30px 0;
+`;
+export const ItemArea = styled.View``;
+export const ItemText = styled.Text``;

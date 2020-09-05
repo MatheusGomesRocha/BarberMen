@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import BtnComponent from '../../components/BtnComponent';
-import Svg from '../../assets/svg/user_pic.svg';
+import Svg from '../../assets/svg/undraw_barber_3uel.svg';
 import auth from '@react-native-firebase/auth';
+import Api from '../../Api';
 
 import {
     TextView,    // View de bem-vindo
@@ -13,15 +14,13 @@ import {
 import {
     Container,  // View toda a tela 
 
-    Scroll,     // Permite a rolagem da tela
-
-    ViewLogin,  // View com o form de login
-
-    InputView,  // View de um input
     Input,      // Input
     
-    BtnView,    // View de Button de realizar login
     BtnText,    // Texto do Button e Forgot
+
+    RegisterView,   // View com texto para realizar cadastro
+    RegisterText,   // Texto do cadastro
+    RegisterBtn,    // Botão para ir para o cadastro
 } from './style';
 
 function LoginScreen(props) {
@@ -29,56 +28,38 @@ function LoginScreen(props) {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
-    function SignIn(e, p) {
-        if(!e, !p) {
+    const SignIn = async (e, p) => {
+        if(!e || !p) {
             alert('Todos campos são obrigatórios');
-        } else  {
-            const login = 
-                auth()
-                .signInWithEmailAndPassword(e, p)
-                .then(() => {
-                    navigation.reset({
-                        index: 0,
-                        routes: [
-                            { name: 'home' },
-                        ]
-                    });
-                    props.setEmail(e);
-                    alert('Logado com sucesso');
-                })
-                .catch(error => {
-                    if (error) {
-                        alert('Email ou senha incorreta');
-                    }
+        } else {
+            let json = await Api.login(e, p);
+            
+            if(json) {
+                props.setEmail(e);
+                navigation.reset({
+                    routes: [
+                        {name: 'preload'}
+                    ]
                 });
+            }
         }   
     }
 
     return (
         <Container>
-                <TextView>
-                        <Svg width="150px" height="100px" />
-                        <BigText> Login </BigText>
-                </TextView>
+                <Svg width="100%" height="150px" style={{marginBottom: 50}}/>
                 
-                <ViewLogin>
-                    
-                        <InputView>
-                            <Input keyboardType="email-address" onChangeText={e=>setEmail(e)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Email"/>
-                        </InputView>
-                        <InputView>
-                            <Input onChangeText={p=>setPass(p)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Senha"/>
-                        </InputView>
+                <Input keyboardType="email-address" onChangeText={e=>setEmail(e)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Email"/>
+                <Input secureTextEntry={true} onChangeText={p=>setPass(p)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Senha"/>
 
-                        <BtnView>
-                            <BtnComponent underlayColor="#000" onPress={() => SignIn(email, pass)} width="80%" radius="100px" height="55px" bgColor="#E76F51">
-                                <BtnText> Login </BtnText>
-                            </BtnComponent>
-                            <BtnText style={{color:"#333", marginTop:10, marginBottom: 25}}> Esqueceu a senha? </BtnText>
+                <BtnComponent onSubmitingEditing={() => SignIn(email, pass)} underlayColor="rgba(0, 0, 0, 0.7)" onPress={() => SignIn(email, pass)} mTop="10px" width="80%" radius="10px" height="60px" bgColor="#0096C7">
+                    <BtnText> LOGIN </BtnText>
+                </BtnComponent>
 
-                        </BtnView>
-
-                </ViewLogin>
+                    <RegisterBtn onPress={() => navigation.navigate('signup')}>
+                        <RegisterText> Não possui uma conta? </RegisterText>
+                        <RegisterText style={{fontWeight: 'bold', color: '#fff'}}> Cadastre-se </RegisterText>
+                    </RegisterBtn>
             
         </Container>
     );

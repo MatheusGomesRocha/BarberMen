@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import BtnComponent from '../../components/BtnComponent';
-import Svg from '../../assets/svg/user_pic.svg';
+import Svg from '../../assets/svg/undraw_barber_3uel.svg';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
@@ -54,14 +54,13 @@ function SignUpScreen(props) {
                     id: user.uid,
                     name: name,
                     email: user.email,
-                    phone: contact,
                     password: password,
                 })
                 alert('Conta criada e logada com sucesso');
                 navigation.reset({
                     index: 0,
                     routes: [
-                        { name: 'home' },
+                        { name: 'preload' },
                     ]
                 });
             })
@@ -79,43 +78,27 @@ function SignUpScreen(props) {
     return (
         <Container>
             <Scroll>
-            <TextView>
-                    <Svg width="150px" height="100px" />
-                    <BigText> Cadastro </BigText>
-            </TextView>
+                <TextView>
+                        <Svg width="200px" height="150px" />
+                        <BigText> Cadastro </BigText>
+                </TextView>
             
-            <ViewSignUp>
-                <BtnText style={{color: '#fff', textAlign: 'center', marginTop: 5}}> Arraste para cima </BtnText> 
 
-                
-                    <InputView>
+                <ViewSignUp>
                         <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Nome" onChangeText={n=>setName(n)}/>
-                    </InputView>
-                    <InputView>
                         <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Email" keyboardType="email-address" onChangeText={e=>setEmail(e)}/>
-                    </InputView>
-                    <InputView>
-                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
-                        placeholder="Contato" keyboardType="numeric" onChangeText={co=>setContact(co)}/>
-                    </InputView>
-                    <InputView>
-                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
+                        <Input secureTextEntry={true} placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Senha" onChangeText={p=>setPassword(p)}/>
-                    </InputView>
-                    <InputView>
-                        <Input placeholderTextColor="rgba(0, 0, 0, 0.5)" 
+                        <Input secureTextEntry={true} placeholderTextColor="rgba(0, 0, 0, 0.5)" 
                         placeholder="Confirme a Senha" onChangeText={cp=>setConfirmPassword(cp)}/>
-                    </InputView>
 
-                    <BtnView>
-                        <BtnComponent onPress={() => SignUp(email, password)} width="100%" radius="100px" height="55px" bgColor="#E76F51">
+                        <BtnComponent underlayColor="rgba(0, 0, 0, 0.6)" onPress={() => SignUp(email, password)} mTop="10px" width="80%" radius="10px" height="60px" bgColor="#0096C7">
                             <BtnText> Finalizar </BtnText>
                         </BtnComponent>
-                    </BtnView>
+                </ViewSignUp>
 
-            </ViewSignUp>
             </Scroll>
         </Container>
     );

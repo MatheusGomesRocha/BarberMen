@@ -1,8 +1,4 @@
-Background: #fff,
-Text: #434343,
-Btn: #E76F51,
+Background: #48CAE4,
+Text: #fff,
+Btn: #0096C7,
 BtnText: #fff,
-
-size:
-
-BtnText: 18px

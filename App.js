@@ -15,7 +15,7 @@ function Bar() {      /** Barra de status do aparelho */
    * Cor amarelo queimado FFc491
    */
   return (
-    <StatusBar barStyle="light-content" backgroundColor="#E76F51"/>
+    <StatusBar barStyle="light-content" backgroundColor="#48CAE4"/>
   );
 }
 
@@ -24,7 +24,7 @@ function App() {
     <Provider store={store}>
       <NavigationContainer>
         <PersistGate loading={null} persistor={persistor}>
-          <AppTab/>
+          <Preload/>
           <Bar/>
         </PersistGate>
       </NavigationContainer>

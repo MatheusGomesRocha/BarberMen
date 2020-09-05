@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { connect, useSelector } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import SvgPic from '../../assets/svg/undraw_profile_pic_ic5t.svg';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
@@ -38,7 +37,7 @@ function SettingsScreen(props) {
         navigation.reset({
             index: 0,
             routes: [
-                { name: 'home' },
+                { name: 'preload' },
             ]
         });
     }
@@ -60,7 +59,6 @@ function SettingsScreen(props) {
             <Scroll>
 
                 <UserView> 
-                    <SvgPic width={70} height={70}/>
                     {!user?
                     <Texto> Faça o login </Texto> 
                     : <Texto> Bem vindo {userSplit} </Texto> }

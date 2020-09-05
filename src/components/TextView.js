@@ -12,7 +12,7 @@ export const TextView = styled.View`
 export const BigText = styled.Text`
     font-size: 28px;
     text-align: center;
-    color: #434343;
+    color: #fff;
     margin-bottom: ${props=>props.bot || '20px'}; 
 `;
 export const SmallText = styled.Text`
