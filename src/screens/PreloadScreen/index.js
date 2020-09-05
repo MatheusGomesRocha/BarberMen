@@ -22,7 +22,7 @@ export default () => {
 
     useEffect(() => {
 
-        if(user && userEmail) {
+        if(userEmail) {
             setTimeout(() => {
                 navigation.reset({
                     routes: [

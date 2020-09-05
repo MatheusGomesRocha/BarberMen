@@ -5,6 +5,10 @@ import ItemDefault from '../../components/ItemDefault';
 
 import {
     Container,
+    
+    Scroll,
+
+    Texto,
 
     ListArea,
 } from './style';
@@ -41,11 +45,14 @@ export default () => {
 
     return(
         <Container>
-            <ListArea>
-                {appointments.map((item, k) => (
-                    <ItemDefault key={k}data={item} />
-                ))}
-            </ListArea>
+            <Scroll>
+            <Texto> Agendamentos </Texto>
+                <ListArea>
+                    {appointments.map((item, k) => (
+                        <ItemDefault key={k}data={item} />
+                    ))}
+                </ListArea>
+            </Scroll>
         </Container>
     );
 }

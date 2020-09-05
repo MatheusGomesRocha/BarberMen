@@ -148,7 +148,7 @@ export default () => {
 
             <Input onChangeText={n=>setNewName(n)} placeholder={name} />
             <Input onChangeText={e=>setNewEmail(e)} placeholder={email} />
-            <Input onChangeText={p=>setNewPass(p)} placeholder={pass} />
+            <Input secureTextEntry={true} onChangeText={p=>setNewPass(p)} placeholder="******" />
     
             <BtnComponent onPress={UpdateData} mTop="10px" width="80%" radius="10px" height="60px" bgColor="#0096C7">
                 <BtnText> Salvar </BtnText> 

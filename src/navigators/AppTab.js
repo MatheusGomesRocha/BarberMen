@@ -6,11 +6,8 @@ import HomeScreen from '../screens/HomeScreen';
 import AppointmentsScreen from '../screens/AppointmentsScreen';
 import SearchScreen from '../screens/SearchScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
-import PriceStack from './PriceStack';
 import SettingsStack from './SettingsStack';
-import HistoryScreen from '../screens/HistoryScreen';
-import ManageCutScreen from '../screens/ManageCutScreen';
-import AddCutScreen from '../screens/AddCutScreen';
+
 import {useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
