@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ItemArea = styled.View`
     background-color: #fff;
@@ -9,6 +10,11 @@ const ItemArea = styled.View`
 `;
 
 const BarberArea = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`;
+const BarberInfo = styled.View`
     flex-direction: row;
     align-items: center;
 `;
@@ -22,6 +28,8 @@ const BarberName = styled.Text`
     font-weight: bold;
     font-size: 18px;
 `;
+
+
 
 const ServiceArea = styled.View`
     flex-direction: row;
@@ -69,8 +77,15 @@ export default ({data}) => {
     return(
         <ItemArea style={{opacity: data.done ? 0.5 : 1}}>
             <BarberArea>
-                <Avatar source={require('../assets/img/perfil1.jpg')} />
-                <BarberName> {data.barberName} </BarberName>
+                <BarberInfo>
+                    <Avatar source={require('../assets/img/perfil1.jpg')} />
+                    <BarberName> {data.barberName} </BarberName>
+
+                </BarberInfo>
+
+                {data.done && 
+                    <Icon name="check" size={30} color="#333"/>
+                }
             </BarberArea>
 
             <ServiceArea>

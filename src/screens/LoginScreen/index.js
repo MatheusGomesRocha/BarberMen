@@ -50,9 +50,9 @@ function LoginScreen(props) {
                 <Svg width="100%" height="150px" style={{marginBottom: 50}}/>
                 
                 <Input keyboardType="email-address" onChangeText={e=>setEmail(e)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Email"/>
-                <Input secureTextEntry={true} onChangeText={p=>setPass(p)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Senha"/>
+                <Input onEndEditing={() => SignIn(email, pass)}  secureTextEntry={true} onChangeText={p=>setPass(p)} placeholderTextColor="rgba(0, 0, 0, 0.5)" placeholder="Senha"/>
 
-                <BtnComponent onSubmitingEditing={() => SignIn(email, pass)} underlayColor="rgba(0, 0, 0, 0.7)" onPress={() => SignIn(email, pass)} mTop="10px" width="80%" radius="10px" height="60px" bgColor="#0096C7">
+                <BtnComponent underlayColor="rgba(0, 0, 0, 0.7)" onPress={() => SignIn(email, pass)} mTop="10px" width="80%" radius="10px" height="60px" bgColor="#0096C7">
                     <BtnText> LOGIN </BtnText>
                 </BtnComponent>
 

@@ -72,43 +72,37 @@ function SettingsScreen(props) {
                             <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('profile')}>
                                 <>
                                     <DefaultText> Editar perfil </DefaultText> 
-                                    <Icon name="angle-right" size={30}/>
+                                    <Icon name="angle-right" size={30} color="#fff"/>
                                 </>
                             </SettingsButton>
                         :null}
-                        <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('employee')}>
-                            <>
-                                <DefaultText> Funcionários </DefaultText> 
-                                <Icon name="angle-right" size={30}/>
-                            </>
-                        </SettingsButton>
                         
-                        <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('ask')}>
+                        {/* <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('ask')}>
                             <>
                                 <DefaultText> Perguntas frequentes </DefaultText> 
-                                <Icon name="angle-right" size={30}/>
+                                <Icon name="angle-right" size={30} color="#fff"/>
                             </>
                         </SettingsButton>
 
                         {/* <SettingsButton underlayColor="transparent" onPress={test}>
                             <>
                                 <DefaultText> Localização </DefaultText> 
-                                <Icon name="angle-right" size={30}/>
+                                <Icon name="angle-right" size={30} color="#fff"/>
                             </>
-                        </SettingsButton> */}
+                        </SettingsButton> 
 
                         <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('help')}>
                             <>
                                 <DefaultText> Ajuda </DefaultText> 
-                                <Icon name="angle-right" size={30}/>
+                                <Icon name="angle-right" size={30} color="#fff"/>
                             </>
-                        </SettingsButton>
+                        </SettingsButton> */}
 
 
                         <SettingsButton underlayColor="transparent" onPress={() => alert('(85) 994264687\n\nMatheus Gomes')}>
                             <>
                                 <DefaultText> Contato do desenvolvedor </DefaultText> 
-                                <Icon name="angle-right" size={30}/>
+                                <Icon name="angle-right" size={30} color="#fff"/>
                             </>
                         </SettingsButton>
 
@@ -116,7 +110,7 @@ function SettingsScreen(props) {
                             <SettingsButton underlayColor="transparent" onPress={SignOut}>
                                 <>
                                     <DefaultText> Sair </DefaultText> 
-                                    <Icon name="angle-right" size={30}/>
+                                    <Icon name="angle-right" size={30} color="#fff"/>
                                 </>
                             </SettingsButton>
                         : null}

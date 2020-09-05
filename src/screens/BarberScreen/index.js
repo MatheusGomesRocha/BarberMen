@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useRoute} from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import FavoriteIcon from '../../assets/svg/favorite.svg';
 import FavoriteFullIcon from '../../assets/svg/favorite_full.svg';
@@ -42,6 +43,8 @@ import {
 
 export default () => {
     const route = useRoute();
+
+    const userInfo = auth().currentUser;
 
     const [barber, setBarber] = useState({
         id: route.params.id,
@@ -127,7 +130,7 @@ export default () => {
   }, []);
 
   const handleFavBtn = () => {
-      setFavorited(!favorited);
+        setFavorited(!favorited)
   }
 
   const openModal = (id, name, price) => {

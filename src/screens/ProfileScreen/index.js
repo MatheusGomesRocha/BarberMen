@@ -138,36 +138,22 @@ export default () => {
    
     return (
         <Container>  
+            <Img source={
+                avatar ? avatar 
+                : require('../../assets/img/perfil1.jpg') 
+            } />
+            <BtnComponent style={{marginBottom: 10}} onPress={() => ImagePicker.showImagePicker({}, ImageAvatar)} bgColor="#0096C7" width="50%" height="50px" mTop="20px" radius="10px">
+                <BtnText> Trocar </BtnText>
+            </BtnComponent>
 
-            <Header>
-                <HeaderButton underlayColor="transparent"  onPress={() => navigation.goBack()}>
-                    <HeaderLeft>  <Icon name="angle-left" size={22} />  Editar Perfil </HeaderLeft>
-                </HeaderButton>
-            </Header>  
-
-                <Scroll>
-
-                    <PicView>
-                        <Img source={
-                            avatar ? avatar 
-                            : require('../../assets/img/perfil1.jpg') 
-                        } />
-                        <BtnComponent onPress={() => ImagePicker.showImagePicker({}, ImageAvatar)} bgColor="#E76F51" width="50%" height="40px" mTop="20px" radius="20px">
-                            <BtnText> Trocar </BtnText>
-                        </BtnComponent>
-                    </PicView>
-
-                    <Input onChangeText={n=>setNewName(n)} placeholder={name} />
-                    <Input onChangeText={e=>setNewEmail(e)} placeholder={email} />
-                    <Input onChangeText={p=>setNewPass(p)} placeholder={pass} />
+            <Input onChangeText={n=>setNewName(n)} placeholder={name} />
+            <Input onChangeText={e=>setNewEmail(e)} placeholder={email} />
+            <Input onChangeText={p=>setNewPass(p)} placeholder={pass} />
     
-                    <BtnView>
-                        <BtnComponent onPress={UpdateData} width="80%" radius="100px" height="50px" bgColor="#E76F51">
-                            <BtnText> Salvar </BtnText> 
-                        </BtnComponent>
-                    </BtnView>
+            <BtnComponent onPress={UpdateData} mTop="10px" width="80%" radius="10px" height="60px" bgColor="#0096C7">
+                <BtnText> Salvar </BtnText> 
+            </BtnComponent>
 
-                </Scroll>
         </Container>
     );
 }

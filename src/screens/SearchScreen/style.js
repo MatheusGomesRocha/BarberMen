@@ -19,3 +19,7 @@ export const Input = styled.TextInput`
 export const ListArea = styled.TouchableOpacity`
     margin: 30px 20px 30px 20px;
 `;
+
+export const LoadingIcon = styled.ActivityIndicator`
+    margin-top: 50px;
+`;

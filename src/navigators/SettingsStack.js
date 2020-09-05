@@ -11,12 +11,16 @@ const SettingsStack = createStackNavigator();
 // Cor amarelo queimado FFc491
 export default () => {
     return (
-        <SettingsStack.Navigator>
-            <SettingsStack.Screen name="default" component={SettingsScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
-            <SettingsStack.Screen name="profile" component={ProfileScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
-            <SettingsStack.Screen name="employee" component={EmployeesScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
-            <SettingsStack.Screen name="ask" component={AsksScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
-            <SettingsStack.Screen name="help" component={HelpScreen} options={{ headerLeft: null, headerTitle: null, headerTransparent: true }}/>
+        <SettingsStack.Navigator
+            screenOptions={{
+
+            }}
+        >
+            <SettingsStack.Screen name="default" component={SettingsScreen}/>
+            <SettingsStack.Screen name="profile" component={ProfileScreen}/>
+            <SettingsStack.Screen name="employee" component={EmployeesScreen}/>
+            <SettingsStack.Screen name="ask" component={AsksScreen}/>
+            <SettingsStack.Screen name="help" component={HelpScreen}/>
         </SettingsStack.Navigator>
     );
 }

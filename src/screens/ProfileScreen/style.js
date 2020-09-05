@@ -4,12 +4,17 @@ import styled from 'styled-components/native';
 // View toda a tela
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #fff;
+    background-color: #48CAE4;
+    align-items: center;
+    justify-content: center;
+
 `;
 
 
 // View que realiza o Scroll
-export const Scroll = styled.ScrollView``;
+export const Scroll = styled.ScrollView`
+    flex: 1;
+`;
 
 
 // + View de profile image
@@ -28,14 +33,13 @@ export const Img = styled.Image`
 
 // Input
 export const Input = styled.TextInput`
-    color: #434343;
-    border: 1px solid;
-    border-color: #434343;
-    border-radius: 50px;
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    height: 60px;
+    background-color: #fff;
     width: 80%;
-    margin: 0 0 25px 35px;
+    margin-top: 10px;
 `;
 
 
@@ -43,8 +47,6 @@ export const Input = styled.TextInput`
 // + Texto do Button de salvar
 export const BtnView = styled.View`
     margin: 20px 0 30px 0;
-    align-items: center;
-    justify-content: center;
 `;
 export const BtnText = styled.Text`
     color: #fff; 
