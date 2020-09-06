@@ -178,6 +178,12 @@ const hours = [
     { id: '22', hour: '20:30'},
 ];
 
+const test = [
+    {hour: '9:30'},
+    {hour: '10:30'},
+    {hour: '11:30'},
+]
+
 export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) => {
     const [selectYear, setSelectYear] = useState(0);
     const [selectMonth, setSelectMonth] = useState(0);
@@ -192,7 +198,7 @@ export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) =
     useEffect(() => {
         let daysInMonth = new Date(selectYear, selectMonth+1, 0).getDate();
         let newListDays = [];
-
+        
         for(let i=1;i<=daysInMonth; i++) {
             let d = new Date(selectYear, selectMonth, i);
 
@@ -215,7 +221,6 @@ export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) =
         setSelectDay(0);
         setSelectHour(0);
         
-
     }, [selectMonth, selectYear]);
 
 
@@ -245,6 +250,8 @@ export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) =
     const closeModal = () => {
         setShow(false);
     }
+
+   
 
     const finishAppointment = async () => {
         let id = Math.floor(Math.random() * (999999999 - 1));

@@ -1,6 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-
+import {Alert} from 'react-native';
 
 export default {
 
@@ -22,7 +22,14 @@ export default {
                     password: password,
                 })
                 .then(() => {
-                    alert('Conta criada com sucesso. Agora faça o login')
+                    Alert.alert(
+                        "Login",
+                        "Conta criada com sucesso. Agora faça o login",
+                        [
+                          { text: "OK" }
+                        ],
+                        { cancelable: false }
+                      );
                     navigation.reset({
                         routes:[
                             {name: 'preload'}
@@ -33,9 +40,14 @@ export default {
             })
             .catch(error => {
                 if(error.code == 'auth/email-already-in-use') {     // Erro que acontece caso já tenha um usuário com o mesmo email
-                    alert('Este email já está cadastro, tente outro');
-
-                    return
+                    Alert.alert(
+                        "Error",
+                        "Este email já está cadastro, tente outro",
+                        [
+                          { text: "OK" }
+                        ],
+                        { cancelable: false }
+                      );
                 }
             })
     },
@@ -49,7 +61,14 @@ export default {
                 })
                 .catch(error => {   // Caso email ou senha foram digitados incorretamentes
                     if (error) {
-                        alert('Email ou senha incorreta');
+                        Alert.alert(
+                            "Error",
+                            "Email ou senha incorreto",
+                            [
+                              { text: "OK" }
+                            ],
+                            { cancelable: false }
+                          );
                     }
                 });
 
@@ -77,9 +96,40 @@ export default {
             })
             .catch(error => {
                 if(error) {
-                    alert('Houve algum problema, tente novamente mais tarde');
+                    Alert.alert(
+                        "Error",
+                        "Houve algum problema, tente novamente mais tarde",
+                        [
+                          { text: "OK" }
+                        ],
+                        { cancelable: false }
+                      );
                 }
             })
+
+        return res;
+    },
+
+    updateProfile: async (userId, name, email, password) => {
+        const res = 
+            firestore()     // Realiza o update 
+            .collection('users')
+            .doc(userId)
+            .update({
+                name: name,
+                email: email,
+                pass: password,                    
+            })
+            .then(() => {
+                Alert.alert(
+                    "Edit",
+                    "Editado com sucesso",
+                    [
+                      { text: "OK" }
+                    ],
+                    { cancelable: false }
+                  );          
+            });
 
         return res;
     }

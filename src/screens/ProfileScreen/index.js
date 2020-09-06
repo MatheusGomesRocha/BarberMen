@@ -6,6 +6,7 @@ import firestore from '@react-native-firebase/firestore';
 import ImagePicker from 'react-native-image-picker';
 import Axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Api from '../../Api';
 
 import {
     Header,
@@ -118,18 +119,11 @@ export default () => {
                 passFire = pass;
             }
 
-            firestore()     // Realiza o update 
-            .collection('users')
-            .doc(userInfo.uid)
-            .update({
-                avatar: avatar,
-                name: nameFire,
-                email: emailFire,
-                pass: passFire,                    
-            })
-            .then(() => {
-                alert('Usuário editado');
-            });
+            let res = Api.updateProfile(userInfo.uid, nameFire, emailFire, passFire);
+
+            setName(nameFire);
+            setEmail(emailFire);
+            setPass(passFire);
         } else {
             alert('Você não digitiou nada');
         }

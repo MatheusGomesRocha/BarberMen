@@ -37,9 +37,12 @@ const ProfileText = styled.Text`
 `;
 
 export default ({data}) => {
-    const navigation = useNavigation();
+    // Component de barbeiro que aparece nas telas home(por enquanto), search e favorite. Recebe data como parâmetro
+    // e vem id stars(rate) e o nome do barbeiro selecionado. Posteriormente virá avatar do barber
 
-    const goToBarber = () => {
+    const navigation = useNavigation();     // Const para navegar
+
+    const goToBarber = () => {              // função que navega para a tela de barbeiro com os parâmetro id, nome e rate do barber
         navigation.navigate('barber', {
             id: data.id,
             name: data.name,
