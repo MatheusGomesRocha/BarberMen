@@ -38,7 +38,7 @@ const TouchCenter = styled.TouchableHighlight `
 
 export default ({state, descriptors, navigation, index}) => {          /** Props que vem para facilitar a customização */
 
-    const goTo = (screen) => {
+    const goTo = (screen) => {          // function que pega o nome da screen enviada dependendo da Tab que o usuário clicou
         navigation.navigate(screen);
     }
 

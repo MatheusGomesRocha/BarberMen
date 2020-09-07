@@ -9,13 +9,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Api from '../../Api';
 
 import {
-    Header,
-    HeaderLeft,
-    HeaderRight,
-    HeaderButton,
-} from '../../components/HeaderComponent';
-
-import {
     Container,      // View toda a tela
     
     Scroll,         // View que realiza o Scroll

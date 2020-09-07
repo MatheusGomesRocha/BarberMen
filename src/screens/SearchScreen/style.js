@@ -5,21 +5,14 @@ export const Container = styled.SafeAreaView`
     background-color: #48CAE4;
 `;
 
-export const Scroll = styled.ScrollView``;
-
 export const Input = styled.TextInput`
     background-color: #0096C7;
     height: 50px;
-    margin: 30px 20px 0 20px;
+    margin: 30px 20px 30px 20px;
     border-radius: 25px;
-    padding: 10px;
+    padding: 15px;
     color: #fff;
 `;
 
-export const ListArea = styled.TouchableOpacity`
-    margin: 30px 20px 30px 20px;
-`;
-
-export const LoadingIcon = styled.ActivityIndicator`
-    margin-top: 50px;
+export const Flat = styled.FlatList`
 `;

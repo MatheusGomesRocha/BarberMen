@@ -7,11 +7,6 @@ import auth from '@react-native-firebase/auth';
 import Api from '../../Api';
 
 import {
-    TextView,    // View de bem-vindo
-    BigText,      // Texto pequeno de introdução
-} from '../../components/TextView';
-
-import {
     Container,  // View toda a tela 
 
     Input,      // Input

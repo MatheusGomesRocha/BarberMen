@@ -122,8 +122,8 @@ export default {
             })
             .then(() => {
                 Alert.alert(
-                    "Edit",
-                    "Editado com sucesso",
+                    "Sucesso",
+                    "Usuário editado",
                     [
                       { text: "OK" }
                     ],
@@ -132,10 +132,11 @@ export default {
             });
 
         return res;
-    }
+    },
 
-    
+   
 
 
-  
+
+
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native'
 import styled from 'styled-components/native';
-import Stars from './Stars';
+import Stars from './Stars';        // Component de Stars (rate)
 
 const ItemArea = styled.TouchableOpacity`
     flex-direction: row;
     background-color: #fff;
-    margin-bottom: 20px;
+    margin: 0 20px 20px 20px;
     padding: 15px;
     border-radius: 20px;
 `;

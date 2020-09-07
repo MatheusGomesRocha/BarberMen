@@ -17,11 +17,14 @@ export const Scroll = styled.ScrollView`
 `;
 
 
+// + Header view
+// + Header Título
+// + Button de Search no Hearder
 export const Header = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
+    margin: 30px 20px 0 20px;
 `;
 export const HeaderTitle = styled.Text`
     color: #fff;
@@ -34,15 +37,20 @@ export const HeaderBtn = styled.TouchableOpacity`
     height: 26px;
 `;
 
+
+// + Location View
+// + Location Input
+// + Location button de search
 export const Location = styled.View`
     flex-direction: row;
     align-items: center;
     height: 70px;
     background-color: #fff;
     border-radius: 100px;
-    margin-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
+    margin: 30px 20px 50px 20px;
+
 `;
 export const LocationInput = styled.TextInput`
     flex: 1;
@@ -54,12 +62,6 @@ export const LocationBtn = styled.TouchableOpacity`
     height: 24px;
 `;
 
-export const LoadingIcon = styled.ActivityIndicator`
-    margin-top: 50px;
-`;
 
-export const ListArea = styled.View`
-    margin: 30px 0 30px 0;
-`;
-export const ItemArea = styled.View``;
-export const ItemText = styled.Text``;
+// FlatList (serve como scroll)
+export const Flat = styled.FlatList``;

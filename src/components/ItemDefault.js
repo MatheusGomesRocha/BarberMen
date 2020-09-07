@@ -9,6 +9,7 @@ const ItemArea = styled.View`
     padding: 10px 15px 20px 15px;
 `;
 
+
 const BarberArea = styled.View`
     flex-direction: row;
     align-items: center;
@@ -45,6 +46,7 @@ const ServicePrice = styled.Text`
     font-size: 16px;
 `;
 
+
 const DateArea = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -73,7 +75,8 @@ const Hour = styled.Text`
     font-size: 16px;
 `;
 
-export default ({data}) => {
+export default ({data}) => {        // Dados vindo da tela Appointments para montar um item para cada agendamento do usuário.
+                                    // Posteriormente o usuário poderá aplicar "done" caso já tenha sido atendido.
     return(
         <ItemArea style={{opacity: data.done ? 0.5 : 1}}>
             <BarberArea>

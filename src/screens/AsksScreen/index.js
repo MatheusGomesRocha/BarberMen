@@ -4,12 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
 import {
-    Header,
-    HeaderLeft,
-    HeaderButton,
-} from '../../components/HeaderComponent';
-
-import {
     Container,      // View toda a tela
 
     Scroll,         // View de Scroll

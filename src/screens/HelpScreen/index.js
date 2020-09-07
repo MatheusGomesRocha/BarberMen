@@ -4,16 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import BtnComponent from '../../components/BtnComponent';
 
 import {
-    SmallText,   // Texto pequeno de introdução
-} from '../../components/TextView';
-
-import {
-    Header,
-    HeaderLeft,
-    HeaderButton,
-} from '../../components/HeaderComponent';
-
-import {
     Container,  // Tela
 
     Scroll,     // Permite a rolagem da tela

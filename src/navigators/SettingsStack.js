@@ -7,14 +7,9 @@ import HelpScreen from '../screens/HelpScreen';             // Tela de ver pergu
 
 const SettingsStack = createStackNavigator();
 
-// Cor amarelo queimado FFc491
 export default () => {
     return (
-        <SettingsStack.Navigator
-            screenOptions={{
-
-            }}
-        >
+        <SettingsStack.Navigator>
             <SettingsStack.Screen name="default" component={SettingsScreen}/>
             <SettingsStack.Screen name="profile" component={ProfileScreen}/>
             <SettingsStack.Screen name="ask" component={AsksScreen}/>

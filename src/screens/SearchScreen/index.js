@@ -2,30 +2,24 @@ import React, {useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import BarberItem from '../../components/BarberItem';
+import BarberList from '../../lists/BarberList';
 import { RefreshControl } from 'react-native';
 
 import {
     Container,
 
-    Scroll,
-
-    LoadingIcon,
+    Flat,
 
     Input,
-    
-    ListArea,
 } from './style';
 
 export default () => {
     const [barbers, setBarbers] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [userSearch, setUserSearch] = useState();
-    const [refresh, setRefresh] = useState(false);
 
     const userInfo = auth().currentUser;
 
     const getBarbers = async () => {
-        setLoading(true);
         setBarbers([]);
         
             firestore()
@@ -41,7 +35,6 @@ export default () => {
             });
 
             setBarbers(barbersFire);
-            setLoading(false);
           });
     }
 
@@ -49,37 +42,22 @@ export default () => {
         getBarbers();
     }, [])
 
-    const onRefresh = () => {
-        setRefresh(false);
-        getBarbers();
-    }
-
-
     const filterData = barbers.filter((item) => {              // Array que será mostrado, pegando o valor digitado do usuário e filtrando para mostrar os que tem
         return item.name.indexOf(userSearch) >=0
     }) 
 
     return(
         <Container>
-            <Scroll refreshControl={
-                <RefreshControl refreshing={refresh} onRefresh={onRefresh} />
-            }>
-                <Input placeholder="Digite o nome do barbeiro" placeholderTextColor="#fff" onChangeText={us=>setUserSearch(us)} />
-                {loading && 
-                    <LoadingIcon size="large" color="#fff" />
-                }
-                <ListArea>
-                    {userSearch ? 
-                        filterData.map((item, k) => (
-                            <BarberItem key={k} data={item} />
-                        ))
-                    :    
-                        barbers.map((item, k) => (
-                            <BarberItem key={k} data={item} />
-                        ))
+            
+            <Flat
+                ListHeaderComponent={
+                    <>
+                        <Input placeholder="Digite o nome do barbeiro" placeholderTextColor="#fff" onChangeText={us=>setUserSearch(us)} />
+                    </>
                     }
-                </ListArea>
-            </Scroll>
+                data={userSearch ? filterData : barbers}
+                renderItem={({item}) => <BarberList data={item} />}
+            />        
         </Container>
     );
 }

@@ -2,13 +2,12 @@ import React, {useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import BarberItem from '../../components/BarberItem';
+import BarberList from '../../lists/BarberList';
 
 import {
     Container,
 
-    Scroll,
-    
-    ListArea,
+    Flat
 } from './style';
 
 export default () => {
@@ -45,13 +44,10 @@ export default () => {
     
     return(
         <Container>
-            <Scroll>
-                <ListArea>
-                    {barbers.map((item, k) => (
-                        <BarberItem key={k} data={item} />
-                    ))}
-                </ListArea>
-            </Scroll>
+            <Flat
+                data={barbers}
+                renderItem={({item}) => <BarberList data={item} />}
+            />
         </Container>
     );
 }

@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import {Alert} from 'react-native';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
 import ExpandIcon from '../assets/svg/expand.svg';
 import PrevIcon from '../assets/svg/nav_prev.svg';
 import NextIcon from '../assets/svg/nav_next.svg';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 import Api from '../Api';
 
 const Modal = styled.Modal``;
@@ -136,7 +136,7 @@ const TimeText = styled.Text`
     font-weight: bold;
 `;
 
-const months = [
+const months = [        // Array de meses
     'Janeiro', 
     'Fevereiro', 
     'Março', 
@@ -151,9 +151,9 @@ const months = [
     'Dezembro'
 ];
 
-const days = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+const days = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];     // Array de dias da semana
 
-const hours = [
+const hours = [         // Array de horas
     { id: '1', hour: '9:00'},
     { id: '2', hour: '9:30'},
     { id: '3', hour: '10:00'},
@@ -178,60 +178,61 @@ const hours = [
     { id: '22', hour: '20:30'},
 ];
 
-const test = [
-    {hour: '9:30'},
-    {hour: '10:30'},
-    {hour: '11:30'},
-]
+export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) => {     // Recebe dados da tela do barbeiro e do serviço que o usuário "agendou"
+                                                                                        // Show variável boolean para mostrar o Modal
+                                                                                        // setShow seta a variável show
+                                                                                        // barber é o nome dos barbeiros
+                                                                                        // serviceName nome do serviço agendado
+                                                                                        // servicePrice preço do serviço
+                                                                                        // serviceId id do serviço
 
-export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) => {
-    const [selectYear, setSelectYear] = useState(0);
-    const [selectMonth, setSelectMonth] = useState(0);
-    const [selectDay, setSelectDay] = useState(0);
-    const [selectHour, setSelectHour] = useState();
-    const [listDays, setListDays] = useState([]);
+    const [selectYear, setSelectYear] = useState(0);            // Ano selecionado
+    const [selectMonth, setSelectMonth] = useState(0);          // Mês selecionado
+    const [selectDay, setSelectDay] = useState(0);              // Dia selecionado
+    const [selectHour, setSelectHour] = useState();             // Hora selecionado
+    const [listDays, setListDays] = useState([]);               // Dias
 
-    const userId = auth().currentUser.uid;
+    const userId = auth().currentUser.uid;                      // Usuário logado
 
     const navigation = useNavigation();
 
-    useEffect(() => {
-        let daysInMonth = new Date(selectYear, selectMonth+1, 0).getDate();
+    useEffect(() => {       // Hook que executa sempre que as variáveis selectMonth e selectYear mudarem
+        let daysInMonth = new Date(selectYear, selectMonth+1, 0).getDate(); // Pega o dias que tem no mês (+1 porque o JS sempre pega 1 mês antes do atual)
         let newListDays = [];
         
-        for(let i=1;i<=daysInMonth; i++) {
-            let d = new Date(selectYear, selectMonth, i);
+        for(let i=1;i<=daysInMonth; i++) {      // Loop para setar dias no mês
+            let d = new Date(selectYear, selectMonth, i);   // variável que pega ano selecionado, mês selecionado e verifica quantos dias tem nesse mês
 
-            let year = d.getFullYear();
+            let year = d.getFullYear();    
             let month = d.getMonth() + 1;
             let day = d.getDate();
 
-            month = month < 10 ? '0'+month: month;
-            day = day < 10 ? '0'+day: day;
+            month = month < 10 ? '0'+month: month;      // se o mês for menor que 10 acrescenta o 0 antes (09)
+            day = day < 10 ? '0'+day: day;              // se o dia for menor que 10 acrescenta o 0 antes (01)
             
-            let FormatedDate = day+'/'+month+'/'+year;
+            let FormatedDate = day+'/'+month+'/'+year;      // Formata a data (20/08/2020);
             
             newListDays.push({
-                week: days[d.getDay()],
+                week: days[d.getDay()],         // Dia da semana 
                 day: i
             });
         }
 
-        setListDays(newListDays);
-        setSelectDay(0);
-        setSelectHour(0);
+        setListDays(newListDays);       // seta uma nova lista de dias para cada mês
+        setSelectDay(0);                // zera o dia selecionado
+        setSelectHour(0);               // zera o horário selecionado
         
     }, [selectMonth, selectYear]);
 
 
-    useEffect(() => {
+    useEffect(() => {       // Hook que pega o dia atual e seta nas variáveis de seleção
         let today = new Date();
         setSelectYear(today.getFullYear());
         setSelectMonth(today.getMonth());
         setSelectDay(today.getDate());
     }, [])
 
-    const prevDate = () => {
+    const prevDate = () => {        // Função que volta 1 mês 
         let mountDate = new Date(selectYear, selectMonth, 1);
         mountDate.setMonth(mountDate.getMonth() - 1);
         setSelectYear(mountDate.getFullYear());
@@ -239,7 +240,7 @@ export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) =
         setSelectDay(0);
     }
 
-    const nextDate = () => {
+    const nextDate = () => {        // Função que avannça 1 mês
         let mountDate = new Date(selectYear, selectMonth, 1);
         mountDate.setMonth(mountDate.getMonth() + 1);
         setSelectYear(mountDate.getFullYear());
@@ -247,27 +248,42 @@ export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) =
         setSelectDay(0);
     }
 
-    const closeModal = () => {
-        setShow(false);
+    const closeModal = () => {      // Função que fecha o modal
+        setShow(false); 
     }
 
    
 
-    const finishAppointment = async () => {
-        let id = Math.floor(Math.random() * (999999999 - 1));
+    const finishAppointment = async () => {     // Função que seta um agendamento no banco de dados (firebase)
+        let id = Math.floor(Math.random() * (999999999 - 1));   // id aleatório entre 999999999 e 1
         
+        // Se todos os usuários estiverem preenchidos
         if(barber.id && userId && serviceId && serviceName && servicePrice && selectDay > 0 && selectMonth > 0 && selectYear > 0 && selectHour) {
-                
+            
+            // Manda as variáveis para a Api e seta o agendamento 
             let json = await Api.setAppointment(id, barber.id, barber.name, userId, serviceId, serviceName, servicePrice, selectDay, 
                                                 selectMonth, selectYear, selectHour, navigation);
 
             if(json) {
                 navigation.navigate('appointments');
-                alert('Horário agendado com sucesso, certefique-se de chegar um pouco mais cedo para não ocorrer problemas');
-            }
+                Alert.alert(
+                    "Sucesso",
+                    "Horário agendado, certifique-se de chegar um pouco antes do horário marcado para não haver problemas",
+                    [
+                      { text: "OK" }
+                    ],
+                    { cancelable: false }
+                  );                     }
                  
         } else {
-            alert('Você esqueceu alguma coisa, revise novamente seus dados');
+            Alert.alert(
+                "Sucesso",
+                "Você esqueceu alguma coisa, revise novamente seus dados",
+                [
+                  { text: "OK" }
+                ],
+                { cancelable: false }
+              ); 
         }
     }
 
@@ -279,6 +295,7 @@ export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) =
         >
             <ModalArea>
                 <ModalBody>
+
                     <CloseBtn onPress={closeModal}>
                         <ExpandIcon width="40" height="40" fill="#000" />
                     </CloseBtn>
@@ -299,7 +316,6 @@ export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) =
 
                     <ModalItem>
                         <DateInfo>
-
                             <DateBack onPress={prevDate}>
                                 <PrevIcon width="35" height="35" fill="#000" />
                             </DateBack>
@@ -310,7 +326,6 @@ export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) =
                             <DateNext onPress={nextDate}>
                                 <NextIcon width="35" height="35" fill="#000" />
                             </DateNext>
-
                         </DateInfo>
 
                         <ScrollDay decelerationRate="fast" horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -346,10 +361,7 @@ export default ({show, setShow, barber, serviceName, servicePrice, serviceId}) =
                         <FinishBtnText> Finalizar agendamento </FinishBtnText>
                     </FinishBtn>
                 </ModalBody>
-
-                
             </ModalArea>
-
         </Modal>
     );
 }

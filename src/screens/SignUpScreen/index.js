@@ -42,10 +42,7 @@ function SignUpScreen(props) {
         } 
         else {
             let res = Api.signUp(name, e, p, navigation);
-            
         }
-             
-     
     }
 
     return (

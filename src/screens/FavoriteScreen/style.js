@@ -5,8 +5,6 @@ export const Container = styled.SafeAreaView`
     background-color: #48CAE4;
 `;
 
-export const Scroll = styled.ScrollView``;
-
-export const ListArea = styled.TouchableOpacity`
-    margin: 30px 20px 30px 20px;
+export const Flat = styled.FlatList`
+    margin-top: 50px;
 `;
