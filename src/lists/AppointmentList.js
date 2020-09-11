@@ -7,8 +7,8 @@ const Div = styled.View`
 
 export default ({data}) => {
     return(
-            <Div>
-                <ItemDefault data={data} />
-            </Div>        
+        <Div>
+            <ItemDefault data={data} />
+        </Div>        
     );
 }

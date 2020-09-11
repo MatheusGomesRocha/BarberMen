@@ -4,6 +4,7 @@ import firestore from '@react-native-firebase/firestore';
 import BarberItem from '../../components/BarberItem';
 import BarberList from '../../lists/BarberList';
 import { RefreshControl } from 'react-native';
+import Api from '../../Api';
 
 import {
     Container,
@@ -19,26 +20,15 @@ export default () => {
 
     const userInfo = auth().currentUser;
 
-    const getBarbers = async () => {
-        setBarbers([]);
-        
-            firestore()
-            .collection('barbers')
-            .onSnapshot(querySnapshot => {
-            const barbersFire = [];
-
-            querySnapshot.forEach(documentSnapshot => {
-                barbersFire.push({
-                    ...documentSnapshot.data(),
-                    key: documentSnapshot.id,
-                });
-            });
-
-            setBarbers(barbersFire);
-          });
-    }
-
     useEffect(() => {
+        const getBarbers = async () => {
+            setBarbers([]);
+            
+            let json = await Api.getBarbers();
+
+            setBarbers(json)
+        }
+
         getBarbers();
     }, [])
 

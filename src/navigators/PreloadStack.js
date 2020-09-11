@@ -19,7 +19,7 @@ export default () => {
             }}
         >
             <Preload.Screen name="preload" component={PreloadScreen} />
-            <Preload.Screen name="login" component={LoginScreen} options={{HeaderLeft: null}}/>
+            <Preload.Screen name="login" component={LoginScreen}/>
             <Preload.Screen name="signup" component={SignUpScreen} />        
             <Preload.Screen name="apptab" component={AppTab} />        
             <Preload.Screen name="barber" component={BarberScreen} />        

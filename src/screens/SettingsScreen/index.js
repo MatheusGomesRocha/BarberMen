@@ -21,10 +21,11 @@ import {
 function SettingsScreen(props) {    
     const navigation = useNavigation();
     const user = useSelector(state => state.user.email);
-    let userSplit = user.split('@')[0];     // Quebrando email para pegar o nome antes do @
     const [isAdmin, setIsAdmin] = useState(false)
 
     const userInfo = auth().currentUser;    // Pegando usuário logado
+
+    let userSplit = userInfo.email.split('@')[0];     // Quebrando email para pegar o nome antes do @
 
     function test() {
         alert('hello world');
@@ -42,18 +43,7 @@ function SettingsScreen(props) {
         });
     }
 
-    if(user) {      // Função que verifica se existe algum usuario, e se ele é admin
-        firestore()
-        .collection('users')
-        .where('id', '==', userInfo.uid)
-        .get()
-        .then(querySnapshot => {    
-            querySnapshot.forEach(documentSnapshot => {
-                setIsAdmin(documentSnapshot.data().admin)
-            });
-        });
-    }
-  
+   
     return (
         <Container>
             <Scroll>

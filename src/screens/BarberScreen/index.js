@@ -7,6 +7,7 @@ import FavoriteFullIcon from '../../assets/svg/favorite_full.svg';
 import PrevIcon from '../../assets/svg/nav_prev.svg';
 import NextIcon from '../../assets/svg/nav_next.svg';
 import Swiper from 'react-native-swiper';
+import Api from '../../Api';
 
 import Stars from '../../components/Stars';
 import Modal from '../../components/Modal';
@@ -61,72 +62,30 @@ export default () => {
     const [selectServicePrice, setSelectServicePrice] = useState();
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-
-        const getBarbers = async () => {
+    useEffect(() => {           // Pega os serviços que estão em uma collection "cuts" no firebase e passa para um array
+        const getServices = async () => {
             setLoading(true);
+            
+            let json = await Api.getServicesByBarber(barber.id);
 
-                firestore()
-                .collection('barbers')
-                .where('id', '==', barber.id)
-                .get()
-                .then(querySnapshot => {
-                    querySnapshot.forEach(documentSnapshot => {
-                        setBarber(documentSnapshot.data());
-                    })
-                })
-
-                setLoading(false);
+            setCuts(json);
+            setLoading(false);
         }
 
-            getBarbers();
-    }, [])
-
-    useEffect(() => {           // Pega os serviços que estão em uma collection "cuts" no firebase e passa para um array
-        const getServices = () =>
-            setLoading(true);
-            firestore()
-            .collection('cuts')
-            .onSnapshot(querySnapshot => {
-            const cutsFire = [];
-
-            querySnapshot.forEach(documentSnapshot => {
-                cutsFire.push({
-                    ...documentSnapshot.data(),
-                    key: documentSnapshot.id,
-                });
-            });
-
-            setCuts(cutsFire);
-            setLoading(false);
-
-        });
-
-    return getServices();
+        getServices();
   }, []);
 
   useEffect(() => {           // Pega os serviços que estão em uma collection "cuts" no firebase e passa para um array
-        const getComments = () =>
+        const getComments = async () => {
             setLoading(true);
             
-            firestore()
-            .collection('comments')
-            .where('barberId', '==', barber.id)
-            .onSnapshot(querySnapshot => {
-            const commentsFire = [];
+           let json = await Api.getComments(barber.id);
 
-            querySnapshot.forEach(documentSnapshot => {
-                commentsFire.push({
-                    ...documentSnapshot.data(),
-                    key: documentSnapshot.id,
-                });
-            });
-
-            setComments(commentsFire);
+            setComments(json);
             setLoading(false);
-        });
+        }
 
-    return getComments();
+        getComments();
   }, []);
 
   const handleFavBtn = () => {

@@ -3,6 +3,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import BarberItem from '../../components/BarberItem';
 import BarberList from '../../lists/BarberList';
+import Api from '../../Api';
 
 import {
     Container,
@@ -16,28 +17,17 @@ export default () => {
 
     const userInfo = auth().currentUser;
 
-    const getBarbers = async () => {
-        setLoading(true);
-        setBarbers([]);
-        
-            firestore()
-            .collection('barbers')
-            .onSnapshot(querySnapshot => {
-            const favoriteFire = [];
-
-            querySnapshot.forEach(documentSnapshot => {
-                favoriteFire.push({
-                    ...documentSnapshot.data(),
-                    key: documentSnapshot.id,
-                });
-            });
-
-            setBarbers(favoriteFire);
-            setLoading(false);
-          });
-    }
-
     useEffect(() => {
+        const getBarbers = async () => {
+            setLoading(true);
+            setBarbers([]);
+            
+            let json = await Api.getBarbers();
+    
+            setBarbers(json);
+            setLoading(false);
+        }
+        
         getBarbers();
     }, [])
 

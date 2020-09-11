@@ -134,9 +134,97 @@ export default {
         return res;
     },
 
-   
+    getBarbers: async () => {
+       let list = [];
 
+       let results = await firestore().collection('barbers').get();
 
+       results.forEach(result => {
+           let data = result.data();
+           list.push({
+               id: data.id,
+               name: data.name,
+               stars: data.stars,
+           })
+       })
+
+       return list
+    },
+
+    getUserLogin: async (id) => {
+        let list = [];
+
+        let results = await firestore().collection('users').where('id', '==', id).get();
+
+        results.forEach(result => {
+            let data = result.data();
+            list.push({
+                id: data.id,
+                email: data.email,
+                name: data.name,
+                password: data.password,
+            })
+        })
+
+        return list
+    },
+
+    getServicesByBarber: async (barberId) => {
+        let list = [];
+
+        let results = await firestore().collection('cuts').where('barberId', '==', barberId).get();
+
+        results.forEach(result => {
+            let data = result.data();
+            list.push({
+                id: data.id,
+                barberId: data.barberId,
+                name: data.name,
+                price: data.price,
+            })
+        })
+
+        return list
+    },
+
+    getComments: async (barberId) => {
+        let list = [];
+
+        let results = await firestore().collection('comments').where('barberId', '==', barberId).get();
+
+        results.forEach(result => {
+            let data = result.data();
+            list.push({
+                userId: data.userId,
+                barberId: data.barberId,
+                userComment: data.userComment,
+                userName: data.userName,
+            })
+        })
+
+        return list
+    },
+
+    getAppointments: async (userId) => {
+        let list = [];
+ 
+        let results = await firestore().collection('appointments').where('userId', '==', userId).get();
+ 
+        results.forEach(result => {
+            let data = result.data();
+            list.push({
+                id: data.id,
+                barberName: data.barberName,
+                serviceName: data.serviceName,
+                servicePrice: data.servicePrice,
+                date: data.date,
+                hour: data.hour,
+                done: data.done,
+            })
+        })
+ 
+        return list
+     },
 
 
 }

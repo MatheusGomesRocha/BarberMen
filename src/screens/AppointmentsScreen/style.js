@@ -11,7 +11,7 @@ export const Texto = styled.Text`
     font-weight: bold;
     flex: 1;
     text-align: center;
-    margin-top: 30px;
+    margin: 30px 0 30px 0;
 `;
 
 export const Flat = styled.FlatList``;

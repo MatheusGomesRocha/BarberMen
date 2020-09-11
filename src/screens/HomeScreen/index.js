@@ -6,7 +6,7 @@ import SearchIcon from '../../assets/svg/search.svg'
 import LocationIcon from '../../assets/svg/my_location.svg'
 import BarberItem from '../../components/BarberItem';
 import BarberList from '../../lists/BarberList';
-
+import Api from "../../Api";
 import { FlatList } from 'react-native';
 
 import {
@@ -29,31 +29,19 @@ export default () => {
 
     const [location, setLocation] = useState();     // Location
     const [barbers, setBarbers] = useState([]);
-    
-    const getBarbers = async () => {        // Função que pega a lista de barbeiros do Firebase e seta em um array
-        setBarbers([]);
-        
-            firestore()
-            .collection('barbers')
-            .onSnapshot(querySnapshot => {
-            const barbersFire = [];
-
-            querySnapshot.forEach(documentSnapshot => {
-                barbersFire.push({
-                    ...documentSnapshot.data(),
-                    key: documentSnapshot.id,
-                });
-            });
-
-            setBarbers(barbersFire);
-            setLocation('Fortaleza')
-          });
-          
-        
-    }
-
+   
     useEffect(() => {       // Ao carregar a página executa a função de pegar a lista
-            getBarbers();
+        const getBarbers = async () => {        // Função que pega a lista de barbeiros do Firebase e seta em um array
+            setBarbers([]);
+            
+            
+            let json = await Api.getBarbers();
+    
+            setBarbers(json)
+            setLocation('Fortaleza')
+        }
+        
+        getBarbers();
     }, [])
 
     return (
